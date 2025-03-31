@@ -4,42 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva</title>
+    <title>PAW Prints | Reserva</title>
 </head>
 
 <body>
     <header>
         <h1>
-            <a href="./">
-                <img src="/images/prints.png" alt="PAW-logo" width="64" height="64">
+            <a href="../">
+                <img src="../images/prints.png" alt="PAW-logo" width="64" height="64">
                 PAW Prints
             </a>
         </h1>
-
-        <a href="./carrito.html">Carrito</a>
-
+        <!-- CARRITO -->
+        <a href="../carrito.html">Carrito</a>
+        <!-- BUSCADOR -->
         <form action="libros" method="GET">
             <label for="buscador-de-libros">Buscar libros</label>
             <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
             <button type="submit">Buscar</button>
         </form>
-
+        <!-- BARRA DE NAVEGACIÓN-->
         <nav class="container_nav">
             <ul class="nav_menu">
                 <li class="opciones_nav">
-                    <a href="./catalogo.html">Catálogo</a>
+                    <a href="../catalogo/catalogo.html">Catálogo</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./mas-vendidos.html">Más Vendidos</a>
+                    <a href="../catalogo/mas-vendidos.html">Más Vendidos</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./novedades.html">Novedades</a>
+                    <a href="../catalogo/novedades.html">Novedades</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./como-comprar.html">Cómo Comprar</a>
+                    <a href="../catalogo/promociones.html">Promociones</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./mi-cuenta.html">Mi cuenta</a>
+                    <a href="../preguntas/como-comprar.html">Cómo Comprar</a>
+                </li>
+                <li class="opciones_nav">
+                    <a href="../mi-cuenta/mi-cuenta.html">Mi cuenta</a>
                 </li>
             </ul>
         </nav>
@@ -47,17 +50,15 @@
 
     <main>
         <h1>Reserva de libro</h1>
-
         <section>
             <h2>Información del libro</h2>
-
             <!-- Información del libro que se está reservando -->
-
             <article>
                 <figure>
                     <img src="../images/libro.png" alt="Título del Libro" width="150" height="200">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo.</p>
                 <p>
                     <span>Descripción: </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
@@ -67,7 +68,6 @@
                 </p>
                 <p class="precio">$ XXXX</p>
             </article>
-
             <form method="post" class="Reserva">
                 <label for="inputNombre">Nombre</label>
                 <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
@@ -117,43 +117,45 @@
             <ul class="redes-sociales">
                 <li>
                     <a href="https://www.facebook.com/pawprints" target="_blank">
-                        <img src="/images/facebook-logo.png" alt="Facebook" width="24" height="24">
+                        <img src="../images/facebook-logo.png" alt="Facebook" width="24" height="24">
                     </a>
                 </li>
                 <li>
                     <a href="https://www.instagram.com/pawprints" target="_blank">
-                        <img src="/images/instagram-icon.png" alt="Instagram" width="24" height="24">
+                        <img src="../images/instagram-icon.png" alt="Instagram" width="24" height="24">
                     </a>
                 </li>
                 <li>
                     <a href="https://x.com/pawprints" target="_blank">
-                        <img src="/images/x-icon.png" alt="Twitter" width="24" height="24">
+                        <img src="../images/x-icon.png" alt="Twitter" width="24" height="24">
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.linkedin.com/company/pawprints" target="_blank">
-                        <img src="/images/linkedin-icon.png" alt="LinkedIn" width="24" height="24">
+                    <a href="mailto:pawprints@gmail.com">                        
+                        <img src="../images/mail.png" alt="Twitter" width="24" height="18">
+                        pawprints@gmail.com
                     </a>
                 </li>
                 <li>
-                    <a href="mailto:pawprints@gmail.com">pawprints@gmail.com</a>
+                    <a href="tel:2346123456">
+                        <img src="../images/phone.png" alt="Teléfono sonando" width="24" height="24">
+                        +542346123456
+                    </a>
                 </li>
             </ul>
         </nav>
-
         <!-- F.A.Q -->
-
         <nav>
             <h4>F.A.Q</h4>
             <ul>
                 <li>
-                    <a href="./quienes-somos.html">¿Quíenes somos?</a>
+                    <a href="../preguntas/quienes-somos.html">¿Quíenes somos?</a>
                 </li>
                 <li>
-                    <a href="./como-comprar.html">¿Cómo comprar?</a>
+                    <a href="../preguntas/como-comprar.html">¿Cómo comprar?</a>
                 </li>
                 <li>
-                    <a href="./locales.html">Locales</a>
+                    <a href="../preguntas/locales.html">Locales</a>
                 </li>
             </ul>
         </nav>

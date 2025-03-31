@@ -4,151 +4,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
+    <title>PAW Prints | Más Vendidos</title>
 </head>
 
 <body>
     <header>
         <h1>
-            <a href="./">
-                <img src="/images/prints.png" alt="PAW-logo" width="64" height="64">
+            <a href="../">
+                <img src="../images/prints.png" alt="PAW-logo" width="64" height="64">
                 PAW Prints
             </a>
         </h1>
-
-        <a href="./carrito.html">Carrito</a>
-
+        <!-- CARRITO -->
+        <a href="../mi-cuenta/carrito.html">Carrito</a>
+        <!-- BUSCADOR -->
         <form action="libros" method="GET">
             <label for="buscador-de-libros">Buscar libros</label>
             <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
-            <button type="submit">Buscar</button>
+            <input type="submit" value="Buscar">
         </form>
-
+        <!-- BARRA DE NAVEGACIÓN -->
         <nav class="container_nav">
             <ul class="nav_menu">
                 <li class="opciones_nav">
-                    <a href="./catalogo.html">Catálogo</a>
+                    <a href="../catalogo/catalogo.html">Catálogo</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./mas-vendidos.html">Más Vendidos</a>
+                    <a href="../catalogo/mas-vendidos.html">Más Vendidos</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./novedades.html">Novedades</a>
+                    <a href="../catalogo/novedades.html">Novedades</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./como-comprar.html">Cómo Comprar</a>
+                    <a href="../catalogo/promociones.html">Promociones</a>
                 </li>
                 <li class="opciones_nav">
-                    <a href="./mi-cuenta.html">Mi cuenta</a>
+                    <a href="../preguntas/como-comprar.html">Cómo Comprar</a>
+                </li>
+                <li class="opciones_nav">
+                    <a href="../mi-cuenta/mi-cuenta.html">Mi cuenta</a>
                 </li>
             </ul>
         </nav>
     </header>
-
     <main>
-        <nav>
-            <label for="categorias">
-                Categorías
-                <select name="categorias" id="categorias">
-                    <option value="Ficción">Ficción</option>
-                    <option value="Novela">Novela</option>
-                    <option value="Infantil">Infantil</option>
-                </select>
-            </label>
-        </nav>
-
-        <section>
-
-            <h2>Libros Disponibles</h2>
-
+        <!-- BREADCRUMB -->
+        <ul class="breadcrumb">
+            <li><a href="../">Home</a></li>
+            <li><a href="./catalogo.html">Catálogo</a></li>
+            <li>Más Vendidos</li>
+        </ul>
+        <section class="catalogo">
+            <h2>Más Vendidos</h2>
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
-
             <article class="libro-portada">
                 <figure>
                     <img src="../images/libro.png" alt="portada-libro">
                 </figure>
                 <h3>Título del Libro</h3>
+                <p class="autor">Autor: Anónimo</p>
                 <p>$ XXXXXX</p>
-                <a href="./detalle-libro.html">VER DETALLE</a>
+                <a href="../libro/detalle-libro.html">VER DETALLE</a>
             </article>
         </section>
     </main>
