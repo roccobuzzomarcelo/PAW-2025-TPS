@@ -14,7 +14,7 @@ El proyecto que les proponemos es la Web de una librería (venta de libros) llam
 
 - Realizar un SiteMap del Sitio, planteando la jerarquía de las secciones y las páginas.
 
-> ![alt text](image.png)
+> ![alt text](/home/images/pawprints-sitemap.png)
 
 - Diseñar wireframes low-fi en Figma para representar las pantallas principales del sitio web.
 
