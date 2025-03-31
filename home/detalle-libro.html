@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle Libro</title>
 </head>
+
 <body>
     <header>
-
         <h1>
             <a href="./">
                 <img src="/images/prints.png" alt="PAW-logo" width="64" height="64">
@@ -15,32 +16,36 @@
             </a>
         </h1>
 
-        <a href="./index/carrito.html">Carrito</a>
+        <a href="./carrito.html">Carrito</a>
 
         <form action="libros" method="GET">
             <label for="buscador-de-libros">Buscar libros</label>
             <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
-            <input type="submit" value="Buscar">
-        </form> 
+            <button type="submit">Buscar</button>
+        </form>
 
         <nav class="container_nav">
             <ul class="nav_menu">
-              <li class="opciones_nav">
-                <a href="./catalogo.html">Catálogo</a></li>
-              <li class="opciones_nav">
-                <a href="./mas-vendidos.html">Más Vendidos</a></li>
-              <li class="opciones_nav">
-                <a href="./novedades.html">Novedades</a></li>
-              <li class="opciones_nav">
-                <a href="./como-comprar.html">Cómo Comprar</a></li>
-              <li class="opciones_nav">
-                <a href="./mi-cuenta.html">Mi cuenta</a></li>
+                <li class="opciones_nav">
+                    <a href="./catalogo.html">Catálogo</a>
+                </li>
+                <li class="opciones_nav">
+                    <a href="./mas-vendidos.html">Más Vendidos</a>
+                </li>
+                <li class="opciones_nav">
+                    <a href="./novedades.html">Novedades</a>
+                </li>
+                <li class="opciones_nav">
+                    <a href="./como-comprar.html">Cómo Comprar</a>
+                </li>
+                <li class="opciones_nav">
+                    <a href="./mi-cuenta.html">Mi cuenta</a>
+                </li>
             </ul>
         </nav>
-
     </header>
     <main>
-       <section>
+        <section>
             <figure>
                 <img src="../images/libro.png" alt="origen-de-evolucion">
             </figure>
@@ -51,81 +56,105 @@
             <a href="./carrito.html">Ir al carrito</a>
             <button type="submit">Reservar libro</button>
             <a href="./reserva.html">Ir a reservas</a>
-       </section>
-       <section>
-        <h2 class="subtitulo"> Similares a este: </h2>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-    </section>
+        </section>
+        <section>
+            <h2 class="subtitulo"> Similares a este: </h2>
+
+            <article class="libro-portada">
+                <figure>
+                    <img src="../images/libro.png" alt="portada-libro">
+                </figure>
+                <h3>Título del Libro</h3>
+                <p>$ XXXXXX</p>
+                <a href="./detalle-libro.html">VER DETALLE</a>
+            </article>
+
+            <article class="libro-portada">
+                <figure>
+                    <img src="../images/libro.png" alt="portada-libro">
+                </figure>
+                <h3>Título del Libro</h3>
+                <p>$ XXXXXX</p>
+                <a href="./detalle-libro.html">VER DETALLE</a>
+            </article>
+
+            <article class="libro-portada">
+                <figure>
+                    <img src="../images/libro.png" alt="portada-libro">
+                </figure>
+                <h3>Título del Libro</h3>
+                <p>$ XXXXXX</p>
+                <a href="./detalle-libro.html">VER DETALLE</a>
+            </article>
+
+            <article class="libro-portada">
+                <figure>
+                    <img src="../images/libro.png" alt="portada-libro">
+                </figure>
+                <h3>Título del Libro</h3>
+                <p>$ XXXXXX</p>
+                <a href="./detalle-libro.html">VER DETALLE</a>
+            </article>
+
+            <article class="libro-portada">
+                <figure>
+                    <img src="../images/libro.png" alt="portada-libro">
+                </figure>
+                <h3>Título del Libro</h3>
+                <p>$ XXXXXX</p>
+                <a href="./detalle-libro.html">VER DETALLE</a>
+            </article>
+        </section>
     </main>
     <footer>
-      
         <!-- REDES SOCIALES -->
         <nav>
-          <h4>Contactanos</h4>
-          <ul class="redes-sociales">
-              <li>
-                  <small>© 2025 Copyright | PAW Prints.</small>
-              </li>
-              <li>
-                  <a href="https://www.facebook.com/pawprints" target="_blank">
-                      <img src="/images/facebook-logo.png" alt="Facebook" width="24" height="24">
-                  </a>
-              </li>
-              <li>
-                  <a href="https://www.instagram.com/pawprints" target="_blank">
-                      <img src="/images/instagram-icon.png" alt="Instagram" width="24" height="24">
-                  </a>
-              </li>
-              <li>
-                  <a href="https://x.com/pawprints" target="_blank">
-                      <img src="/images/x-icon.png" alt="Twitter" width="24" height="24">
-                  </a>
-              </li>
-              <li>
-                  <a href="https://www.linkedin.com/company/pawprints" target="_blank">
-                  <img src="/images/linkedin-icon.png" alt="LinkedIn" width="24" height="24">
-              </a>
-          </li>
-          <li>
-              <a href="mailto:pawprints@gmail.com">pawprints@gmail.com</a>
-          </li>
-          </ul>
-      </nav>
+            <h4>Contactenos</h4>
+            <ul class="redes-sociales">
+                <li>
+                    <a href="https://www.facebook.com/pawprints" target="_blank">
+                        <img src="/images/facebook-logo.png" alt="Facebook" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/pawprints" target="_blank">
+                        <img src="/images/instagram-icon.png" alt="Instagram" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/pawprints" target="_blank">
+                        <img src="/images/x-icon.png" alt="Twitter" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/company/pawprints" target="_blank">
+                        <img src="/images/linkedin-icon.png" alt="LinkedIn" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:pawprints@gmail.com">pawprints@gmail.com</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- F.A.Q -->
+
+        <nav>
+            <h4>F.A.Q</h4>
+            <ul>
+                <li>
+                    <a href="./quienes-somos.html">¿Quíenes somos?</a>
+                </li>
+                <li>
+                    <a href="./como-comprar.html">¿Cómo comprar?</a>
+                </li>
+                <li>
+                    <a href="./locales.html">Locales</a>
+                </li>
+            </ul>
+        </nav>
+        <small>© 2024-2025 PAW Prints S.A.</small>
     </footer>
 </body>
+
 </html>
