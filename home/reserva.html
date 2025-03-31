@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>catalogo</title>
     <base target="_blank">
 </head>
 <body>
@@ -43,63 +43,59 @@
 
     </header>
     <main>
-       <section>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h2>Título del Libro</h2>
-            <h3>Descripcion</h3>
-            <p>$ XXXXXX</p>
-            <label for="inputSubmit">
-                <input type="submit" name="inputSubmit" value="Agregar al carrito" />
-                <a href= "./carrito.html"> Carrito </a>
-            </label>
-            <label for="inputSubmit">
-                <input type="submit" name="inputSubmit" value="Reservar libro" />
-                <a href= "./reserva.html"> Carrito </a>
-            </label>
-        </article>
-       </section>
-       <section>
-        <h2 class="subtitulo"> Similares a este: </h2>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-    </section>
+        <section>
+            <form method="post" class="Reserva">
+                <h1>Reserva de libro</h1>
+                <div>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Nombre"/>
+                    </label>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Apellido/s"/>
+                    </label>
+                    <label for="inputEmail">
+                        <input type="email" name="inputeEmail" placeholder="Email" />
+                    </label>
+                    <label for="inputTel">
+                        <input type="tel" name="inputTel"
+                        pattern="/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/" 
+                        placeholder="Teléfono"/>
+                    </label>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Calle"/>
+                    </label>
+                    <label for="inputNumber">
+                        <input type="number" name="inputNumber"
+                          placeholder="N°" />
+                    </label>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Ciudad"/>
+                    </label>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Provincia"/>
+                    </label>
+                    <label for="inputNumber">
+                        <input type="number" name="inputNumber"
+                          placeholder="Código Postal" />
+                    </label>
+                </div>
+                <div>
+                    <label for="inputRadio">
+                        <input type="radio" name="inputRadio" value="envío"/> 
+                        Envío a domicilio
+                    </label>
+                    <label for="inputRadio">
+                        <input type="radio" name="inputRadio"	value="retira" /> 
+                        Retiro en tienda
+                    </label>    
+                </div>
+                <div>
+                    <label for="inputSubmit">
+                        <input type="submit" name="inputSubmit" value="Reservar" />
+                      </label>
+                </div>
+              </form> 
+        </section>
     </main>
     <footer>
       

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>catalogo</title>
     <base target="_blank">
 </head>
 <body>
@@ -43,63 +43,44 @@
 
     </header>
     <main>
-       <section>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h2>Título del Libro</h2>
-            <h3>Descripcion</h3>
-            <p>$ XXXXXX</p>
-            <label for="inputSubmit">
-                <input type="submit" name="inputSubmit" value="Agregar al carrito" />
-                <a href= "./carrito.html"> Carrito </a>
-            </label>
-            <label for="inputSubmit">
-                <input type="submit" name="inputSubmit" value="Reservar libro" />
-                <a href= "./reserva.html"> Carrito </a>
-            </label>
-        </article>
-       </section>
-       <section>
-        <h2 class="subtitulo"> Similares a este: </h2>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-        <article>
-            <figure>
-                <img src="../images/libro.png" alt="origen-de-evolucion">
-            </figure>
-            <h3>Título del Libro</h3>
-        </article>
-    </section>
+        <section>
+            <form action="/mi-pagina-de-formulario" method="post" class="Registrarse">
+                <div>
+                    <h1>Iniciar Sesión
+                        <a href="./mi-cuenta.html">Mi cuenta</a>
+                    </h1> 
+                </div>
+                <div>
+                    <h2> Registrarse </h2>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Nombre"/>
+                    </label>
+                    <label for="inputTexto">
+                        <input type="text" name="inputTexto" placeholder="Apellido/s"/>
+                    </label>
+                    <label for="inputEmail">
+                        <input type="email" name="inputeEmail" placeholder="Email" />
+                    </label>
+                    <label for="inputPassword">
+                        <input type="password" name="inputPassword" placeholder="Contraseña" />
+                    </label>
+                    <label for="inputPassword">
+                        <input type="password" name="inputPassword" placeholder="Confirmar Contraseña" />
+                    </label>
+                </div>
+                <div>
+                    <label for="inputAceptoTerminos">
+                        <input type="radio" name="inputAceptoTerminos" value="AceptoTerminos"/> 
+                        Acepto los términos y condiciones
+                      </label>
+                </div>
+                <div>
+                    <label for="inputSubmit">
+                        <input type="submit" name="inputSubmit" value="Registrarse" />
+                      </label>
+                </div>
+              </form> 
+        </section>
     </main>
     <footer>
       
