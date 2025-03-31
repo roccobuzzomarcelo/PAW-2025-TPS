@@ -1,121 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>catalogo</title>
-    <base target="_blank">
+    <title>Registro</title>
 </head>
 <body>
     <header>
-
         <h1>
             <a href="./">
-                <img src="/images/prints.png" alt="PAW-logo" width="64" height="64">
+                <img src="/images/prints.png" alt="Logo de PAW Prints" width="64" height="64">
                 PAW Prints
             </a>
         </h1>
 
         <a href="./index/carrito.html">Carrito</a>
 
-        <search>
-            <form action="libros" method="GET" >
-                <label for="buscador-de-libros">Buscar libros</label>
-                <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN"/>
-                <input type="submit" value="hizo-consulta">Buscar</input>                    
-            </form>
-        </search>
+        <form action="libros" method="GET">
+            <label for="buscador-de-libros">Buscar libros</label>
+            <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
+            <input type="submit" value="Buscar">
+        </form> 
 
         <nav class="container_nav">
             <ul class="nav_menu">
-              <li class="opciones_nav">
-                <a href="./catalogo.html">Catálogo</a></li>
-              <li class="opciones_nav">
-                <a href="./mas-vendidos.html">Más Vendidos</a></li>
-              <li class="opciones_nav">
-                <a href="./novedades.html">Novedades</a></li>
-              <li class="opciones_nav">
-                <a href="./como-comprar.html">Cómo Comprar</a></li>
-              <li class="opciones_nav">
-                <a href="./mi-cuenta.html">Mi cuenta</a></li>
+                <li class="opciones_nav"><a href="./catalogo.html">Catálogo</a></li>
+                <li class="opciones_nav"><a href="./mas-vendidos.html">Más Vendidos</a></li>
+                <li class="opciones_nav"><a href="./novedades.html">Novedades</a></li>
+                <li class="opciones_nav"><a href="./como-comprar.html">Cómo Comprar</a></li>
+                <li class="opciones_nav"><a href="./mi-cuenta.html">Mi cuenta</a></li>
             </ul>
         </nav>
-
     </header>
+
     <main>
         <section>
             <form action="/mi-pagina-de-formulario" method="post" class="Registrarse">
-                <div>
-                    <h1>Iniciar Sesión
-                        <a href="./mi-cuenta.html">Mi cuenta</a>
-                    </h1> 
-                </div>
-                <div>
-                    <h2> Registrarse </h2>
-                    <label for="inputTexto">
-                        <input type="text" name="inputTexto" placeholder="Nombre"/>
-                    </label>
-                    <label for="inputTexto">
-                        <input type="text" name="inputTexto" placeholder="Apellido/s"/>
-                    </label>
-                    <label for="inputEmail">
-                        <input type="email" name="inputeEmail" placeholder="Email" />
-                    </label>
-                    <label for="inputPassword">
-                        <input type="password" name="inputPassword" placeholder="Contraseña" />
-                    </label>
-                    <label for="inputPassword">
-                        <input type="password" name="inputPassword" placeholder="Confirmar Contraseña" />
-                    </label>
-                </div>
-                <div>
-                    <label for="inputAceptoTerminos">
-                        <input type="radio" name="inputAceptoTerminos" value="AceptoTerminos"/> 
-                        Acepto los términos y condiciones
-                      </label>
-                </div>
-                <div>
-                    <label for="inputSubmit">
-                        <input type="submit" name="inputSubmit" value="Registrarse" />
-                      </label>
-                </div>
-              </form> 
+                <h2>Iniciar Sesión <a href="./mi-cuenta.html">Mi cuenta</a></h2>
+                <h3>Registrarse</h3>
+
+                <label for="inputNombre">Nombre</label>
+                <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
+
+                <label for="inputApellido">Apellido/s</label>
+                <input id="inputApellido" type="text" name="inputApellido" placeholder="Apellido/s" required>
+
+                <label for="inputEmail">Email</label>
+                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
+
+                <label for="inputPassword">Contraseña</label>
+                <input id="inputPassword" type="password" name="inputPassword" placeholder="Contraseña" required>
+
+                <label for="inputConfirmarPassword">Confirmar Contraseña</label>
+                <input id="inputConfirmarPassword" type="password" name="inputConfirmarPassword" placeholder="Confirmar Contraseña" required>
+
+                <label for="inputAceptoTerminos">
+                    <input type="checkbox" id="inputAceptoTerminos" name="inputAceptoTerminos" value="AceptoTerminos" required>
+                    Acepto los términos y condiciones
+                </label>
+
+                <input type="submit" value="Registrarse">
+            </form> 
         </section>
     </main>
+
     <footer>
-      
-        <!-- REDES SOCIALES -->>
         <nav>
-          <h4>Contactanos</h4>
-          <ul class="redes-sociales">
-              <li>
-                  <small>© 2025 Copyright | PAW Prints.</small>
-              </li>
-              <li>
-                  <a href="https://www.facebook.com/pawprints" target="_blank">
-                      <img src="/images/facebook-logo.png" alt="" width="24" height="24">
-                  </a>
-              </li>
-              <li>
-                  <a href="https://www.instagram.com/pawprints" target="_blank">
-                      <img src="/images/instagram-icon.png" alt="" width="24" height="24">
-                  </a>
-              </li>
-              <li>
-                  <a href="https://x.com/pawprints" target="_blank">
-                      <img src="/images/x-icon.png" alt="" width="24" height="24">
-                  </a>
-              </li>
-              <li>
-                  <a href="https://www.linkedin.com/pawprints" target="_blank">
-                  <img src="/images/linkedin-icon.png" alt="" width="24" height="24">
-              </a>
-          </li>
-          <li>
-              <a href="mailto:pawprints@gmail.com">pawprints@gmail.com</a>
-          </li>
-          </ul>
-      </nav>
+            <h4>Contactanos</h4>
+            <ul class="redes-sociales">
+                <li><small>© 2025 Copyright | PAW Prints.</small></li>
+                <li>
+                    <a href="https://www.facebook.com/pawprints" target="_blank">
+                        <img src="/images/facebook-logo.png" alt="Facebook" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/pawprints" target="_blank">
+                        <img src="/images/instagram-icon.png" alt="Instagram" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/pawprints" target="_blank">
+                        <img src="/images/x-icon.png" alt="Twitter" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/company/pawprints" target="_blank">
+                        <img src="/images/linkedin-icon.png" alt="LinkedIn" width="24" height="24">
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:pawprints@gmail.com">pawprints@gmail.com</a>
+                </li>
+            </ul>
+        </nav>
     </footer>
 </body>
 </html>
