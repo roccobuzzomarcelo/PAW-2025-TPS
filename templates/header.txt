@@ -1,7 +1,7 @@
     <header>
         <h1>
             <a href="./">
-                <img src="/images/prints.png" alt="PAW-logo" width="64" height="64">
+                <img src="./images/PAWPrints.svg" alt="PAW-logo">
                 PAW Prints
             </a>
         </h1>
