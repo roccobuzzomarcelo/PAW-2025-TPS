@@ -4,46 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/print.css" media="print">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
     <title>PAW Prints | Catálogo</title>
 </head>
 
 <body>
     <header>
         <h1>
-            <a href="../">
+            <a class="logo" href="../">
                 <img src="../images/PAWPrints.svg" alt="PAW-logo">
-                PAW Prints
             </a>
+            <!-- BUSCADOR -->
+            <search>
+                <form class="buscador" action="libros" method="GET">
+                    <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
+                    <i class="ft icono-search"><button type="submit"></button></i>
+                    <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search"
+                        placeholder="Ingresar título, autor, ISBN">
+                </form>
+            </search>
+            <!-- CARRITO -->
+            <a class="carrito" href="../mi-cuenta/carrito.html">Carrito</a>
         </h1>
-        <!-- CARRITO -->
-        <a href="../mi-cuenta/carrito.html">Carrito</a>
-        <!-- BUSCADOR -->
-        <search>
-            <form action="libros" method="GET">
-                <label for="buscador-de-libros">Buscar libros</label>
-                <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
-                <button type="submit">Buscar</button>
-            </form>
-        </search>
         <!-- BARRA DE NAVEGACIÓN -->
-        <nav class="container_nav">
-            <ul class="nav_menu">
-                <li class="opciones_nav">
+        <nav class="nav-bar">
+            <ul>
+                <li>
                     <a href="../catalogo/catalogo.html">Catálogo</a>
                 </li>
-                <li class="opciones_nav">
+                <li >
                     <a href="../catalogo/mas-vendidos.html">Más Vendidos</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../catalogo/novedades.html">Novedades</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../catalogo/promociones.html">Promociones</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../preguntas/como-comprar.html">Cómo Comprar</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../mi-cuenta/mi-cuenta.html">Mi cuenta</a>
                 </li>
             </ul>
@@ -52,8 +60,8 @@
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb">
-            <li><a href="../">Home</a></li>
-            <li>Catálogo</li>
+            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
+            <li class="breadcrumb-item">Catálogo</li>
         </ul>
         <nav>
             <label for="categorias">
