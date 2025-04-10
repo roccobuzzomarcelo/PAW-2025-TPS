@@ -50,14 +50,13 @@ h1 {
     display: flex;
     background-color: white;
     width: min(20em, 100%);
-    height: 1.5em;
-    display: flex;
+    height: 2.5em;
     align-items: center;
     margin: auto;
     padding: var(--pading-buscador);
     border-radius: 6em;
-    align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
 }
 
 .buscador-lbl {
@@ -65,36 +64,39 @@ h1 {
 }
 
 .buscador-input {
-    width: 40em;
-    font-size: 16px;
+    width: 100%;
     font-family: "Roboto", sans-serif;
-    margin-left: var(--pading-buscador);
+    margin-left: 0.5em;
     outline: none;
     border: none;
     background: transparent;
+    /* flex: 1; */
+    min-width: 0;
 }
 
 .carrito {
     display: grid;
-    margin: 1em;
     color: var(--font-color);
     text-decoration: none;
     font-size: 12px;
     font-family: "Archivo Black", sans-serif;
     justify-content: center;
+    margin: 1em;
 }
 
 .logo svg {
     display: grid;
     justify-content: center;
     cursor: pointer;
-    width: min(100%);
-    height: min(100%);
+    width: 10em;
+    height: 5em;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 
 .nav-bar {
+    grid-column: 1 / -1;
+
     background-color: var(--main-color);
     justify-content: center;
     align-items: center;
@@ -169,6 +171,10 @@ a:hover {
 
 /* BODY */
 
+body {
+    position: relative;
+}
+
 .breadcrumb {
     padding: min(2em, 8%);
     font-family: "Roboto", sans-serif;
@@ -242,7 +248,8 @@ a:hover {
 footer {
     background-color: var(--main-color);
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
+    width: 100%;
 }
 
 footer small {
@@ -258,29 +265,64 @@ h4 {
     margin: 0.5em;
     color: var(--secondary-color);
     font-family: "Archivo Black", sans-serif;
+    font-size: 24px;
 }
 
 .nav-redes {
-    display: inline-block;
+    display: inline;
     justify-items: center;
 }
 
 .redes-sociales {
     list-style: none;
-    justify-items: center;
-    text-decoration: none;
-    margin: 0.5em;
-    padding: 0.5em 5%;
-    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
 }
 
-.faq {
-    display: inline-block;
+.redes-sociales li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: white;
     text-decoration: none;
-    margin: 0.5em;
-    padding: 2px 5%;
-    width: 100%;
-    list-style: none;
+    transition: transform 0.2s ease;
+}
+
+.facebook:hover {
+    background-color: #1877f2;
+    animation: animate 0.4s linear;
+    transition: 0.5s;
+}
+
+.instagram:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    animation: animate 0.4s linear;
+    transition: 0.5s;
+}
+
+.X:hover {
+    background-color: black;
+    animation: animate 0.4s linear;
+    transition: 0.5s;
+}
+
+.mail:hover {
+    background-color: #ff4d4d;
+    animation: animate 0.4s linear;
+    transition: 0.5s;
+}
+
+.phone:hover {
+    background-color: #25d366;
+    animation: animate 0.4s linear;
+    transition: 0.5s;
 }
 
 .redes-sociales li>a {
@@ -291,25 +333,83 @@ h4 {
 }
 
 .nav-faq {
+    display: inline;
     justify-items: center;
+    margin-bottom: 1.5em;
 }
 
-.faq li>a {
-    text-decoration: none;
+.faq {
+    display: grid;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
     margin: 0.5em;
-    padding: 2px 5%;
-    color: var(--secondary-color);
 }
+
+.faq a {
+    color: var(--secondary-color);
+    margin: 0.5em;
+    text-decoration: none;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.faq a:hover {
+    font-weight: bold;
+}
+
 
 /* MEDIA QUERIES */
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 512px) {
     .nav-bar {
         display: none;
     }
-    
+
     .hamburger-icon {
         display: flex;
         justify-content: center;
+    }
+
+
+}
+
+@media only screen and (min-width: 1024px) {
+    header {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 2fr auto;
+        gap: 10px;
+    }
+
+    .logo {
+        margin-left: 2em;
+
+    }
+
+    .carrito {
+        margin-right: 10em;
+    }
+
+    footer {
+        grid-template-columns: auto auto;
+    }
+}
+
+@keyframes animate {
+    40% {
+        transform: scale(1.4);
+    }
+
+    60% {
+        transform: scale(0.8);
+    }
+
+    80% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
