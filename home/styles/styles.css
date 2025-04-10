@@ -60,13 +60,46 @@ h1 {
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
 }
 
+.btn-search {
+    cursor: pointer;
+    width: 5em;
+    height: 2em;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    margin-right: 0.3em;
+    border-radius: 6em;
+}
+
+.fas {
+    color: #F0CEDA;
+}
+
+.buscador {
+    display: flex;
+    background-color: white;
+    width: min(20em, 100%);
+    height: 1.5em;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding: var(--pading-buscador);
+    border-radius: 6em;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .buscador-lbl {
     display: none;
 }
 
 .buscador-input {
     width: 40em;
+<<<<<<< HEAD
     font-size: 1rem;
+=======
+    font-size: 16px;
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     font-family: "Roboto", sans-serif;
     margin-left: var(--pading-buscador);
     outline: none;
@@ -75,6 +108,7 @@ h1 {
 }
 
 .carrito {
+<<<<<<< HEAD
     display: flex;
     margin: auto;
     width: 2rem;
@@ -88,6 +122,17 @@ h1 {
 }
 
 
+=======
+    display: grid;
+    margin: 1em;
+    color: var(--font-color);
+    text-decoration: none;
+    font-size: 12px;
+    font-family: "Archivo Black", sans-serif;
+    justify-content: center;
+}
+
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
 .logo svg {
     display: grid;
     justify-content: center;
@@ -107,15 +152,24 @@ h1 {
 }
 
 .nav-bar ul {
+<<<<<<< HEAD
     display: flex;
     height: 100%;;
+=======
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     list-style: none;
 }
 
 .nav-bar a {
     color: white;
     text-decoration: none;
+<<<<<<< HEAD
     padding: 0.5rem 2.5rem;
+=======
+    padding: 5px 25px;
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     display: block;
     text-align: center;
     font-family: "Archivo Black", sans-serif;
@@ -238,6 +292,7 @@ a:hover {
     width: 100%;
     height: auto;
     object-fit: cover;
+<<<<<<< HEAD
     max-height: 15rem;
     transition: zoomPortada 10s ease;
     
@@ -245,6 +300,9 @@ a:hover {
 
 .libro-portada:hover{
         transform: scale(1.1);
+=======
+    max-height: 240px;
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
 }
 
 /* FOOTER */
@@ -252,13 +310,19 @@ a:hover {
 footer {
     background-color: var(--main-color);
     display: grid;
+<<<<<<< HEAD
     width: 100%;
+=======
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     grid-template-columns: auto auto;
 }
 
 footer small {
     grid-column: 1 / -1;
+<<<<<<< HEAD
     
+=======
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     text-align: center;
     padding: 10px 0;
     background-color: white;
@@ -273,14 +337,23 @@ h4 {
 }
 
 .nav-redes {
+<<<<<<< HEAD
     display: block;
+=======
+    display: inline-block;
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     justify-items: center;
 }
 
 .redes-sociales {
+<<<<<<< HEAD
     display: flex;
     list-style: none;
     justify-items: normal;
+=======
+    list-style: none;
+    justify-items: center;
+>>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     text-decoration: none;
     margin: 0.5em;
     padding: 0.5em 5%;
