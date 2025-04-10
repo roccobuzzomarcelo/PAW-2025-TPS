@@ -25,39 +25,9 @@ header {
 }
 
 h1 {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    justify-items: center;
     align-items: center;
-    padding: 1rem;
-}
-
-.btn-search {
-    cursor: pointer;
-    width: 5em;
-    height: 2em;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    background-color: white;
-    margin-right: 0.3em;
-    border-radius: 6em;
-}
-
-.fas {
-    color: var(--secondary-color);
-}
-
-.buscador {
-    display: flex;
-    background-color: white;
-    width: min(20em, 100%);
-    height: 1.5em;
-    display: flex;
-    align-items: center;
-    margin: auto;
-    padding: var(--pading-buscador);
-    border-radius: 6em;
-    align-items: center;
-    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
 }
 
 .btn-search {
@@ -78,74 +48,64 @@ h1 {
 .buscador {
     display: flex;
     background-color: white;
-    width: min(20em, 100%);
+    width: 90%;
     height: 2.5em;
     align-items: center;
-    margin: auto;
     padding: var(--pading-buscador);
     border-radius: 6em;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.buscador-input {
+    width: 100%;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    margin-left: 0.5em;
+    outline: none;
+    border: none;
+    background: transparent;
+    flex: 1;
+    min-width: 0;
+    margin: auto;
 }
 
 .buscador-lbl {
     display: none;
 }
 
-.buscador-input {
-<<<<<<< HEAD
-    width: 100%;
-=======
-    width: 40em;
-<<<<<<< HEAD
-    font-size: 1rem;
-=======
-    font-size: 16px;
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
->>>>>>> 94513911f0730ff4e8a3e1ff97d2ed3d1cde77d8
-    font-family: "Roboto", sans-serif;
-    margin-left: 0.5em;
-    outline: none;
-    border: none;
-    background: transparent;
-    /* flex: 1; */
-    min-width: 0;
-}
-
 .carrito {
-<<<<<<< HEAD
     display: flex;
-    margin: auto;
-    width: 2rem;
-    height: 2rem;
-    text-decoration: none;
-    font-size: 1.5rem;
-    justify-content: flex-end;
-    background-color: white;
+    justify-content: center;
     align-items: center;
-    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
-}
-
-
-=======
-    display: grid;
-    color: var(--font-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white ;
+    color: var(--secondary-color);
+    font-size: 24px;
     text-decoration: none;
-    font-size: 12px;
-    font-family: "Archivo Black", sans-serif;
-    justify-content: center;
-    margin: 1em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    transition: transform 0.2s ease;
 }
 
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
+.carrito:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.carrito i {
+    pointer-events: none;
+    /* Para evitar que el ícono intercepte el click */
+}
+
 .logo svg {
-    display: grid;
-    justify-content: center;
-    cursor: pointer;
     width: 10em;
     height: 5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin: 1rem;
 }
 
 .nav-bar {
@@ -155,28 +115,19 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 0;
-    margin: 0;
+    margin-top: 1em;
 }
 
 .nav-bar ul {
-<<<<<<< HEAD
-    display: flex;
-    height: 100%;;
-=======
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     list-style: none;
 }
 
 .nav-bar a {
     color: white;
     text-decoration: none;
-<<<<<<< HEAD
-    padding: 0.5rem 2.5rem;
-=======
     padding: 5px 25px;
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     display: block;
     text-align: center;
     font-family: "Archivo Black", sans-serif;
@@ -205,8 +156,8 @@ a:hover {
     width: 100%;
     font-size: 32px;
     border: none;
+    margin-top: 0.5em;
 }
-
 
 .nav-bar-mobile {
     display: none;
@@ -303,17 +254,7 @@ body {
     width: 100%;
     height: auto;
     object-fit: cover;
-<<<<<<< HEAD
-    max-height: 15rem;
-    transition: zoomPortada 10s ease;
-    
-}
-
-.libro-portada:hover{
-        transform: scale(1.1);
-=======
     max-height: 240px;
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
 }
 
 /* FOOTER */
@@ -321,24 +262,12 @@ body {
 footer {
     background-color: var(--main-color);
     display: grid;
-<<<<<<< HEAD
     grid-template-columns: auto;
     width: 100%;
-=======
-<<<<<<< HEAD
-    width: 100%;
-=======
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
-    grid-template-columns: auto auto;
->>>>>>> 94513911f0730ff4e8a3e1ff97d2ed3d1cde77d8
 }
 
 footer small {
     grid-column: 1 / -1;
-<<<<<<< HEAD
-    
-=======
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
     text-align: center;
     padding: 10px 0;
     background-color: white;
@@ -354,39 +283,17 @@ h4 {
 }
 
 .nav-redes {
-<<<<<<< HEAD
     display: inline;
-=======
-<<<<<<< HEAD
-    display: block;
-=======
-    display: inline-block;
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
->>>>>>> 94513911f0730ff4e8a3e1ff97d2ed3d1cde77d8
     justify-items: center;
 }
 
 .redes-sociales {
-<<<<<<< HEAD
-    display: flex;
     list-style: none;
-    justify-items: normal;
-=======
-    list-style: none;
-<<<<<<< HEAD
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1em;
-=======
-    justify-items: center;
->>>>>>> de9ae200c0b610951d00aa88030ed72101f61e95
-    text-decoration: none;
-    margin: 0.5em;
-    padding: 0.5em 5%;
-    width: 100%;
->>>>>>> 94513911f0730ff4e8a3e1ff97d2ed3d1cde77d8
 }
 
 .redes-sociales li a {
@@ -477,8 +384,6 @@ h4 {
         display: flex;
         justify-content: center;
     }
-
-
 }
 
 @media only screen and (min-width: 1024px) {
@@ -486,21 +391,21 @@ h4 {
         display: grid;
         align-items: center;
         grid-template-columns: 1fr 2fr auto;
-        gap: 10px;
-    }
-
-    .logo {
-        margin-left: 2em;
-
+        justify-content: space-around;
     }
 
     .carrito {
-        margin-right: 10em;
+        margin-right: 2em;
     }
 
     footer {
         grid-template-columns: auto auto;
     }
+
+    .buscador {
+        margin: auto;
+    }
+
 }
 
 @keyframes animate {
