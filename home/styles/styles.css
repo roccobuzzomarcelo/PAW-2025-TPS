@@ -18,7 +18,7 @@
 /* HEADER */
 
 header {
-    position: static;
+    position: relative;
     width: 100%;
     background-color: var(--secondary-color);
     font-family: "Archivo Black", sans-serif;
@@ -226,7 +226,7 @@ body {
 .subtitulo {
     display: flex;
     justify-content: center;
-    margin: min(10px, 1fr);
+    margin: 1rem;
     font-family: "Archivo Black", sans-serif;
     color: var(--font-color);
 }
@@ -236,13 +236,12 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     /* libros más angostos */
     gap: 10px;
-    /* menos separación entre ellos */
     padding: 10px 5%;
-
+    margin-bottom: 3em;
 }
 
 .libro-portada {
-    margin: 0;
+    margin: auto;
     padding: 10px 5px;
     display: flex;
     flex-direction: column;
@@ -251,9 +250,14 @@ body {
 }
 
 .libro-portada img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 240px;
     object-fit: cover;
+    max-height: 240px;
+}
+
+.libro-portada img:hover {
+    transform: scale(0.8);
     max-height: 240px;
 }
 
