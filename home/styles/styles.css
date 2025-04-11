@@ -119,7 +119,7 @@ h1 {
 }
 
 .nav-bar ul {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
     list-style: none;
 }
