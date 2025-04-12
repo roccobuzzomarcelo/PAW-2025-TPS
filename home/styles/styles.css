@@ -289,6 +289,29 @@ body {
     transition: 0.5s;
 }
 
+a{
+    text-decoration: none;
+}
+
+h3 {
+    font-size: 1rem ;
+    color: var(--main-color);
+    margin: 0.5em;  
+}
+
+.detalle-libro {
+    padding: 10px 5%;
+}
+.img-detalle {
+    width: 20rem;
+    height: auto;
+    padding: 2rem;
+}
+
+p{
+    margin-top: 1rem;
+}
+
 .iniciar-sesion {
     display: flex;
     justify-content: center;
