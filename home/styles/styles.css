@@ -300,7 +300,10 @@ h3 {
 }
 
 .detalle-libro {
+    display:flex;
     padding: 10px 5%;
+    gap: 2rem; 
+    align-items: flex-start;
 }
 .img-detalle {
     width: 20rem;
@@ -308,8 +311,28 @@ h3 {
     
 }
 
+.descripcion-libro{
+
+    flex: 1;
+    padding: 1rem;
+    
+}
+
 p{
     margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .detalle-libro {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-detalle {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 .iniciar-sesion {
