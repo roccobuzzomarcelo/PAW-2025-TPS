@@ -370,6 +370,23 @@ p{
     pointer-events: none;
 }
 
+.boton-finalizar {
+    display: inline-block;
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px; /* bordes redondeados */
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.boton-finalizar:hover {
+    background-color:var(--secondary-color);
+}
 .boton-link{
     display: inline-block;
     padding: 0.5rem 1rem;

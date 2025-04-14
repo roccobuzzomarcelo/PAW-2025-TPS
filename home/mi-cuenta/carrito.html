@@ -147,8 +147,46 @@
                     </g>
                 </svg>
             </a>
-            Carrito
         </h1>
+        <!-- BUSCADOR -->
+        <search>
+            <form class="buscador" action="libros" method="GET">
+                <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
+                <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
+                <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search"
+                    placeholder="Buscar...">
+            </form>
+        </search>
+        <!-- CARRITO -->
+        <a class="carrito" href="../mi-cuenta/carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <!-- BARRA DE NAVEGACIÓN -->
+        <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="../catalogo/catalogo.html">Catálogo</a>
+                </li>
+                <li>
+                    <a href="../catalogo/mas-vendidos.html">Más Vendidos</a>
+                </li>
+                <li>
+                    <a href="../catalogo/novedades.html">Novedades</a>
+                </li>
+                <li>
+                    <a href="../catalogo/recomendados.html">Recomendados</a>
+                </li>
+                <li>
+                    <a href="../catalogo/promociones.html">Promociones</a>
+                </li>
+                <li>
+                    <a href="../preguntas/como-comprar.html">Cómo Comprar</a>
+                </li>
+                <li>
+                    <a href="../mi-cuenta/mi-cuenta.html">Mi cuenta</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     </header>
     <main>
         <!-- BREADCRUMB -->
@@ -175,10 +213,10 @@
         <section class="subtotal">
             <h2>Subtotal</h2>
             <p class="precio">$ XXXX</p>
-            <a href="https://pawprints/finalizar-compra/" class="boton-link">
+            <a href="https://pawprints/finalizar-compra/" class="boton-finalizar">
                 Finalizar compra
             </a>
-            <a href="../" class="boton-link">
+            <a href="../" class="boton-finalizar">
                 Ver más productos
             </a>
         </section>
