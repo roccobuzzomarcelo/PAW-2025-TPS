@@ -34,6 +34,12 @@
     --main-color-shadow: #362f41;
 }
 
+.carrito-pages{
+    --main-color:#08B342;
+    --secondary-color: #55D37F;
+    --main-color-shadow: #003311;
+}
+
 /* HEADER */
 
 header {
@@ -207,7 +213,7 @@ a:hover {
     font-family: "Archivo Black", sans-serif;
 }
 
-.como-comprar {
+.como-comprar, .lista-locales, .quienes-somos{
     display: inline-block;
     padding: 4em;
     text-align: justify;
@@ -364,7 +370,7 @@ p{
     pointer-events: none;
 }
 
-.boton-link {
+.boton-link{
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--main-color);
@@ -382,7 +388,7 @@ p{
     background-color: var(--main-color);
 }
 
-.iniciar-sesion {
+.iniciar-sesion, .registrarse, .recuperar-contraseña {
     display: flex;
     justify-content: center;
     margin: 1em;
@@ -392,13 +398,15 @@ p{
 
 }
 
-.login-form {
+.login-form, .registro-form, .recuperar-contraseña-form{
     display: grid;
     justify-content: center;
     margin: 2em 0 3em 0;
+    margin-bottom: 1em;
+
 }
 
-.register-link {
+.register-link, .login-link {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -414,11 +422,12 @@ p{
     transition: transform 0.2s ease;
 }
 
-.register-link:hover {
+.register-link:hover, .login-link:hover {
     transform: scale(1.1);
     opacity: 0.9;
     transition: 0.75;
 }
+
 
 .libro-carrito {
     display:flex;
@@ -434,6 +443,11 @@ p{
     }
 
 
+}
+
+.link-locales{
+    color: var(--secondary-color);
+    margin-bottom: 20rem;
 }
 
 

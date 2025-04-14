@@ -12,13 +12,13 @@
         href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>PAW Prints | Registro</title>
+    <title>PAW Prints | Mi Cuenta</title>
 </head>
 
 <body>
     <header>
         <h1>
-            <a href="../">
+            <a class="logo" href="../">
                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1499px" height="525px" version="1.1"
                     style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                     viewBox="0 0 1583.95 554.68" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -148,52 +148,55 @@
                 </svg>
             </a>
         </h1>
-        <!-- CARRITO -->
-        <a href="./carrito.html">Carrito</a>
         <!-- BUSCADOR -->
         <search>
-            <form action="libros" method="GET">
-                <label for="buscador-de-libros">Buscar libros</label>
-                <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
-                <button type="submit">Buscar</button>
+            <form class="buscador" action="libros" method="GET">
+                <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
+                <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
+                <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search"
+                    placeholder="Buscar...">
             </form>
         </search>
+        <!-- CARRITO -->
+        <a class="carrito" href="../mi-cuenta/carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
         <!-- BARRA DE NAVEGACIÓN -->
-        <nav class="container_nav">
-            <ul class="nav_menu">
-                <li class="opciones_nav">
+        <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
+        <nav class="nav-bar">
+            <ul>
+                <li>
                     <a href="../catalogo/catalogo.html">Catálogo</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../catalogo/mas-vendidos.html">Más Vendidos</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../catalogo/novedades.html">Novedades</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
+                    <a href="../catalogo/recomendados.html">Recomendados</a>
+                </li>
+                <li>
                     <a href="../catalogo/promociones.html">Promociones</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../preguntas/como-comprar.html">Cómo Comprar</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../mi-cuenta/mi-cuenta.html">Mi cuenta</a>
                 </li>
             </ul>
         </nav>
     </header>
     <main>
-        <!-- BREADCRUMB -->
-
         <ul class="breadcrumb">
-            <li><a href="../">Home</a></li>
-            <li><a href="./mi-cuenta.html">Mi cuenta</a></li>
-            <li>Registro</li>
+            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
+            <li class="breadcrumb-item">Mi Cuenta</li>
+            <li class="breadcrumb-item">Registro</li>
         </ul>
 
-        <section>
-            <form action="/mi-pagina-de-formulario" method="post" class="Registrarse">
-                <h3>Registrarse</h3>
+        <section class="registrarse">
+            <form class="registro-form" action="/mi-pagina-de-formulario" method="post" class="Registrarse">
+                <h3 class="subtitulo">Registrarse</h3>
 
                 <label for="inputNombre">Nombre</label>
                 <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
@@ -218,9 +221,10 @@
                 </label>
 
                 <input type="submit" value="Registrarse">
+                <p>¿Ya tienes cuenta creada?</p>
+                <a class= "login-link" href="./mi-cuenta.html">Iniciar Sesión</a>
             </form>
-            <p>¿Ya tienes cuenta creada?</p>
-            <a href="./mi-cuenta.html">Inícia Sesión</a>
+           
         </section>
     </main>
     <footer>

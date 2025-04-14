@@ -12,13 +12,13 @@
         href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>PAW Prints | Recuperar contraseña</title>
+    <title>PAW Prints | Mi Cuenta</title>
 </head>
 
 <body>
     <header>
         <h1>
-            <a href="../">
+            <a class="logo" href="../">
                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1499px" height="525px" version="1.1"
                     style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                     viewBox="0 0 1583.95 554.68" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -148,89 +148,96 @@
                 </svg>
             </a>
         </h1>
-        <!-- CARRITO -->
-        <a href="./carrito.html">Carrito</a>
         <!-- BUSCADOR -->
         <search>
-            <form action="libros" method="GET">
-                <label for="buscador-de-libros">Buscar libros</label>
-                <input id="buscador-de-libros" name="consulta" type="search" placeholder="Ingresar título, autor, ISBN">
-                <button type="submit">Buscar</button>
+            <form class="buscador" action="libros" method="GET">
+                <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
+                <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
+                <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search"
+                    placeholder="Buscar...">
             </form>
         </search>
+        <!-- CARRITO -->
+        <a class="carrito" href="../mi-cuenta/carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
         <!-- BARRA DE NAVEGACIÓN -->
-        <nav class="container_nav">
-            <ul class="nav_menu">
-                <li class="opciones_nav">
+        <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
+        <nav class="nav-bar">
+            <ul>
+                <li>
                     <a href="../catalogo/catalogo.html">Catálogo</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../catalogo/mas-vendidos.html">Más Vendidos</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../catalogo/novedades.html">Novedades</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
+                    <a href="../catalogo/recomendados.html">Recomendados</a>
+                </li>
+                <li>
                     <a href="../catalogo/promociones.html">Promociones</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../preguntas/como-comprar.html">Cómo Comprar</a>
                 </li>
-                <li class="opciones_nav">
+                <li>
                     <a href="../mi-cuenta/mi-cuenta.html">Mi cuenta</a>
                 </li>
             </ul>
         </nav>
     </header>
     <main>
-        <h2>¿Perdiste tu contraseña? Por favor, introduce tu correo electrónico. Recibirás un enlace para crear una
-            contraseña nueva por correo electrónico.</h2>
-        <form method="post" class="recuperar-contraseña">
-            <label for="inputEmail">Email</label>
-            <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
-            <input type="submit" value="Enviar">
-        </form>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
+            <li class="breadcrumb-item">Recuperar contraseña</li>
+        </ul>
+        <section class="recuperar-contraseña">
+            <form class="recuperar-contraseña-form" action="/mi-pagina-de-formulario" method="post">
+                <h2 class="subtitulo">¿Perdiste tu contraseña? </h2>
+                <p>Por favor, introduce tu correo electrónico. Recibirás un enlace para crear una
+                    contraseña nueva por correo electrónico.</p>
+                <label for="inputEmail">Email</label>
+                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
     </main>
     <footer>
         <!-- REDES SOCIALES -->
-        <nav>
-            <h4>Contactenos</h4>
+        <nav class="nav-redes">
+            <h4>Contáctenos</h4>
             <ul class="redes-sociales">
                 <li>
-                    <a href="https://www.facebook.com/pawprints" target="_blank">
-                        <img src="../images/facebook-logo.png" alt="Facebook" width="24" height="24">
+                    <a class="facebook" href="https://www.facebook.com/pawprints" target="_blank">
+                        <i class="fa-brands fa-facebook"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.instagram.com/pawprints" target="_blank">
-                        <img src="../images/instagram-icon.png" alt="Instagram" width="24" height="24">
+                    <a class="instagram" href="https://www.instagram.com/pawprints" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="https://x.com/pawprints" target="_blank">
-                        <img src="../images/x-icon.png" alt="Twitter" width="24" height="24">
+                    <a class="X" href="https://x.com/pawprints" target="_blank">
+                        <i class="fa-brands fa-x-twitter"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="mailto:pawprints@gmail.com">
-                        <img src="../images/mail.png" alt="Twitter" width="24" height="18">
-                        pawprints@gmail.com
+                    <a class="mail" href="mailto:pawprints@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
                     </a>
-                </li>
                 <li>
-                    <a href="tel:2346123456">
-                        <img src="../images/phone.png" alt="Teléfono sonando" width="24" height="24">
-                        +542346123456
+                    <a class="phone" href="tel:2346123456">
+                        <i class="fa-solid fa-phone"></i>
                     </a>
                 </li>
             </ul>
         </nav>
-
         <!-- F.A.Q -->
-
-        <nav>
+        <nav class="nav-faq">
             <h4>F.A.Q</h4>
-            <ul>
+            <ul class="faq">
                 <li>
                     <a href="../preguntas/quienes-somos.html">¿Quíenes somos?</a>
                 </li>
