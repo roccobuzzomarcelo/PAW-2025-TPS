@@ -462,7 +462,7 @@ p {
     min-height: 90vh;
     background: linear-gradient(135deg, var(--secondary-color), var(--main-color));
     padding: 2rem;
-    margin: 3em 0 3em 0;
+    margin: 3em 1em 3em 1em;
 }
 
 /* Estilos del formulario */
