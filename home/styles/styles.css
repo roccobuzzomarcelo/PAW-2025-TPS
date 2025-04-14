@@ -294,9 +294,9 @@ a{
 }
 
 h3 {
-    font-size: 1rem ;
+    font-size: 1.5rem ;
     color: var(--main-color);
-    margin: 0.5em;  
+     
 }
 
 .detalle-libro {
@@ -305,17 +305,15 @@ h3 {
     gap: 2rem; 
     align-items: flex-start;
 }
+
 .img-detalle {
     width: 20rem;
-    height: auto;
-    
+    height: auto;    
 }
 
 .descripcion-libro{
-
     flex: 1;
     padding: 1rem;
-    
 }
 
 p{
@@ -333,6 +331,37 @@ p{
         width: 100%;
         max-width: 300px;
     }
+}
+
+.subtotal{
+    justify-items: center;
+    margin: 1rem;
+    color: var(--font-color);
+    padding: auto;
+}
+
+.btn-eliminarCarrito{
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    background-color: white;
+    color: var(--main-color);
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgb(255, 255, 255);
+    margin: auto;
+    transition: transform 0.2s ease;
+}
+
+.btn-eliminarCarrito:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.btn-eliminarCarrito i {
+    pointer-events: none;
 }
 
 .boton-link {
@@ -390,6 +419,24 @@ p{
     opacity: 0.9;
     transition: 0.75;
 }
+
+.libro-carrito {
+    display:flex;
+    padding: 10px 5%;
+    gap: 2rem; 
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    .libro-carrito {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+}
+
+
 
 /* FOOTER */
 

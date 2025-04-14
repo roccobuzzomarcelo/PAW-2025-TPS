@@ -18,7 +18,7 @@
 <body>
     <header>
         <h1>
-            <a class="logo" href="./">
+            <a class="logo" href="../">
                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1499px" height="525px" version="1.1"
                     style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                     viewBox="0 0 1583.95 554.68" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -160,23 +160,25 @@
         </ul>
 
         <section>
-            <h2>Productos en tu carrito</h2>
-            <article>
+            <h2 class="subtitulo">Productos en tu carrito</h2>
+            <article class="libro-carrito">
                 <figure>
                     <img src="../images/libro.png" alt="Portada de Libro">
                 </figure>
-                <h3>Título del Libro</h3>
-                <p>$ XXXXXX</p>
-                <input type="submit" name="inputSubmit" value="Eliminar del carrito">
+                <section class="descripcion-libro">
+                    <h3>Título del Libro</h3>
+                    <p>$ XXXXXX</p>
+                    <button class="btn-eliminarCarrito" type="submit"><i class="fas fa-trash"></i></button>
+                </section>
             </article>
         </section>
-        <section>
+        <section class="subtotal">
             <h2>Subtotal</h2>
             <p class="precio">$ XXXX</p>
-            <a href="https://pawprints/finalizar-compra/" class="boton-finalizar-compra">
+            <a href="https://pawprints/finalizar-compra/" class="boton-link">
                 Finalizar compra
             </a>
-            <a href="../" class="boton-seguir-comprando">
+            <a href="../" class="boton-link">
                 Ver más productos
             </a>
         </section>
