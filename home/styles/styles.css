@@ -34,8 +34,8 @@
     --main-color-shadow: #362f41;
 }
 
-.carrito-pages{
-    --main-color:#08B342;
+.carrito-pages {
+    --main-color: #08B342;
     --secondary-color: #55D37F;
     --main-color-shadow: #003311;
 }
@@ -174,7 +174,7 @@ a:hover {
 .nav-bar li {
     float: left;
     width: 100%;
-    
+
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -213,7 +213,9 @@ a:hover {
     font-family: "Archivo Black", sans-serif;
 }
 
-.como-comprar, .lista-locales, .quienes-somos{
+.como-comprar,
+.lista-locales,
+.quienes-somos {
     display: inline-block;
     padding: 4em;
     text-align: justify;
@@ -295,34 +297,34 @@ body {
     transition: 0.5s;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
 h3 {
-    font-size: 1.5rem ;
+    font-size: 1.5rem;
     color: var(--main-color);
-     
+
 }
 
 .detalle-libro {
-    display:flex;
+    display: flex;
     padding: 10px 5%;
-    gap: 2rem; 
+    gap: 2rem;
     align-items: flex-start;
 }
 
 .img-detalle {
     width: 20rem;
-    height: auto;    
+    height: auto;
 }
 
-.descripcion-libro{
+.descripcion-libro {
     flex: 1;
     padding: 1rem;
 }
 
-p{
+p {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -339,14 +341,14 @@ p{
     }
 }
 
-.subtotal{
+.subtotal {
     justify-items: center;
     margin: 1rem;
     color: var(--font-color);
     padding: auto;
 }
 
-.btn-eliminarCarrito{
+.btn-eliminarCarrito {
     justify-content: center;
     align-items: center;
     width: 50px;
@@ -379,15 +381,17 @@ p{
     text-decoration: none;
     border: none;
     cursor: pointer;
-    border-radius: 20px; /* bordes redondeados */
+    border-radius: 20px;
+    /* bordes redondeados */
     margin-top: 1rem;
     font-size: 1rem;
 }
 
 .boton-finalizar:hover {
-    background-color:var(--secondary-color);
+    background-color: var(--secondary-color);
 }
-.boton-link{
+
+.boton-link {
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--main-color);
@@ -405,25 +409,28 @@ p{
     background-color: var(--main-color);
 }
 
-.iniciar-sesion, .registrarse, .recuperar-contraseña {
+.iniciar-sesion,
+.registrarse,
+.recuperar-contraseña {
     display: flex;
     justify-content: center;
     margin: 1em;
     background-color: var(--secondary-color);
     border-radius: 3em;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
 }
 
-.login-form, .registro-form, .recuperar-contraseña-form{
+.login-form,
+.registro-form,
+.recuperar-contraseña-form {
     display: grid;
-    justify-content: center;
+    justify-items: center;
     margin: 2em 0 3em 0;
     margin-bottom: 1em;
-
 }
 
-.register-link, .login-link {
+.register-link,
+.login-link {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -439,17 +446,119 @@ p{
     transition: transform 0.2s ease;
 }
 
-.register-link:hover, .login-link:hover {
+.register-link:hover,
+.login-link:hover {
     transform: scale(1.1);
     opacity: 0.9;
     transition: 0.75;
 }
 
+/* Fondo general de la sección */
+.iniciar-sesion, 
+.registrarse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background: linear-gradient(135deg, var(--secondary-color), var(--main-color));
+    padding: 2rem;
+    margin: 3em 0 3em 0;
+}
+
+/* Estilos del formulario */
+.login-form, 
+.registro-form {
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Título */
+.login-form .subtitulo {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Etiquetas */
+.login-form label {
+    display: block;
+    margin: 0.8rem 0 0.3rem;
+    text-align: left;
+    color: #444;
+}
+
+.login-form label:not([for="inputRecuerdame"]),
+.registro-form label:not([for="inputAceptoTerminos"]){
+    display: none;
+}
+
+/* Inputs */
+.login-form input[type="email"],
+.login-form input[type="password"],
+.registro-form input[type="nombre"],
+.registro-form input[type="apellido"],
+.registro-form input[type="email"],
+.registro-form input[type="password"]{
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+    margin-bottom: 1em;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #3f51b5;
+}
+
+/* Checkbox */
+.login-form input[type="checkbox"], 
+.registro-form input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+/* Botón de acceso */
+.login-form button,
+.registro-form input[type="submit"] {
+    margin-top: 1.5rem;
+    background-color: #3f51b5;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #303f9f;
+}
+
+/* Enlace de recuperar contraseña */
+.login-form a[href*="recuperar"] {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #3f51b5;
+    text-decoration: none;
+}
+
+.login-form a[href*="recuperar"]:hover {
+    text-decoration: underline;
+}
+
 
 .libro-carrito {
-    display:flex;
+    display: flex;
     padding: 10px 5%;
-    gap: 2rem; 
+    gap: 2rem;
     align-items: flex-start;
 }
 
@@ -462,12 +571,10 @@ p{
 
 }
 
-.link-locales{
+.link-locales {
     color: var(--secondary-color);
     margin-bottom: 20rem;
 }
-
-
 
 /* FOOTER */
 
@@ -584,106 +691,6 @@ h4 {
     font-weight: bold;
     font-size: larger;
 }
-
-/* Fondo general de la sección */
-.iniciar-sesion {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    padding: 2rem;
-}
-
-/* Estilos del formulario */
-.login-form {
-background-color: #ffffff;
-padding: 2.5rem 2rem;
-border-radius: 20px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-width: 100%;
-max-width: 400px;
-text-align: center;
-}
-
-/* Título */
-.login-form .subtitulo {
-font-size: 1.8rem;
-margin-bottom: 1rem;
-color: #333;
-}
-
-/* Enlace de registro */
-.register-link {
-display: inline-block;
-margin-bottom: 1.5rem;
-font-weight: bold;
-color: #3f51b5;
-text-decoration: none;
-}
-
-.register-link:hover {
-text-decoration: underline;
-}
-
-/* Etiquetas */
-.login-form label {
-display: block;
-margin: 0.8rem 0 0.3rem;
-text-align: left;
-color: #444;
-}
-
-/* Inputs */
-.login-form input[type="email"],
-.login-form input[type="password"] {
-width: 100%;
-padding: 10px 12px;
-border-radius: 10px;
-border: 1px solid #ccc;
-transition: border-color 0.3s;
-}
-
-.login-form input:focus {
-outline: none;
-border-color: #3f51b5;
-}
-
-/* Checkbox */
-.login-form input[type="checkbox"] {
-margin-right: 6px;
-}
-
-/* Botón de acceso */
-.login-form button {
-margin-top: 1.5rem;
-background-color: #3f51b5;
-color: white;
-font-weight: bold;
-padding: 10px 20px;
-border: none;
-border-radius: 12px;
-cursor: pointer;
-transition: background-color 0.3s;
-}
-
-.login-form button:hover {
-background-color: #303f9f;
-}
-
-/* Enlace de recuperar contraseña */
-.login-form a[href*="recuperar"] {
-display: block;
-margin-top: 1rem;
-font-size: 0.9rem;
-color: #3f51b5;
-text-decoration: none;
-}
-
-.login-form a[href*="recuperar"]:hover {
-text-decoration: underline;
-}
-
 
 /* MEDIA QUERIES */
 
