@@ -1,0 +1,147 @@
+header,
+.nav-bar,
+.nav-bar-mobile,
+.hamburger-icon,
+.carrito,
+.btn-search,
+.boton-finalizar,
+.btn-eliminarCarrito,
+.boton-link,
+.register-link,
+.login-link {
+    display: none !important;
+}
+
+/* Fondo blanco para todo el cuerpo del documento */
+body {
+    background: white !important;
+    color: black !important;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Eliminar sombras y bordes innecesarios */
+* {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background: none !important;
+    border: none !important;
+}
+
+/* Mostrar enlaces como texto normal o con su URL */
+a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+}
+
+/* Estilo de encabezados */
+h1, h2, h3, h4 {
+    color: black;
+    margin: 1em 0 0.5em;
+}
+
+/* Mostrar el contenido principal */
+.detalle-libro,
+.descripcion-libro,
+.cont-libros,
+.libro-portada,
+.iniciar-sesion,
+.registrarse,
+.recuperar-contraseña {
+    display: block !important;
+    padding: 1em;
+    margin: 0 auto;
+}
+
+.libro-portada img,
+.img-detalle {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Ajustes específicos de la grilla de libros */
+.cont-libros {
+    display: block !important;
+}
+
+.libro-portada {
+    page-break-inside: avoid;
+    margin-bottom: 1.5em;
+}
+
+/* Breadcrumb visible, útil para contexto */
+.breadcrumb {
+    display: block;
+    color: gray;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+/* Formulario sin estilos decorativos */
+.login-form,
+.registro-form {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+
+input, label {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+/* No dividir elementos entre páginas */
+.detalle-libro, .login-form, .registro-form {
+    page-break-inside: avoid;
+}
+
+/* Quitar colores personalizados */
+:root,
+.mi-cuenta-pages,
+.preguntas-pages,
+.catalogo-pages,
+.carrito-pages {
+    all: unset;
+}
+.cont-libros {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+/* Cada libro ocupa un porcentaje del ancho de la página */
+.libro-portada {
+    width: 30% !important; /* o ajustá a 25%, 33%, etc. según veas */
+    margin-bottom: 1em;
+    page-break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nav-redes {
+    all: unset !important;
+    display: block !important;
+    margin: 1em 0 !important;
+    padding: 0 !important;
+}
+
+.nav-redes * {
+    all: unset !important;
+    display: block !important;
+    position: static !important;
+    float: none !important;
+    margin: 0.3em 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    text-align: left !important;
+    color: black !important;
+}
+
+.nav-redes a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: gray;
+}
