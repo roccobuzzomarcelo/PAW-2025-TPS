@@ -128,9 +128,10 @@ h1 {
 }
 
 .logo svg {
-    width: 10em;
-    height: 5em;
-    margin: 1rem;
+    width: 8em;
+    height: 2.5em;
+    margin-top: 1rem;
+    margin-left: -4rem;
 }
 
 .nav-bar {
@@ -140,7 +141,7 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 0;
-    margin-top: 1em;
+    margin-top: 0;
 }
 
 .nav-bar ul {
@@ -155,7 +156,7 @@ h1 {
     text-decoration: none;
     padding: 5px 25px;
     display: block;
-    height: 3em;
+    height: 2.5em;
     margin: auto;
     text-align: center;
     align-content: center;
@@ -226,7 +227,6 @@ a:hover {
 body {
     position: relative;
 }
-
 
 .breadcrumb {
     padding: 1em 2em;
@@ -388,21 +388,19 @@ p {
     text-decoration: none;
     border: none;
     cursor: pointer;
-    border-radius: 20px;
-    /* bordes redondeados */
+    border-radius: 20px; /* bordes redondeados */
     margin-top: 1rem;
     font-size: 1rem;
 }
 
 .boton-finalizar:hover {
-    background-color: var(--secondary-color);
+    background-color:var(--secondary-color);
 }
-
-.boton-link {
+.boton-link{
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--main-color);
-    color: var(--secondary-color);
+    color: white;
     text-decoration: none;
     border: none;
     border-radius: 4px;
@@ -413,7 +411,7 @@ p {
 }
 
 .boton-link:hover {
-    background-color: var(--main-color);
+    background-color: var(--secondary-color);
 }
 
 .iniciar-sesion,
@@ -698,6 +696,106 @@ h4 {
     font-weight: bold;
     font-size: larger;
 }
+
+/* Fondo general de la sección */
+.iniciar-sesion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    padding: 2rem;
+}
+
+/* Estilos del formulario */
+.login-form {
+background-color: #ffffff;
+padding: 2.5rem 2rem;
+border-radius: 20px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+width: 100%;
+max-width: 400px;
+text-align: center;
+}
+
+/* Título */
+.login-form .subtitulo {
+font-size: 1.8rem;
+margin-bottom: 1rem;
+color: #333;
+}
+
+/* Enlace de registro */
+.register-link {
+display: inline-block;
+margin-bottom: 1.5rem;
+font-weight: bold;
+color: #3f51b5;
+text-decoration: none;
+}
+
+.register-link:hover {
+text-decoration: underline;
+}
+
+/* Etiquetas */
+.login-form label {
+display: block;
+margin: 0.8rem 0 0.3rem;
+text-align: left;
+color: #444;
+}
+
+/* Inputs */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+width: 100%;
+padding: 10px 12px;
+border-radius: 10px;
+border: 1px solid #ccc;
+transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+outline: none;
+border-color: #3f51b5;
+}
+
+/* Checkbox */
+.login-form input[type="checkbox"] {
+margin-right: 6px;
+}
+
+/* Botón de acceso */
+.login-form button {
+margin-top: 1.5rem;
+background-color: #3f51b5;
+color: white;
+font-weight: bold;
+padding: 10px 20px;
+border: none;
+border-radius: 12px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+background-color: #303f9f;
+}
+
+/* Enlace de recuperar contraseña */
+.login-form a[href*="recuperar"] {
+display: block;
+margin-top: 1rem;
+font-size: 0.9rem;
+color: #3f51b5;
+text-decoration: none;
+}
+
+.login-form a[href*="recuperar"]:hover {
+text-decoration: underline;
+}
+
 
 /* MEDIA QUERIES */
 
