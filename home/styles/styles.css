@@ -227,14 +227,17 @@ body {
     position: relative;
 }
 
+
 .breadcrumb {
-    padding: min(2em, 8%);
+    padding: 1em 2em;
     font-family: "Roboto", sans-serif;
     color: darkgray;
+    font-size: 0.95rem;
 }
 
 .breadcrumb-item {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
 }
 
 .breadcrumb-item:first-child {
@@ -242,23 +245,27 @@ body {
 }
 
 .breadcrumb-item:not(:last-of-type)::after {
-    content: ' > ';
-    margin: 0 5px;
+    content: '⟩'; /* Más moderno que '>' */
+    margin: 0 8px;
+    color: lightgray;
+    font-weight: bold;
 }
 
 .breadcrumb-link {
-    color: darkgray;
+    color: #666;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .breadcrumb-link:hover {
+    color: #059292; /* color de acento */
     text-decoration: underline;
 }
 
 .breadcrumb-item:last-child {
-    color: rgb(5, 92, 92);
+    color: #059292;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .subtitulo {

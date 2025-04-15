@@ -189,65 +189,64 @@
     </header>
 
     <main>
+        <!-- BREADCRUMB -->
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
+            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../libro/detalle-libro.html">Libro</a></li>
+            <li class="breadcrumb-item" aria-current="page">Reserva</li>
+        </ul>
         <h1 class="subtitulo">Reserva de libro</h1>
         <section>
-            <h2>Información del libro</h2>
-            <!-- Información del libro que se está reservando -->
-            <article>
+            <section class="detalle-libro">
                 <figure>
-                    <img src="../images/libro.png" alt="Título del Libro" width="150" height="200">
+                    <img class= "img-detalle" src="../images/libroAmanecerEnLaCosecha.jpg" alt="amanecer-en-la-cosecha">
                 </figure>
-                <h3>Título del Libro</h3>
-                <p class="autor">Autor: Anónimo.</p>
-                <p>
-                    <span>Descripción: </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p class="precio">$ XXXX</p>
-            </article>
-            <form method="post" class="Reserva">
-                <label for="inputNombre">Nombre</label>
-                <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
-
-                <label for="inputApellido">Apellido/s</label>
-                <input id="inputApellido" type="text" name="inputApellido" placeholder="Apellido/s" required>
-
-                <label for="inputEmail">Email</label>
-                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
-
-                <label for="inputTel">Teléfono</label>
-                <input id="inputTel" type="tel" name="inputTel"
-                    pattern="^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$" placeholder="Teléfono"
-                    required>
-
-                <label for="inputCalle">Calle</label>
-                <input id="inputCalle" type="text" name="inputCalle" placeholder="Calle" required>
-
-                <label for="inputNumero">N°</label>
-                <input id="inputNumero" type="number" name="inputNumero" placeholder="N°" required>
-
-                <label for="inputCiudad">Ciudad</label>
-                <input id="inputCiudad" type="text" name="inputCiudad" placeholder="Ciudad" required>
-
-                <label for="inputProvincia">Provincia</label>
-                <input id="inputProvincia" type="text" name="inputProvincia" placeholder="Provincia" required>
-
-                <label for="inputCodigoPostal">Código Postal</label>
-                <input id="inputCodigoPostal" type="number" name="inputCodigoPostal" placeholder="Código Postal"
-                    required>
-
-                <label for="inputEnvio">
-                    <input type="radio" id="inputEnvio" name="inputEnvio" value="envío" required> Envío a domicilio
-                </label>
-                <label for="inputRetiro">
-                    <input type="radio" id="inputRetiro" name="inputEnvio" value="retira" required> Retiro en tienda
-                </label>
-
-                <input type="submit" value="Reservar">
-            </form>
+                
+                <section class="descripcion-libro">
+                    <h2>Amanecer en la cosecha (Libro 5 de los juegos del hambre)</h2>
+                    <p class="precio">$ 35.000</p>
+                    <form method="post" class="Reserva">
+                        <label for="inputNombre">Nombre</label>
+                        <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
+        
+                        <label for="inputApellido">Apellido/s</label>
+                        <input id="inputApellido" type="text" name="inputApellido" placeholder="Apellido/s" required>
+        
+                        <label for="inputEmail">Email</label>
+                        <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
+        
+                        <label for="inputTel">Teléfono</label>
+                        <input id="inputTel" type="tel" name="inputTel"
+                            pattern="^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$" placeholder="Teléfono"
+                            required>
+        
+                        <label for="inputCalle">Calle</label>
+                        <input id="inputCalle" type="text" name="inputCalle" placeholder="Calle" required>
+        
+                        <label for="inputNumero">N°</label>
+                        <input id="inputNumero" type="number" name="inputNumero" placeholder="N°" required>
+        
+                        <label for="inputCiudad">Ciudad</label>
+                        <input id="inputCiudad" type="text" name="inputCiudad" placeholder="Ciudad" required>
+        
+                        <label for="inputProvincia">Provincia</label>
+                        <input id="inputProvincia" type="text" name="inputProvincia" placeholder="Provincia" required>
+        
+                        <label for="inputCodigoPostal">Código Postal</label>
+                        <input id="inputCodigoPostal" type="number" name="inputCodigoPostal" placeholder="Código Postal"
+                            required>
+        
+                        <label for="inputEnvio">
+                            <input type="radio" id="inputEnvio" name="inputEnvio" value="envío" required> Envío a domicilio
+                        </label>
+                        <label for="inputRetiro">
+                            <input type="radio" id="inputRetiro" name="inputEnvio" value="retira" required> Retiro en tienda
+                        </label>
+        
+                        <input type="submit" value="Reservar">
+                    </form>
+                </section>
+            </section>
         </section>
     </main>
     <footer>
