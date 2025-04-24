@@ -146,33 +146,13 @@
         <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
         <nav class="nav-bar">
             <ul>
-                <li>
-                    <a href="./catalogo/catalogo.html">Catálogo</a>
-                </li>
-                <li>
-                    <a href="./catalogo/mas-vendidos.html">Más Vendidos</a>
-                </li>
-                <li>
-                    <a href="./catalogo/novedades.html">Novedades</a>
-                </li>
-                <li>
-                    <a href="./catalogo/recomendados.html">Recomendados</a>
-                </li>
-                <li>
-                    <a href="./catalogo/promociones.html">Promociones</a>
-                </li>
-                <li>
-                    <a href="../catalogo/recomendados.html">Recomendados</a>
-                </li>
-                <li>
-                    <a href="./preguntas/como-comprar.html">Cómo Comprar</a>
-                </li>
-                <li>
-                    <a href="./mi-cuenta/mi-cuenta.html">Mi cuenta</a>
-                </li>
+            <?php foreach($menu as $item): ?>
+                        <li>
+                            <a href= "<?= $item["href"]?>"> <?= $item["name"] ?></a></li>
+                    <?php endforeach; ?> 
             </ul>
         </nav>
-        <!-- BARRA DE NAVEGACIÓN - Mobile -->
+        <!-- BARRA DE NAVEGACIÓN - Mobile 
         <nav class="nav-bar-mobile">
             <ul>
                 <li>
@@ -194,5 +174,5 @@
                     <a href="./mi-cuenta/mi-cuenta.html">Mi cuenta</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     </header>

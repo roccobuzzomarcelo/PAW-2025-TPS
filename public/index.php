@@ -1,4 +1,5 @@
 <?php
+
 $menu = [
     [
         "href" => "/catalogo/catalogo.html",
@@ -29,5 +30,8 @@ $menu = [
         "name" => "Mi cuenta"
     ]
 ];
-    require 'index.view.php'; 
+    require './includes/header.php';
+    require 'index.view.php';
+    require './includes/footer.php';
+
 ?>

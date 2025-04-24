@@ -294,7 +294,7 @@ body {
 
 .libro-portada img {
     width: 140;
-    height: 120;
+    height: auto;
     object-fit: cover;
     max-height: 220px;
 }
