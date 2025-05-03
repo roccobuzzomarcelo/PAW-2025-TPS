@@ -35,7 +35,7 @@
             <h4>F.A.Q</h4>
             <ul class="faq">
                 <li>
-                    <a href="./preguntas/quienes-somos.html">¿Quíenes somos?</a>
+                    <a href="./quienes-somos.php">¿Quíenes somos?</a>
                 </li>
                 <li>
                     <a href="./preguntas/como-comprar.html">¿Cómo comprar?</a>

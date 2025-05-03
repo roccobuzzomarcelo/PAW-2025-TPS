@@ -18,8 +18,9 @@
     <title>PAW Prints | Home</title>
 </head>
 
-<body>
-    <?php include  '/public/includes/header.php'; ?>
+<body>        
+
+    <?php include __DIR__ . '/includes/header.php'; ?>
     
     <main>
         <!-- BREADCRUMB -->
@@ -211,7 +212,7 @@
         </section>
     </main>
 
-    <?php include 'footer.php'; ?>
+   <?php include __DIR__ . '/includes/footer.php'; ?> 
 </body>
 
 </html>
