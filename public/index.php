@@ -3,6 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use PAW\src\App\Controlador\ControladorPagina;
+use PAW\src\App\Controlador\ControladorError;
 
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -41,8 +42,8 @@ if($path == "/"){
 }else if($path == '/carrito'){
     $controller->carrito();
 }else{
-    http_response_code(404);
-    require '../src/404.view.php';
+    $controller= new ControladorError; 
+    $controller->notFound();
 }
 
 /*require '../src/includes/header.php';
