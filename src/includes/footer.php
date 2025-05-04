@@ -35,13 +35,13 @@
             <h4>F.A.Q</h4>
             <ul class="faq">
                 <li>
-                    <a href="./quienes-somos.php">¿Quíenes somos?</a>
+                    <a href="/quienes-somos">¿Quíenes somos?</a>
                 </li>
                 <li>
-                    <a href="./preguntas/como-comprar.html">¿Cómo comprar?</a>
+                    <a href="/como-comprar">¿Cómo comprar?</a>
                 </li>
                 <li>
-                    <a href="./preguntas/locales.html">Locales</a>
+                    <a href="/locales">Locales</a>
                 </li>
             </ul>
         </nav>

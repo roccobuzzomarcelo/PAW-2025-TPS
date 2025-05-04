@@ -141,12 +141,12 @@
             </form>
         </search>
         <!-- CARRITO -->
-        <a class="carrito" href="./mi-cuenta/carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="carrito" href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
         <!-- BARRA DE NAVEGACIÓN -->
         <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
         <nav class="nav-bar">
             <ul>
-            <?php foreach($menu as $item): ?>
+            <?php foreach($this->menu as $item): ?>
                         <li>
                             <a href= "<?= $item["href"]?>"> <?= $item["name"] ?></a></li>
                     <?php endforeach; ?> 

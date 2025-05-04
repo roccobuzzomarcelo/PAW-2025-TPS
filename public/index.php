@@ -2,66 +2,44 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use PAW\src\App\Controlador\ControladorPagina;
+
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
-$menu = [
-    [
-        "href" => "/Catálogo",
-        "name" => "Catálogo"
-    ],
-    [
-        "href" => "/Más vendidos",
-        "name" => "Más vendidos"
-    ],
-    [
-        "href" => "/Novedades",
-        "name" => "Novedades"
-    ],
-    [
-        "href" => "/Recomendados",
-        "name" => "Recomendados"
-    ],
-    [
-        "href" => "/Promociones",
-        "name" => "Promociones"
-    ],
-    [
-        "href" => "/Como comprar",
-        "name" => "Como comprar"
-    ],
-    [
-        "href" => "/Mi cuenta",
-        "name" => "Mi cuenta"
-    ]
-];
 
 
 $path = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+$controller = new ControladorPagina;
 
 /*var_dump($path);
 exit;*/
 
 
 if($path == "/"){
-    require '../src/index.view.php';
+    $controller->index();
 }else if($path == '/Catálogo'){
-    require '../src/catalog.view.php';
+    $controller->catalogo();
 }else if($path == '/Más vendidos'){
-        require '../src/mas-vendidos.view.php';
+    $controller->masvendidos();
 }else if($path == '/Novedades'){
-        require '../src/novedades.view.php';
+    $controller->novedades();
 }else if($path == '/Recomendados'){
-        require '../src/recomendados.view.php';
+    $controller->recomendados();
 }else if($path == '/Promociones'){
-        require '../src/promociones.view.php';
-}elseif($path == '/Como comprar'){
-    require '../src/como-comprar.view.php';
+    $controller->promociones();
+}elseif($path == '/Como comprar' || $path == '/como-comprar'){
+    $controller->comocomprar();
 }elseif($path == '/Mi cuenta'){
-    require '../src/mi-cuenta.view.php';
+    $controller->micuenta();
 }else if($path == '/quienes-somos'){
-        require '../src/includes/quienes-somos.view.php';
+    $controller->quienessomos();
+}else if($path == '/locales'){
+    $controller->locales();
+}else if($path == '/carrito'){
+    $controller->carrito();
 }else{
     http_response_code(404);
     require '../src/404.view.php';
