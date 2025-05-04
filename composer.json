@@ -19,7 +19,8 @@
     ],
     "require": {
         "php": ">= 7.4",
-        "filp/whoops": "^2.14"
+        "filp/whoops": "^2.14",
+        "monolog/monolog": "^3.9"
     },
     
     "autoload": {
