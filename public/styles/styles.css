@@ -285,22 +285,34 @@ body {
 }
 
 .libro-portada {
-    padding: 10px 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    box-sizing: border-box;
+}
+
+.libro-portada figure {
+    width: 100%;
+    height: 300px; /* fija igual para todos */
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .libro-portada img {
-    width: 140;
-    height: auto;
-    object-fit: cover;
-    max-height: 220px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .libro-portada img:hover {
-    transform: scale(0.8);
+    transform: scale(0.95);
     transition: 0.5s;
 }
 

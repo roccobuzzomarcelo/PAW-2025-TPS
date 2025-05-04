@@ -28,138 +28,17 @@
         </ul>
         <h2 class="subtitulo">Promociones</h2>
         <section class="cont-libros">
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>               
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-        </section>
-        <section class="cont-libros">
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>               
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
-            <article class="libro-portada">
-                <a href="/home/libro/detalle-libro.html">
-                    <figure>
-                        <img src="/images/libro.png" alt="portada-libro">
-                    </figure>
-                    <h3>Título del Libro</h3>
-                </a>
-                <p class="autor">Autor: Anónimo</p>
-                <p>Descuento: X %</p>
-                <p>$ XXXXXX</p>
-                
-            </article>
-
+            <?php foreach ($libros as $libro): ?>
+                <article class="libro-portada">
+                    <a href="detalle.php?id=<?= urlencode($libro['id']) ?>">
+                        <figure>
+                            <img src="<?= htmlspecialchars($libro['img']) ?>" alt="portada-libro">
+                        </figure>
+                        <h3><?= htmlspecialchars($libro['titulo']) ?></h3>
+                    </a>
+                    <p>$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
+                </article>
+            <?php endforeach; ?>
         </section>
     </main>
     
