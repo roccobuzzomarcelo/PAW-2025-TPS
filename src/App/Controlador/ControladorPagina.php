@@ -102,7 +102,7 @@ class ControladorPagina{
     }
 
     public function quienessomos(){
-        require $this->viewsDir . 'includes/quienes-somos.php';
+        require $this->viewsDir . 'quienes-somos.view.php';
     }
 
     public function locales(){

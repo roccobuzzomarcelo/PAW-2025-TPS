@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <?php include __DIR__ . '/includes/header.php'; ?>
+    <?php include __DIR__ . '/views/parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb">
@@ -43,7 +43,7 @@
             </p>
         </section>
     </main>
-    <?php include __DIR__ . '/includes/footer.php'; ?> 
+    <?php include __DIR__ . '/views/parts/footer.php'; ?> 
 
 </body>
 
