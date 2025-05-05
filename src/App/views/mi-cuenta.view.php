@@ -7,9 +7,9 @@
             <li class="breadcrumb-item" aria-current="page">Mi Cuenta</li>
         </ul>
         <section class="iniciar-sesion">
-            <form class="login-form" action="/mi-pagina-de-formulario" method="post">
+            <form class="login-form" action="/mi-cuenta" method="post">
                 <h2 class="subtitulo">Iniciar Sesión</h2>
-                <a class="register-link" href="./registro.html">Registrarse</a>
+                <a class="register-link" href="/registro">Registrarse</a>
                 <label for="inputEmail">Email</label>
                 <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
 
