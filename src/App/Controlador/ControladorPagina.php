@@ -252,7 +252,23 @@ class ControladorPagina
             'envio' => $envio
         ];
 
+
+        // 2. Enviar mail al usuario
         $this->enviarMailReserva($datos);
+
+        // 3. Armar texto para el personal (string simple)
+        $datosReserva = <<<EOD
+        Reserva realizada:
+        Libro ID: {$datos['libro_id']}
+        Nombre: {$datos['nombre']} {$datos['apellido']}
+        Email: {$datos['email']}
+        Teléfono: {$datos['telefono']}
+        Dirección: {$datos['calle']} {$datos['numero']}, {$datos['ciudad']}, {$datos['provincia']}, CP: {$datos['codigo_postal']}
+        Modalidad: {$datos['envio']}
+        EOD;
+
+        // 4. Enviar mail al personal
+        $this->enviarMailReservaPersonal($datosReserva);
 
         $this->index();
     }
@@ -269,7 +285,7 @@ class ControladorPagina
             $mail->SMTPAuth = true;
             $mail->Username = $config['smtp']['username'];
             $mail->Password = $config['smtp']['password'];
-            $mail->SMTPSecure = 'tls';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $config['smtp']['port'];
 
             $mail->setFrom($config['smtp']['from_email'], $config['smtp']['from_name']);
@@ -298,7 +314,33 @@ class ControladorPagina
             error_log("Error al enviar correo al usuario: {$mail->ErrorInfo}");
         }
     }
-    
+
+    public function enviarMailReservaPersonal($datosReserva)
+    {
+        $config = require __DIR__ . '/../config/config.php';
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = $config['smtp']['host'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $config['smtp']['username'];
+            $mail->Password = $config['smtp']['password'];
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = $config['smtp']['port'];
+
+            $mail->setFrom($config['smtp']['from_email'], $config['smtp']['from_name']);
+            $mail->addAddress($config['smtp']['personal_email'], 'Personal Biblioteca');
+
+            $mail->Subject = 'Nueva Reserva de Libro';
+            $mail->Body = $datosReserva;
+
+            $mail->send();
+        } catch (Exception $e) {
+            error_log("No se pudo enviar el correo: {$mail->ErrorInfo}");
+        }
+    }
+
     public function procesarLogin()
     {
         // Recoger los datos del formulario

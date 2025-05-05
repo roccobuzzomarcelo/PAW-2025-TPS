@@ -18,5 +18,6 @@ return [
         'password' => $_ENV['SMTP_PASSWORD'],
         'from_email' => $_ENV['SMTP_FROM_EMAIL'],
         'from_name' => $_ENV['SMTP_FROM_NAME'],
+        'personal_email' => $_ENV['SMTP_PERSONAL_NAME'] ?? null  // opcional
     ]
 ];
