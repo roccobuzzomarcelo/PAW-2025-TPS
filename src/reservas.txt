@@ -1,2 +1,1 @@
-Nombre: Bautista|Apellido: Buch|Email: bautistapereyrabuch@gmail.com|Teléfono: 02346500617|Calle: Guemes|Número: 82|Ciudad: ALBERTI|Provincia: BUENOS AIRES|Código Postal: 6634|Envío o Retiro: retira
-
+Id Libro: 5|Nombre: Bautista|Apellido: Buch|Email: bautistapereyrabuch@gmail.com|Teléfono: 02346500617|Calle: |Número: |Ciudad: ALBERTI|Provincia: BUENOS AIRES|Código Postal: 6634|Envío o Retiro: retira

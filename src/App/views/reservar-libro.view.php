@@ -18,6 +18,8 @@
                 <h2><?= htmlspecialchars($libro['titulo']) ?></h2>
                 <p class="precio">$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
                 <form class="Reserva" action="/reservar" method="post">
+                    <input type="hidden" name="libro_id" value="<?= htmlspecialchars($libro['id']) ?>">    
+
                     <label for="inputNombre">Nombre<span class="requerido"> *</span></label>
                     <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required title="Este campo es obligatorio">
     

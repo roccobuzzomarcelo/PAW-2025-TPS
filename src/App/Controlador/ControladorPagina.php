@@ -179,6 +179,7 @@ class ControladorPagina{
 
     public function procesarReservarLibro(){
         // Recoger los datos del formulario
+        $id = $_POST['libro_id'];
         $nombre = $_POST['inputNombre'];
         $apellido = $_POST['inputApellido'];
         $email = $_POST['inputEmail'];
@@ -191,7 +192,7 @@ class ControladorPagina{
         $envio = $_POST['inputEnvio'];  // Aquí recogemos el valor del envío o retiro
         
         // Formatear los datos en un texto legible
-        $datos = "Nombre: $nombre|Apellido: $apellido|Email: $email|Teléfono: $telefono|Calle: $calle|Número: $numero|Ciudad: $ciudad|Provincia: $provincia|Código Postal: $codigoPostal|Envío o Retiro: $envio\n";
+        $datos = "Id Libro: $id|Nombre: $nombre|Apellido: $apellido|Email: $email|Teléfono: $telefono|Calle: $calle|Número: $numero|Ciudad: $ciudad|Provincia: $provincia|Código Postal: $codigoPostal|Envío o Retiro: $envio\n";
         
         // Ruta del archivo de texto donde se guardarán los datos
         $archivo = __DIR__ . "/../../reservas.txt";
