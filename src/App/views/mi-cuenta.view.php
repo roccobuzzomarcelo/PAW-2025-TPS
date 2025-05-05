@@ -20,7 +20,7 @@
                     Recuérdame
                 </label>
                 <button type="submit">Acceder</button>
-                <a href="./recuperar-contraseña.html">¿Has olvidado tu contraseña?</a>
+                <a href="/recuperar-contraseña">¿Has olvidado tu contraseña?</a>
             </form>
         </section>
     </main>

@@ -26,6 +26,8 @@ $router->get("/promociones", "ControladorPagina@promociones");
 $router->get("/como-comprar", "ControladorPagina@comoComprar");
 $router->get("/mi-cuenta", "ControladorPagina@miCuenta");
 $router->post("/mi-cuenta", "ControladorPagina@procesarLogin");
+$router->get("/recuperar-contraseña", "ControladorPagina@recuperarContraseña");
+$router->post("/recuperar-contraseña", "ControladorPagina@procesarRecuperarContraseña");
 $router->get("/registro", "ControladorPagina@registro");
 $router->post("/registro", "ControladorPagina@procesarRegistro");
 $router->get("/quienes-somos", "ControladorPagina@quienesSomos");

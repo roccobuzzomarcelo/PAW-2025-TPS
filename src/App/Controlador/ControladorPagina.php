@@ -132,6 +132,12 @@ class ControladorPagina{
         require $this->viewsDir . 'mi-cuenta.view.php';
     }
 
+    public function recuperarContraseña(){
+        $titulo = 'PawPrints - Recuperar contraseña';
+        $htmlClass = "mi-cuenta-pages";
+        require $this->viewsDir . 'recuperar-contraseña.view.php';
+    }
+
     public function registro(){
         $titulo = 'PawPrints - Registro';
         $htmlClass = "mi-cuenta-pages";
@@ -266,5 +272,33 @@ class ControladorPagina{
         file_put_contents($archivo, $datos, FILE_APPEND); // FILE_APPEND agrega los datos al final del archivo
 
         $this->index();
+    }
+
+    public function procesarRecuperarContraseña(){
+        // Recoger los datos del formulario
+        $email = $_POST['inputEmail'];
+        $archivo = __DIR__ . "/../../login.txt";
+
+        if (!file_exists($archivo)) {
+            echo "⚠️ Archivo de usuarios no encontrado.";
+            return;
+        }
+    
+        $lineas = file($archivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $emailEncontrado = false;
+    
+        foreach ($lineas as $linea) {
+            list($id, $emailArchivo, $passArchivo, $nombre, $apellido) = explode('|', trim($linea));
+            if ($email === $emailArchivo) {
+                $emailEncontrado = true;
+                break;
+            }
+        }
+    
+        if ($emailEncontrado) {
+            echo "✅ Se ha enviado un enlace para restablecer tu contraseña a tu correo electrónico.";
+        } else {
+            echo "❌ El email no está registrado.";
+        }
     }
 }
