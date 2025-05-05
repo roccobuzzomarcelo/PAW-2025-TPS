@@ -32,53 +32,21 @@
         <!-- NOVEDADES -->
         <h2 class="subtitulo">Novedades</h2>
         <section class="cont-libros">
-            <?php foreach ($novedades as $libro): ?>
-                <article class="libro-portada">
-                    <a href="detalle.php?id=<?= urlencode($libro['id']) ?>">
-                        <figure>
-                            <img src="<?= htmlspecialchars($libro['img']) ?>" alt="portada-libro">
-                        </figure>
-                        <h3><?= htmlspecialchars($libro['titulo']) ?></h3>
-                    </a>
-                    <p>$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
-                </article>
-            <?php endforeach; ?>
+            <?php $libros = $novedades; include 'parts/mostrarLibros.php'; ?>
         </section>
 
         <!-- MÁS VENDIDOS -->
         <h2 class="subtitulo">Más Vendidos</h2>
 
         <section class="cont-libros">
-
-            <?php foreach ($masVendidos as $libro): ?>
-                <article class="libro-portada">
-                    <a href="detalle.php?id=<?= urlencode($libro['id']) ?>">
-                        <figure>
-                            <img src="<?= htmlspecialchars($libro['img']) ?>" alt="portada-libro">
-                        </figure>
-                        <h3><?= htmlspecialchars($libro['titulo']) ?></h3>
-                    </a>
-                    <p>$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
-                </article>
-            <?php endforeach; ?>
+            <?php $libros = $masVendidos; include 'parts/mostrarLibros.php'; ?>
         </section>
 
         <!-- Recomendados -->
         <h2 class="subtitulo">Recomendados</h2>
 
         <section class="cont-libros">
-            <?php foreach ($recomendados as $libro): ?>
-                <article class="libro-portada">
-                    <a href="detalle.php?id=<?= urlencode($libro['id']) ?>">
-                        <figure>
-                            <img src="<?= htmlspecialchars($libro['img']) ?>" alt="portada-libro">
-                        </figure>
-                        <h3><?= htmlspecialchars($libro['titulo']) ?></h3>
-                    </a>
-                    <p>$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
-                </article>
-            <?php endforeach; ?>
-
+            <?php $libros = $recomendados; include 'parts/mostrarLibros.php'; ?>
         </section>
     </main>
 

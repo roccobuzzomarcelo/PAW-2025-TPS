@@ -125,5 +125,17 @@ class ControladorPagina{
         require $this->viewsDir . 'carrito.view.php';
     }
 
+    public function detalleLibro(){
+        $id = $_GET['id'] ?? null;
+        $libros = $this->obtenerLibros(null, [$id]);
+        if (empty($libros)) {
+            http_response_code(404);
+            require $this->viewsDir . '404.view.php';
+            return;
+        }
+        $libro = $libros[0];
+        $mismoAutorLibros = $this->obtenerLibros($libro['autor']);
+        require $this->viewsDir . 'detalle-libro.view.php';
+    }
 
 }

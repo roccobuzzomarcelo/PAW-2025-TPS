@@ -136,7 +136,7 @@
             <form class="buscador" action="/catalogo" method="GET">
                 <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
                 <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
-                <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search" placeholder="Buscar...">
+                <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search" placeholder="Buscar por Titulo o Autor...">
             </form>
         </search>
         <!-- CARRITO -->

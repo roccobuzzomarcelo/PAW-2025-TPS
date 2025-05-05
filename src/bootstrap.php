@@ -28,5 +28,6 @@ $router->get("/mi-cuenta", "ControladorPagina@miCuenta");
 $router->get("/quienes-somos", "ControladorPagina@quienesSomos");
 $router->get("/locales", "ControladorPagina@locales");
 $router->get("/carrito", "ControladorPagina@carrito");
+$router->get("/detalle-libro", "ControladorPagina@detalleLibro");
 $router->get("not-found","ControladorError@notFound");
 $router->get("error-interno","ControladorError@errorInterno");
