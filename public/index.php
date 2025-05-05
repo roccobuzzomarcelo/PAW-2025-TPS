@@ -29,25 +29,25 @@ exit;*/
 if($path == "/"){
     $controller->index();
     $log->info("Respuesta exitosa:200");
-}else if($path == '/Catálogo'){
+}else if($path == '/catalogo'){
     $controller->catalogo();
     $log->info("Respuesta exitosa:200");
-}else if($path == '/Más vendidos'){
+}else if($path == '/mas-vendidos'){
     $controller->masvendidos();
     $log->info("Respuesta exitosa:200");
-}else if($path == '/Novedades'){
+}else if($path == '/novedades'){
     $controller->novedades();
     $log->info("Respuesta exitosa:200");
-}else if($path == '/Recomendados'){
+}else if($path == '/recomendados'){
     $controller->recomendados();
     $log->info("Respuesta exitosa:200");
-}else if($path == '/Promociones'){
+}else if($path == '/promociones'){
     $controller->promociones();
     $log->info("Respuesta exitosa:200");
-}elseif($path == '/Como comprar' || $path == '/como-comprar'){
+}elseif($path == '/como-comprar' || $path == '/como-comprar'){
     $controller->comocomprar();
     $log->info("Respuesta exitosa:200");
-}elseif($path == '/Mi cuenta'){
+}elseif($path == '/mi-cuenta'){
     $controller->micuenta();
     $log->info("Respuesta exitosa:200");
 }else if($path == '/quienes-somos'){

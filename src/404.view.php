@@ -15,7 +15,7 @@
     <title>Pagina no encontrada</title>
 </head>
 <body>
-<?php include __DIR__ . '/views/parts/header.php'; ?>
+<?php include __DIR__ . '/App/views/parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
 
@@ -26,6 +26,6 @@
         <p class="error-descripcion">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
         <a href="/" class="boton-volver">Volver al inicio</a>
     </main>
-    <?php include __DIR__ . '/views/parts/footer.php'; ?>
+    <?php include __DIR__ . '/App/views/parts/footer.php'; ?>
 </body>
 </html>

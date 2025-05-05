@@ -146,10 +146,11 @@
         <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
         <nav class="nav-bar">
             <ul>
-            <?php foreach($this->menu as $item): ?>
-                        <li>
-                            <a href= "<?= $item["href"]?>"> <?= $item["name"] ?></a></li>
-                    <?php endforeach; ?> 
+                <?php foreach($this->menu as $item): ?>
+                    <li>
+                        <a href= "<?= $item["href"]?>"> <?= $item["name"] ?></a>
+                    </li>
+                <?php endforeach; ?> 
             </ul>
         </nav>
         <!-- BARRA DE NAVEGACIÓN - Mobile 

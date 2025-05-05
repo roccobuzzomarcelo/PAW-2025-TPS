@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <?php include __DIR__ . '/views/parts/header.php'; ?>
+    <?php include __DIR__ . '/App/views/parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb">
@@ -48,7 +48,7 @@
     </main>
 
 
-    <?php include __DIR__ . '/views/parts/footer.php'; ?> 
+    <?php include __DIR__ . '/App/views/parts/footer.php'; ?> 
 
 </body>
 

@@ -9,31 +9,31 @@ class ControladorPagina{
         $this->viewsDir = __DIR__ ."/../../";
         $this->menu = [
             [
-                "href" => "/Catálogo",
+                "href" => "/catalogo",
                 "name" => "Catálogo"
             ],
             [
-                "href" => "/Más vendidos",
+                "href" => "/mas-vendidos",
                 "name" => "Más vendidos"
             ],
             [
-                "href" => "/Novedades",
+                "href" => "/novedades",
                 "name" => "Novedades"
             ],
             [
-                "href" => "/Recomendados",
+                "href" => "/recomendados",
                 "name" => "Recomendados"
             ],
             [
-                "href" => "/Promociones",
+                "href" => "/promociones",
                 "name" => "Promociones"
             ],
             [
-                "href" => "/Como comprar",
+                "href" => "/como-comprar",
                 "name" => "Como comprar"
             ],
             [
-                "href" => "/Mi cuenta",
+                "href" => "/mi-cuenta",
                 "name" => "Mi cuenta"
             ]
         ];

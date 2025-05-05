@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <?php include __DIR__ . '/views/parts/header.php'; ?>
+    <?php include __DIR__ . '/App/views/parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb">
@@ -28,20 +28,12 @@
         </ul>
         <h2 class="subtitulo">Recomendados</h2>
         <section class="cont-libros">
-            <?php foreach ($libros as $libro): ?>
-                <article class="libro-portada">
-                    <a href="detalle.php?id=<?= urlencode($libro['id']) ?>">
-                        <figure>
-                            <img src="<?= htmlspecialchars($libro['img']) ?>" alt="portada-libro">
-                        </figure>
-                        <h3><?= htmlspecialchars($libro['titulo']) ?></h3>
-                    </a>
-                    <p>$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
-                </article>
-            <?php endforeach; ?>
+            <?php
+                include __DIR__ . "/App/views/parts/mostrarLibros.php";
+            ?>
         </section>
     </main>
-    <?php include __DIR__ . '/views/parts/footer.php'; ?> 
+    <?php include __DIR__ . '/App/views/parts/footer.php'; ?> 
 
 </body>
 
