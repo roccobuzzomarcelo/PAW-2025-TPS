@@ -1,0 +1,35 @@
+1- Defina e implemente una arquitectura preliminar para su aplicación web. Tenga en cuenta que algunas de las problemáticas comunes de las aplicaciones como:
+    - análisis de la peticiones HTTP;
+    - mapeo de URLs en funcionalidades de la aplicación;
+    - generación de las respuestas HTTP;
+    - generación de registros;
+    - persistencia;
+    - configuración;
+    - generación de diferentes representaciones de la información (documentos HTML, PDF, imágenes, archivos XML, etc.)
+   Para cada una de ellas, defina a qué módulo de su arquitectura se corresponden. Para tomar ideas, puede valerse de las Recomendaciones de Estándares de PHP definidas por el PHP Framework Interop Group.
+(Falta toda la documentacion sobre lo realizado.)
+
+
+2- Agregue la funcionalidad de listado y búsqueda de los libros del catálogo. Para ello, tenga en cuenta que:
+    - Es importante determinar el método HTTP y el formato del envío de los parámetros de la consulta en la petición de búsqueda. (Se usa GET, falta documentarlo y justificarlo)
+    - El catálogo se debe presentar de forma paginada. Adicionalmente se debe permitir recuperar la cantidad de registros por página.
+    - Determine e implemente el comportamiento del catálogo ante un intento de acceso a un libro inexistente o a una página inexistente.
+    - La vista actual del catálogo debe poder descargarse en formato CSV.
+
+
+3- Agregue el procesamiento del formulario de reserva del libro. 
+   Para esta versión de la aplicación, es suficiente que ante una reserva se envíe un correo electrónico al personal 
+   informando acerca de la misma a una dirección configurable. 
+   Ponga énfasis en la determinación del método HTTP utilizado en la petición correspondiente al envío del formulario 
+   y en cómo se codifican los datos. Tenga en cuenta que las validaciones de Backend deben ser consistentes con 
+   las validaciones que se implementarán en el Frontend.
+(Ya esta hecho el procesamiento de la reserva, falta hacer que envie el mail)
+(La reserva usa POST, falta documentarlo)
+(No se codifican los datos, hay que implementarlo)
+
+
+4- Determine e implemente cómo se debe comportar su aplicación ante un error en la misma. 
+   Contemple que la misma en un ambiente productivo no debería dar información a los clientes que comprometa a la misma.
+(Estan implementados "correctamente" los errores 404 Page Not Found y 500 Internal Server Error, hay que documentarlo, pero creo que esta bien)
+
+5- Publique su aplicación web de forma que sea accesible a través de Internet.
