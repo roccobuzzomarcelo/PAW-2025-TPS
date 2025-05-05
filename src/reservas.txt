@@ -1,1 +1,2 @@
 Id Libro: 5|Nombre: Bautista|Apellido: Buch|Email: bautistapereyrabuch@gmail.com|Teléfono: 02346500617|Calle: |Número: |Ciudad: ALBERTI|Provincia: BUENOS AIRES|Código Postal: 6634|Envío o Retiro: retira
+Id Libro: 5|Nombre: Eliana|Apellido: Cardona|Email: elianacardona12@gmail.com|Teléfono: 02324472910|Calle: 4|Número: 0|Ciudad: CASTILLA|Provincia: Buenos Aires|Código Postal: 6616|Envío o Retiro: envío
