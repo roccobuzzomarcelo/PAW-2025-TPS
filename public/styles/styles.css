@@ -794,6 +794,10 @@ form.Reserva input[type="submit"]:hover {
     background-color: var(--main-color-shadow);
 }
 
+.requerido {
+    color: red;
+}
+
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 512px) {

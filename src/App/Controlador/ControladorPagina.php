@@ -71,6 +71,10 @@ class ControladorPagina{
         return $libros;
     }
     
+    public function libroNoEncontrado(){
+        http_response_code(404);
+        require $this->viewsDir . '404.view.php';
+    }
 
     public function index(){
         $titulo = "PawPrints - Inicio";
@@ -151,8 +155,7 @@ class ControladorPagina{
         $id = $_GET['id'] ?? null;
         $libros = $this->obtenerLibros(null, [$id]);
         if (empty($libros)) {
-            http_response_code(404);
-            require $this->viewsDir . '404.view.php';
+            $this->libroNoEncontrado();
             return;
         }
         $libro = $libros[0];
@@ -161,4 +164,41 @@ class ControladorPagina{
         require $this->viewsDir . 'detalle-libro.view.php';
     }
 
+    public function reservarLibro(){
+        $titulo = 'PawPrints - Reservar';
+        $htmlClass = "libro-pages";
+        $id = $_GET['id'] ?? null;
+        $libros = $this->obtenerLibros(null, [$id]);
+        if (empty($libros)) {
+            $this->libroNoEncontrado();
+            return;
+        }
+        $libro = $libros[0];
+        require $this->viewsDir . 'reservar-libro.view.php';
+    }
+
+    public function procesarReservarLibro(){
+        // Recoger los datos del formulario
+        $nombre = $_POST['inputNombre'];
+        $apellido = $_POST['inputApellido'];
+        $email = $_POST['inputEmail'];
+        $telefono = $_POST['inputTel'];
+        $calle = $_POST['inputCalle'];
+        $numero = $_POST['inputNumero'];
+        $ciudad = $_POST['inputCiudad'];
+        $provincia = $_POST['inputProvincia'];
+        $codigoPostal = $_POST['inputCodigoPostal'];
+        $envio = $_POST['inputEnvio'];  // Aquí recogemos el valor del envío o retiro
+        
+        // Formatear los datos en un texto legible
+        $datos = "Nombre: $nombre|Apellido: $apellido|Email: $email|Teléfono: $telefono|Calle: $calle|Número: $numero|Ciudad: $ciudad|Provincia: $provincia|Código Postal: $codigoPostal|Envío o Retiro: $envio\n";
+        
+        // Ruta del archivo de texto donde se guardarán los datos
+        $archivo = __DIR__ . "/../../reservas.txt";
+        
+        // Guardar los datos en el archivo de texto
+        file_put_contents($archivo, $datos, FILE_APPEND); // FILE_APPEND agrega los datos al final del archivo
+
+        $this->index();
+    }
 }
