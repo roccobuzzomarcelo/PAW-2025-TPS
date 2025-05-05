@@ -2,58 +2,22 @@
 
 require __DIR__ . '/../src/bootstrap.php';
 
-use PAW\src\App\Controlador\ControladorPagina;
-use PAW\src\App\Controlador\ControladorError;
+use PAW\src\Core\Exceptions\RouteNotFoundException;
 
 $path = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 $log->info("Petición a: {$path}");
 
-$controller = new ControladorPagina;
+try{
+    $router->dirigir($path);
+    $log->info("Código: 200 - Página encontrada",["Ruta" => $path]);
+}catch(RouteNotFoundException $e){
+    $router->dirigir("not-found");
+    $log->info("Codigo: 404 - Página no encontrada",["Error" => $e->getMessage()]);
+}catch(Exception $e){
+    $router->dirigir("error-interno");
+    $log->error("Codigo: 500 - Error interno del Servidor",["Error" => $e->getMessage()]);
+}
 
 /*var_dump($path);
 exit;*/
-
-
-if($path == "/"){
-    $controller->index();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/catalogo'){
-    $controller->catalogo();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/mas-vendidos'){
-    $controller->masvendidos();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/novedades'){
-    $controller->novedades();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/recomendados'){
-    $controller->recomendados();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/promociones'){
-    $controller->promociones();
-    $log->info("Respuesta exitosa:200");
-}elseif($path == '/como-comprar' || $path == '/como-comprar'){
-    $controller->comocomprar();
-    $log->info("Respuesta exitosa:200");
-}elseif($path == '/mi-cuenta'){
-    $controller->micuenta();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/quienes-somos'){
-    $controller->quienessomos();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/locales'){
-    $controller->locales();
-    $log->info("Respuesta exitosa:200");
-}else if($path == '/carrito'){
-    $controller->carrito();
-    $log->info("Respuesta exitosa:200");
-}else{
-    $controller= new ControladorError; 
-    $controller->notFound();
-    $log->info("Página no encontrada: 404");
-}
-
-/*require '../src/includes/header.php';
-require '../src/index.view.php';
-require '../src/includes/footer.php';*/

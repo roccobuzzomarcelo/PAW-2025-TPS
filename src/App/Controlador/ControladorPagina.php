@@ -73,7 +73,7 @@ class ControladorPagina{
         require $this->viewsDir .'catalog.view.php';
     }
 
-    public function masvendidos(){
+    public function masVendidos(){
         $libros = $this->obtenerLibros([1, 3, 6]); // IDs de los libros más vendidos
         require $this->viewsDir . 'mas-vendidos.view.php';
     }
@@ -93,15 +93,15 @@ class ControladorPagina{
         require $this->viewsDir . 'promociones.view.php';
     }
 
-    public function comocomprar(){
+    public function comoComprar(){
         require $this->viewsDir . 'como-comprar.view.php';
     }
 
-    public function micuenta(){
+    public function miCuenta(){
         require $this->viewsDir . 'mi-cuenta.view.php';
     }
 
-    public function quienessomos(){
+    public function quienesSomos(){
         require $this->viewsDir . 'quienes-somos.view.php';
     }
 
