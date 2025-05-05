@@ -6,8 +6,7 @@ use PAW\src\Core\Router;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-
-$log =new Logger('PawPrints-app');
+$log = new Logger('PawPrints-app');
 $log->pushHandler(new StreamHandler(__DIR__ . '/../log/app.log', Logger::DEBUG));
 
 
@@ -36,5 +35,5 @@ $router->get("/carrito", "ControladorPagina@carrito");
 $router->get("/detalle-libro", "ControladorPagina@detalleLibro");
 $router->get("/reservar", "ControladorPagina@reservarLibro");
 $router->post("/reservar", "ControladorPagina@procesarReservarLibro");
-$router->get("not-found","ControladorError@notFound");
-$router->get("error-interno","ControladorError@errorInterno");
+$router->get("not-found", "ControladorError@notFound");
+$router->get("error-interno", "ControladorError@errorInterno");
