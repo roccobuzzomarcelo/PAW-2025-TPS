@@ -6,7 +6,7 @@ class ControladorPagina{
     public string $viewsDir;
 
     public function __construct(){
-        $this->viewsDir = __DIR__ ."/../../";
+        $this->viewsDir = __DIR__ ."/../views/";
         $this->menu = [
             [
                 "href" => "/catalogo",

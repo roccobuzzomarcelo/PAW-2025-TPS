@@ -20,7 +20,7 @@
 
 <body>        
 
-    <?php include __DIR__ . '/App/views/parts/header.php'; ?>
+    <?php include 'parts/header.php'; ?>
     
     <main>
         <!-- BREADCRUMB -->
@@ -82,7 +82,7 @@
         </section>
     </main>
 
-   <?php include __DIR__ . '/App/views/parts/footer.php'; ?> 
+   <?php include 'parts/footer.php'; ?> 
 </body>
 
 </html>

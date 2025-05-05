@@ -15,26 +15,26 @@
         href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>PAW Prints | Más Vendidos</title>
+    <title>PAW Prints | Novedades</title>
 </head>
 
 <body>
-    <?php include __DIR__ . '/App/views/parts/header.php'; ?>
+    <?php include 'parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
             <li class="breadcrumb-item"><a class="breadcrumb-link" href="./catalogo.html">Catálogo</a></li>
-            <li class="breadcrumb-item" aria-current="page">Más Vendidos</li>
+            <li class="breadcrumb-item" aria-current="page">Novedades</li>
         </ul>
-        <h2 class="subtitulo">Más Vendidos</h2>
+        <h2 class="subtitulo">Novedades</h2>
         <section class="cont-libros">
             <?php
-                include __DIR__ . "/App/views/parts/mostrarLibros.php";
+                include 'parts/mostrarLibros.php';
             ?>
         </section>
     </main>
-    <?php include __DIR__ . '/App/views/parts/footer.php'; ?> 
+    <?php include 'parts/footer.php'; ?> 
 </body>
 
 </html>

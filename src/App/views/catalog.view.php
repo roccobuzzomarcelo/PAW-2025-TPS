@@ -20,7 +20,7 @@
 
 <body>
     
-    <?php include __DIR__ . '/App/views/parts/header.php'; ?>
+    <?php include 'parts/header.php'; ?>
 
     <main>
         <!-- BREADCRUMB -->
@@ -41,11 +41,11 @@
         <h2 class="subtitulo">Libros Disponibles</h2>
         <section class="cont-libros">
             <?php
-                include __DIR__ . "/App/views/parts/mostrarLibros.php";
+                include "parts/mostrarLibros.php";
             ?>
         </section>
     </main>
-    <?php include __DIR__ . '/App/views/parts/footer.php'; ?> 
+    <?php include 'parts/footer.php'; ?> 
 </body>
 
 </html>

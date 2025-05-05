@@ -6,7 +6,7 @@ class ControladorError{
     public string $viewsDir;
 
     public function __construct(){
-        $this->viewsDir = __DIR__ ."/../../";
+        $this->viewsDir = __DIR__ ."/../views/";
         $this->menu = [
             [
                 "href" => "/catalogo",
@@ -29,7 +29,7 @@ class ControladorError{
                 "name" => "Promociones"
             ],
             [
-                "href" => "/como comprar",
+                "href" => "/como-comprar",
                 "name" => "Como comprar"
             ],
             [
