@@ -30,16 +30,16 @@ El proyecto que les proponemos es la Web de una librería (venta de libros) llam
 
 1) Adoptamos una arquitectura basada en el patrón MVC (Modelo–Vista–Controlador), este patrón nos permite organizar el código de forma modular, separando la lógica de negocio, la presentación y el control de flujo. Además, al diseñar esta arquitectura, consideramos las problemáticas más comunes en el desarrollo de aplicaciones web, incorporando la persistencia de datos inicial en archivos de texto. Este diseño brinda una base sólida para desarrollar nuevas funcionalidades, mantener el sistema ordenado y escalarlo según necesidades futuras.
 
-Componentes de la arquitectura
-Componente	Ubicación / Archivo	Responsabilidad
-Front Controller	public/index.php	Punto de entrada del sistema. Recibe todas las peticiones y las redirige al controlador correcto.
-Router	src/Core/Router.php	Analiza la URL y determina qué controlador y acción ejecutar.
-Controladores	src/App/Controlador/	Manejan la lógica de cada sección. Cada archivo representa un controlador.
-Vistas	src/App/views/*.view.php	Plantillas PHP reutilizables que generan la salida HTML del sistema. Separan la presentación de la lógica.
-Persistencia	datos/libros.txt, datos/reservas.txt	Archivos planos que simulan una base de datos. Pueden ser leídos/escritos por los controladores.
-Logs	logs/app.log	Archivo donde se registran eventos, errores o acciones importantes del sistema.
-Assets e Imágenes	public/images/, public/assets/	Recursos estáticos del sitio web, como imágenes, CSS o scripts JS (cuando se incorporen).
-Dependencias	composer.json	Define las dependencias externas del proyecto (si las hubiera), gestionadas con Composer.
+    | **Componente**     | **Ubicación / Archivo**                        | **Responsabilidad**                                                                 |
+    |--------------------|------------------------------------------------|-------------------------------------------------------------------------------------|
+    | Front Controller    | public/index.php                               | Punto de entrada del sistema. Recibe todas las peticiones y las redirige al controlador correcto. |
+    | Router              | src/Core/Router.php                            | Analiza la URL y determina qué controlador y acción ejecutar.                      |
+    | Controladores       | src/App/Controlador/                           | Manejan la lógica de cada sección. Cada archivo representa un controlador.         |
+    | Vistas              | src/App/views/*.view.php                       | Plantillas PHP reutilizables que generan la salida HTML del sistema. Separan la presentación de la lógica. |
+    | Persistencia        | datos/libros.txt, datos/reservas.txt          | Archivos planos que simulan una base de datos. Pueden ser leídos/escritos por los controladores. |
+    | Logs                | logs/app.log                                   | Archivo donde se registran eventos, errores o acciones importantes del sistema.    |
+    | Assets e Imágenes   | public/images/, public/assets/                | Recursos estáticos del sitio web, como imágenes, CSS o scripts JS (cuando se incorporen). |
+    | Dependencias        | composer.json                                  | Define las dependencias externas del proyecto (si las hubiera), gestionadas con Composer. |
 
 2) En la página de inicio de PAWPrints se muestra un menú de navegación que redirige a las secciones más relevantes del sitio web. El menú se genera dinámicamente a través de un array en el controlador ControladorPagina, y cada enlace de menú se asocia a una URL específica en el enrutador. Este router, gestiona las rutas y las redirige a los métodos correspondientes. El uso de rutas permite que el sitio sea escalable, ya que nuevas secciones y funcionalidades se pueden agregar fácilmente al enrutador sin modificar las rutas existentes.
 
