@@ -1,20 +1,9 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../src/bootstrap.php';
 
 use PAW\src\App\Controlador\ControladorPagina;
 use PAW\src\App\Controlador\ControladorError;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
-$log =new Logger('PawPrints-app');
-$log->pushHandler(new StreamHandler(__DIR__ . '/../log/app.log', Logger::DEBUG));
-
-$whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-$whoops->register();
-
-
 
 $path = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
