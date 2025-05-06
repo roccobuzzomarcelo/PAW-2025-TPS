@@ -19,6 +19,23 @@
                 </select>
             </label>
         </nav>
+        <form method="GET" class="form-cantidad">
+            <label for="librosPorPagina">Libros por página:</label>
+            <select name="libros_por_pagina" id="librosPorPagina" onchange="this.form.submit()">
+                <?php
+                    $opciones = [5, 10, 20, 50];
+                    foreach ($opciones as $opcion) {
+                        $selected = ($librosPorPagina == $opcion) ? 'selected' : '';
+                        echo "<option value=\"$opcion\" $selected>$opcion</option>";
+                    }
+                ?>
+            </select>
+            <!-- Conservamos la consulta si la hubiera -->
+            <?php if ($consulta): ?>
+                <input type="hidden" name="consulta" value="<?= htmlspecialchars($consulta) ?>">
+            <?php endif; ?>
+            <input type="hidden" name="pagina" value="<?= $pagina ?>">
+        </form>
         <h2 class="subtitulo">Libros Disponibles</h2>
         <section class="cont-libros">
             <?php

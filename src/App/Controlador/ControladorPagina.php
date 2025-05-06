@@ -44,7 +44,42 @@ class ControladorPagina
         ];
     }
 
-    public function obtenerLibros($consulta = null, $ids = null, $pagina = 1, $librosPorPagina = 10)
+    public function obtenerLibros($consulta = null, $ids = null)
+    {
+        $ruta = __DIR__ . '/../../libros.txt';
+        $libros = [];
+
+        if (!file_exists($ruta))
+            return [];
+
+        $lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($lineas as $linea) {
+            [$id, $titulo, $autor, $descripcion, $precio, $imagen] = explode('|', $linea);
+
+            // Filtro por IDs (si se pasaron)
+            if ($ids !== null && !in_array($id, $ids))
+                continue;
+
+            // Filtro por búsqueda textual (si se pasó)
+            if ($consulta !== null && stripos($titulo, $consulta) === false && stripos($autor, $consulta) === false) {
+                continue;
+            }
+
+            $libros[] = [
+                'id' => $id,
+                'titulo' => $titulo,
+                'autor' => $autor,
+                'descripcion' => $descripcion,
+                'precio' => $precio,
+                'img' => $imagen
+            ];
+        }
+
+        return $libros;
+    }
+    
+    public function obtenerLibrosPaginado($consulta = null, $ids = null, $pagina = 1, $librosPorPagina = 10)
     {
         $ruta = __DIR__ . '/../../libros.txt';
         $libros = [];
@@ -106,21 +141,21 @@ class ControladorPagina
     public function catalogo()
     {
         $titulo = "PawPrints - Catálogo";
-    $htmlClass = "catalogo-pages";
+        $htmlClass = "catalogo-pages";
 
-    // Capturar los parámetros de la URL
-    $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; // Página actual
-    $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int)$_GET['libros_por_pagina'] : 10; // Libros por página
+        // Capturar los parámetros de la URL
+        $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; // Página actual
+        $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int)$_GET['libros_por_pagina'] : 10; // Libros por página
 
-    $consulta = $_GET['consulta'] ?? null;
-    
-    // Obtener los libros con paginación
-    $resultado = $this->obtenerLibros($consulta, null, $pagina, $librosPorPagina);
-    $libros = $resultado['libros'];
-    $totalPaginas = $resultado['totalPaginas'];
+        $consulta = $_GET['consulta'] ?? null;
+        
+        // Obtener los libros con paginación
+        $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
+        $libros = $resultado['libros'];
+        $totalPaginas = $resultado['totalPaginas'];
 
-    // Pasar datos a la vista
-    require $this->viewsDir . 'catalog.view.php';
+        // Pasar datos a la vista
+        require $this->viewsDir . 'catalog.view.php';
     }
 
     public function masVendidos()

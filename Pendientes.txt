@@ -1,6 +1,4 @@
 2- Agregue la funcionalidad de listado y búsqueda de los libros del catálogo. Para ello, tenga en cuenta que:
-    - Es importante determinar el método HTTP y el formato del envío de los parámetros de la consulta en la petición de búsqueda. (Se usa GET, falta documentarlo y justificarlo)
-    - El catálogo se debe presentar de forma paginada. Adicionalmente se debe permitir recuperar la cantidad de registros por página.
     - Determine e implemente el comportamiento del catálogo ante un intento de acceso a un libro inexistente o a una página inexistente.
     - La vista actual del catálogo debe poder descargarse en formato CSV.
 

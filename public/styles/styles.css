@@ -820,7 +820,12 @@ form.Reserva input[type="submit"]:hover {
     background-color: var(--secondary-color);
 }
 
-
+.form-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}   
 
 /* MEDIA QUERIES */
 
