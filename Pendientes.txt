@@ -1,5 +1,4 @@
 2- Agregue la funcionalidad de listado y búsqueda de los libros del catálogo. Para ello, tenga en cuenta que:
-    - Determine e implemente el comportamiento del catálogo ante un intento de acceso a un libro inexistente o a una página inexistente.
     - La vista actual del catálogo debe poder descargarse en formato CSV.
 
 4- Publique su aplicación web de forma que sea accesible a través de Internet.

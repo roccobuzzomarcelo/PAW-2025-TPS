@@ -36,6 +36,9 @@
             <?php endif; ?>
             <input type="hidden" name="pagina" value="<?= $pagina ?>">
         </form>
+        <a href="/descargar_catalogo?pagina=<?= $pagina ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= urlencode($consulta) ?>" class="btn-descargar">
+            Descargar Catalogo
+        </a>
         <h2 class="subtitulo">Libros Disponibles</h2>
         <section class="cont-libros">
             <?php

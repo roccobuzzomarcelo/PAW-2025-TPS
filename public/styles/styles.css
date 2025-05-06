@@ -827,6 +827,19 @@ form.Reserva input[type="submit"]:hover {
     margin-bottom: 1rem;
 }   
 
+.btn-descargar {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 10px 0;
+}
+.btn-descargar:hover {
+    background-color: var(--secondary-color);
+}
+
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 512px) {

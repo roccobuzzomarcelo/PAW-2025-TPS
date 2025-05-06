@@ -158,6 +158,32 @@ class ControladorPagina
         require $this->viewsDir . 'catalog.view.php';
     }
 
+    public function descargarCatalogo()
+    {
+        $consulta = $_GET['consulta'] ?? null;
+        $pagina = $_GET['pagina'] ?? 1;
+        $librosPorPagina = $_GET['libros_por_pagina'] ?? 10;
+        $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
+        $libros = $resultado['libros'];
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="catalogo.csv"');
+
+        $output = fopen('php://output', 'w');
+        fputcsv($output, ['ID', 'Título', 'Autor', 'Descripción', 'Precio', 'Imagen']);
+
+        foreach ($libros as $libro) {
+            fputcsv($output, [
+                $libro['id'],
+                $libro['titulo'],
+                $libro['autor'],
+                $libro['descripcion'],
+                $libro['precio'],
+                $libro['img']
+            ]);
+        }
+        fclose($output);
+    }
+
     public function masVendidos()
     {
         $titulo = "PawPrints - Más vendidos";

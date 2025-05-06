@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use PAW\src\App\Controlador\ControladorPagina;
 use PAW\src\Core\Router;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -18,6 +19,7 @@ $whoops->register();
 $router = new Router;
 $router->get("/", "ControladorPagina@index");
 $router->get("/catalogo", "ControladorPagina@catalogo");
+$router->get("/descargar_catalogo", "ControladorPagina@descargarCatalogo");
 $router->get("/mas-vendidos", "ControladorPagina@masVendidos");
 $router->get("/novedades", "ControladorPagina@novedades");
 $router->get("/recomendados", "ControladorPagina@recomendados");
