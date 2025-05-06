@@ -13,19 +13,12 @@
         <section>
             <h2 class="subtitulo">Productos en tu carrito</h2>
             <article class="libro-carrito">
-                <figure>
-                    <img src="../images/libro.png" alt="Portada de Libro">
-                </figure>
-                <section class="descripcion-libro">
-                    <h3>Título del Libro</h3>
-                    <p>$ XXXXXX</p>
-                    <button class="btn-eliminarCarrito" type="submit"><i class="fas fa-trash"></i></button>
-                </section>
+                <?php include "parts/mostrarLibros.php"?>
             </article>
         </section>
         <section class="subtotal">
             <h2>Subtotal</h2>
-            <p class="precio">$ XXXX</p>
+            <p class = "precio"><?= htmlspecialchars($libro['precio']) ?></p>
             <a href="https://pawprints/finalizar-compra/" class="boton-link">
                 Finalizar compra
             </a>

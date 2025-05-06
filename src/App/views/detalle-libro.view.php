@@ -18,7 +18,7 @@
                 <p><span>Descripción: </span><?= htmlspecialchars($libro['descripcion']) ?></p>
                 <p class="autor">Autor: <?= htmlspecialchars($libro['autor']) ?>.</p>
                 <p class="precio">$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
-                <a class="boton-link" href="/carrito?agregar=<?= urlencode($libro['id']) ?>">Agregar al carrito</a>
+                <a class="boton-link" href="/carrito?id=<?= urlencode($libro['id']) ?>">Agregar al carrito</a>
                 <a class="boton-link" href="/reservar?id=<?= urlencode($libro['id']) ?>">Reservar libro</a>
             </section>
         </section>

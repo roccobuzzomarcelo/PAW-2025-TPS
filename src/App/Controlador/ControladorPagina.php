@@ -236,12 +236,18 @@ class ControladorPagina
     {
         $titulo = 'PawPrints - Carrito de compras';
         $htmlClass = "carrito-pages";
+        $id = $_GET['id'] ?? null;
+        $libros = $this->obtenerLibros(null, [$id]);
+        if (empty($libros)) {
+            $this->libroNoEncontrado();
+            return;
+        }
+        $libro = $libros[0];
         require $this->viewsDir . 'carrito.view.php';
     }
 
     public function detalleLibro()
     {
-        ;
         $htmlClass = "libro-pages";
         $id = $_GET['id'] ?? null;
         $libros = $this->obtenerLibros(null, [$id]);
