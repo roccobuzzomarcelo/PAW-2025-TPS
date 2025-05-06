@@ -216,19 +216,34 @@ class ControladorPagina
 
     public function procesarReservarLibro()
     {
-        // Recoger los datos del formulario
-        $id = $_POST['libro_id'];
-        $nombre = $_POST['inputNombre'];
-        $apellido = $_POST['inputApellido'];
-        $email = $_POST['inputEmail'];
-        $telefono = $_POST['inputTel'];
-        $calle = $_POST['inputCalle'];
-        $numero = $_POST['inputNumero'];
-        $ciudad = $_POST['inputCiudad'];
-        $provincia = $_POST['inputProvincia'];
-        $codigoPostal = $_POST['inputCodigoPostal'];
-        $envio = $_POST['inputEnvio'];  // Aquí recogemos el valor del envío o retiro
+        $requeridos = ['libro_id', 'inputNombre', 'inputApellido', 'inputEmail', 'inputTel', 'inputEnvio'];
+        foreach ($requeridos as $campo) {
+            if (!isset($_POST[$campo]) || trim($_POST[$campo]) === '') {
+                echo "⚠️ Faltan datos obligatorios.";
+                return;
+            }
+        }
 
+        // Recoger los datos del formulario y sanitizarlos
+        $id = filter_var($_POST['libro_id'], FILTER_VALIDATE_INT);
+        $nombre = htmlspecialchars(trim($_POST['inputNombre']));
+        $apellido = htmlspecialchars(trim($_POST['inputApellido']));
+        $email = filter_var(trim($_POST['inputEmail']), FILTER_VALIDATE_EMAIL);
+        $telefono = htmlspecialchars(trim($_POST['inputTel']));
+        $calle = htmlspecialchars(trim($_POST['inputCalle'] ?? ''));
+        $numero = htmlspecialchars(trim($_POST['inputNumero'] ?? ''));
+        $ciudad = htmlspecialchars(trim($_POST['inputCiudad'] ?? ''));
+        $provincia = htmlspecialchars(trim($_POST['inputProvincia'] ?? ''));
+        $codigoPostal = htmlspecialchars(trim($_POST['inputCodigoPostal'] ?? ''));
+        $envio = ($_POST['inputEnvio'] === 'envío' || $_POST['inputEnvio'] === 'retira') ? $_POST['inputEnvio'] : 'desconocido';
+
+        if (!$id || !$email) {
+            echo "⚠️ El ID del libro o el email no son válidos.";
+            return;
+        }else if(!preg_match("^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$", $telefono)){
+            echo "⚠️ El teléfono no es válido.";
+            return;
+        }
         // Formatear los datos en un texto legible
         $datos = "Id Libro: $id|Nombre: $nombre|Apellido: $apellido|Email: $email|Teléfono: $telefono|Calle: $calle|Número: $numero|Ciudad: $ciudad|Provincia: $provincia|Código Postal: $codigoPostal|Envío o Retiro: $envio\n";
 
@@ -374,12 +389,33 @@ class ControladorPagina
 
     public function procesarRegistro()
     {
+        if(
+            empty($_POST['inputNombre']) ||
+            empty($_POST['inputApellido']) ||
+            empty($_POST['inputEmail']) ||
+            empty($_POST['inputPassword']) ||
+            empty($_POST['inputConfirmarPassword'])
+        ){
+            echo "⚠️ Todos los campos obligatorios deben estar completos.";
+            return;
+        }
         // Recoger los datos del formulario
         $nombre = $_POST['inputNombre'];
         $apellido = $_POST['inputApellido'];
         $email = $_POST['inputEmail'];
         $password = $_POST['inputPassword'];
         $confirmarPassword = $_POST['inputConfirmarPassword'];
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "⚠️ Email inválido.";
+            return;
+        }
+
+        if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/", $nombre) || !preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/", $apellido)) {
+            echo "⚠️ Nombre o apellido inválido.";
+            return;
+        }
+
         if ($password !== $confirmarPassword) {
             echo "⚠️ Las contraseñas no coinciden.";
             return;

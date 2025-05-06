@@ -16,20 +16,4 @@
     - Determine e implemente el comportamiento del catálogo ante un intento de acceso a un libro inexistente o a una página inexistente.
     - La vista actual del catálogo debe poder descargarse en formato CSV.
 
-
-3- Agregue el procesamiento del formulario de reserva del libro. 
-   Para esta versión de la aplicación, es suficiente que ante una reserva se envíe un correo electrónico al personal 
-   informando acerca de la misma a una dirección configurable. 
-   Ponga énfasis en la determinación del método HTTP utilizado en la petición correspondiente al envío del formulario 
-   y en cómo se codifican los datos. Tenga en cuenta que las validaciones de Backend deben ser consistentes con 
-   las validaciones que se implementarán en el Frontend.
-(Ya esta hecho el procesamiento de la reserva, falta hacer que envie el mail)
-(La reserva usa POST, falta documentarlo)
-(No se codifican los datos, hay que implementarlo)
-
-
-4- Determine e implemente cómo se debe comportar su aplicación ante un error en la misma. 
-   Contemple que la misma en un ambiente productivo no debería dar información a los clientes que comprometa a la misma.
-(Estan implementados "correctamente" los errores 404 Page Not Found y 500 Internal Server Error, hay que documentarlo, pero creo que esta bien)
-
-5- Publique su aplicación web de forma que sea accesible a través de Internet.
+4- Publique su aplicación web de forma que sea accesible a través de Internet.
