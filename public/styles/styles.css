@@ -798,6 +798,30 @@ form.Reserva input[type="submit"]:hover {
     color: red;
 }
 
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.paginacion a.flecha {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--main-color);
+    padding: 0.5rem 1rem;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    transition: background 0.2s ease;
+}
+
+.paginacion a.flecha:hover {
+    background-color: var(--secondary-color);
+}
+
+
+
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 512px) {

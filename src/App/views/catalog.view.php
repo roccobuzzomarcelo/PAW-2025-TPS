@@ -25,6 +25,18 @@
                 include "parts/mostrarLibros.php";
             ?>
         </section>
+        <!-- Paginación -->
+        <nav class="paginacion">
+            <?php if ($pagina > 1): ?>
+                <a href="?pagina=<?= $pagina - 1 ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= htmlspecialchars($consulta) ?>" class="flecha">&#8592;</a>
+            <?php endif; ?>
+
+            <span>Página <?= $pagina ?> de <?= $totalPaginas ?></span>
+
+            <?php if ($pagina < $totalPaginas): ?>
+                <a href="?pagina=<?= $pagina + 1 ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= htmlspecialchars($consulta) ?>" class="flecha">&#8594;</a>
+            <?php endif; ?>
+        </nav>
     </main>
     <?php include 'parts/footer.php'; ?> 
 </body>

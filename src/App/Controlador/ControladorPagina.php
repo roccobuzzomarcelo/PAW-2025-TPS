@@ -44,7 +44,7 @@ class ControladorPagina
         ];
     }
 
-    public function obtenerLibros($consulta = null, $ids = null)
+    public function obtenerLibros($consulta = null, $ids = null, $pagina = 1, $librosPorPagina = 10)
     {
         $ruta = __DIR__ . '/../../libros.txt';
         $libros = [];
@@ -76,7 +76,16 @@ class ControladorPagina
             ];
         }
 
-        return $libros;
+        // Paginación
+        $totalLibros = count($libros);
+        $offset = ($pagina - 1) * $librosPorPagina; // Calcular el punto de inicio de la página
+        $librosPagina = array_slice($libros, $offset, $librosPorPagina); // Obtener solo los libros de la página actual
+
+        return [
+            'libros' => $librosPagina,
+            'total' => $totalLibros,
+            'totalPaginas' => ceil($totalLibros / $librosPorPagina), // Calcular el total de páginas
+        ];
     }
 
     public function libroNoEncontrado()
@@ -97,10 +106,21 @@ class ControladorPagina
     public function catalogo()
     {
         $titulo = "PawPrints - Catálogo";
-        $htmlClass = "catalogo-pages";
-        $consulta = $_GET['consulta'] ?? null;
-        $libros = $this->obtenerLibros($consulta);
-        require $this->viewsDir . 'catalog.view.php';
+    $htmlClass = "catalogo-pages";
+
+    // Capturar los parámetros de la URL
+    $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; // Página actual
+    $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int)$_GET['libros_por_pagina'] : 10; // Libros por página
+
+    $consulta = $_GET['consulta'] ?? null;
+    
+    // Obtener los libros con paginación
+    $resultado = $this->obtenerLibros($consulta, null, $pagina, $librosPorPagina);
+    $libros = $resultado['libros'];
+    $totalPaginas = $resultado['totalPaginas'];
+
+    // Pasar datos a la vista
+    require $this->viewsDir . 'catalog.view.php';
     }
 
     public function masVendidos()
@@ -240,7 +260,7 @@ class ControladorPagina
         if (!$id || !$email) {
             echo "⚠️ El ID del libro o el email no son válidos.";
             return;
-        }else if(!preg_match("^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$", $telefono)){
+        }else if(!preg_match("/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/", $telefono)){
             echo "⚠️ El teléfono no es válido.";
             return;
         }
