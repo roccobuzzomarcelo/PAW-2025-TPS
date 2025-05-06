@@ -1,15 +1,3 @@
-1- Defina e implemente una arquitectura preliminar para su aplicación web. Tenga en cuenta que algunas de las problemáticas comunes de las aplicaciones como:
-    - análisis de la peticiones HTTP;
-    - mapeo de URLs en funcionalidades de la aplicación;
-    - generación de las respuestas HTTP;
-    - generación de registros;
-    - persistencia;
-    - configuración;
-    - generación de diferentes representaciones de la información (documentos HTML, PDF, imágenes, archivos XML, etc.)
-   Para cada una de ellas, defina a qué módulo de su arquitectura se corresponden. Para tomar ideas, puede valerse de las Recomendaciones de Estándares de PHP definidas por el PHP Framework Interop Group.
-(Falta toda la documentacion sobre lo realizado.)
-
-
 2- Agregue la funcionalidad de listado y búsqueda de los libros del catálogo. Para ello, tenga en cuenta que:
     - Es importante determinar el método HTTP y el formato del envío de los parámetros de la consulta en la petición de búsqueda. (Se usa GET, falta documentarlo y justificarlo)
     - El catálogo se debe presentar de forma paginada. Adicionalmente se debe permitir recuperar la cantidad de registros por página.
