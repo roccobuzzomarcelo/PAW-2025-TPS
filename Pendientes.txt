@@ -1,4 +1,0 @@
-2- Agregue la funcionalidad de listado y búsqueda de los libros del catálogo. Para ello, tenga en cuenta que:
-    - La vista actual del catálogo debe poder descargarse en formato CSV.
-
-4- Publique su aplicación web de forma que sea accesible a través de Internet.
