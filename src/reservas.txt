@@ -5,3 +5,4 @@ Id Libro: 3|Nombre: Rocco|Apellido: Buzzo Marcelo|Email: roccobuzzomarcelo@gmail
 Id Libro: 3|Nombre: Rocco|Apellido: Buzzo Marcelo|Email: roccobuzzomarcelo@gmail.com|Teléfono: 2346123456|Calle: Calle 123|Número: 1|Ciudad: Chivilcoy|Provincia: Buenos Aires|Código Postal: 6620|Envío o Retiro: retira
 Id Libro: 5|Nombre: Rocco|Apellido: Buzzo Marcelo|Email: roccobuzzomarcelo@gmail.com|Teléfono: 2346123456|Calle: |Número: |Ciudad: |Provincia: |Código Postal: |Envío o Retiro: envío
 Id Libro: 1|Nombre: Rocco|Apellido: Buzzo Marcelo|Email: roccobuzzomarcelo@gmail.com|Teléfono: 2346123456|Calle: |Número: |Ciudad: |Provincia: |Código Postal: 6620|Envío o Retiro: envío
+Id Libro: 3|Nombre: Bautista|Apellido: Pereyra Buch|Email: bautistapereyrabuch@gmail.com|Teléfono: 02346500617|Calle: |Número: |Ciudad: Alberti|Provincia: Buenos Aires|Código Postal: 6634|Envío o Retiro: retira

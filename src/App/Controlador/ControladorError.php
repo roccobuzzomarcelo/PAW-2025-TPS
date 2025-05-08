@@ -4,6 +4,7 @@ namespace PAW\src\App\Controlador;
 
 class ControladorError{
     public string $viewsDir;
+    public array $menu;
 
     public function __construct(){
         $this->viewsDir = __DIR__ ."/../views/";
@@ -42,12 +43,18 @@ class ControladorError{
 
     public function notFound()
     {
-        http_response_code(404);
+        if (!headers_sent()) {
+            http_response_code(404);
+        }
         require $this->viewsDir . '404.view.php';
+        exit;
     }
 
     public function errorInterno(){
-        http_response_code(500);
+        if (!headers_sent()) {
+            http_response_code(500);
+        }
         require $this->viewsDir . '500.view.php';
+        exit;
     }
 }

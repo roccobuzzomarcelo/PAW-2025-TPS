@@ -8,6 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 class ControladorPagina
 {
     public string $viewsDir;
+    public array $menu;
 
     public function __construct()
     {
@@ -147,7 +148,7 @@ class ControladorPagina
         $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; // Página actual
         $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int)$_GET['libros_por_pagina'] : 10; // Libros por página
 
-        $consulta = $_GET['consulta'] ?? null;
+        $consulta = isset($_GET['consulta']) ? (string)$_GET['consulta'] : '';
         
         // Obtener los libros con paginación
         $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
