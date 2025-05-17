@@ -142,7 +142,7 @@
         <!-- CARRITO -->
         <a class="carrito" href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
         <!-- BARRA DE NAVEGACIÓN -->
-        <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
+        <!-- <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button> -->
         <nav class="nav-bar">
             <ul>
                 <?php foreach($this->menu as $item): ?>

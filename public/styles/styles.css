@@ -151,6 +151,8 @@ h1 {
     align-items: center;
 }
 
+
+
 .nav-bar a {
     color: white;
     text-decoration: none;
@@ -190,7 +192,7 @@ a:hover {
     margin-top: 0.5em;
 }
 
-.nav-bar-mobile {
+/*.nav-bar-mobile {
     display: none;
     background-color: var(--main-color);
     justify-content: center;
@@ -212,6 +214,22 @@ a:hover {
     display: block;
     text-align: center;
     font-family: "Archivo Black", sans-serif;
+}*/
+
+/* Menú oculto en móviles, visible solo cuando se activa */
+@media screen and (max-width: 768px) {
+    .nav-bar {
+        display: none;
+        flex-direction: column;
+    }
+
+    .nav-bar.active {
+        display: flex;
+    }
+
+    .hamburger-icon {
+        display: flex;
+    }
 }
 
 .como-comprar,
