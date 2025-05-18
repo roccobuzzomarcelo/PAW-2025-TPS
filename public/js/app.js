@@ -1,20 +1,25 @@
 class appPAW {
 	constructor() {
-        //Inicializar la funcionalidad Menu
-        document.addEventListener("DOMContentLoaded", () => {
-		PAW.cargarScript("PAW-Menu", "js/components/paw-menu.js", () => {	
-                console.log("paw-menu.js cargado");
+		document.addEventListener("DOMContentLoaded", () => {
+			PAW.cargarScript("PAW-Menu", "js/components/paw-menu.js", () => {
 				let menu = new PAWMenu(".nav-bar");
 			});
-		}
-        );
-        //Inicializar la funcionalidad Carousell
-        /*PAW.cargarScript("PAW-Menu", "js/components/paw-menu.js", () => {
-			document.addEventListener("DOMContentLoaded", () => {
-				let menu = new PAWMenu();
+
+			PAW.cargarScript("Carousel", "js/components/carousel.js", () => {
+				const esperarContenedor = () => {
+					let c = document.querySelector(".carousel-container");
+					if (c) {
+						new Carousel(".carousel-container");
+					} else {
+						setTimeout(esperarContenedor, 100);
+					}
+				};
+				esperarContenedor();
 			});
-		});*/
-    }
+		});
+	}
 }
 
 let app = new appPAW();
+
+

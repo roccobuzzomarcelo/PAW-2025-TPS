@@ -1,0 +1,122 @@
+/* Asegura que el body y html ocupen toda la altura */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+/* Contenedor principal del carousel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #000;
+}
+
+
+/* Wrapper que contiene los slides */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cada slide ocupa todo el contenedor pero solo el activo es visible */
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slide activo */
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Miniaturas debajo del carousel */
+.carousel-thumbs {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  display: flex;
+  transform: translateX(-50%);
+  gap: 10px;
+  z-index: 2;
+}
+
+.carousel-thumb {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  opacity: 0.6;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s, opacity 0.3s;
+}
+
+.carousel-thumb.active {
+  border-color: white;
+  opacity: 1;
+}
+
+/* Botones de navegación */
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.carousel-buttons button {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.carousel-buttons button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Barra de progreso */
+.carousel-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: #D10049;
+  width: 0%;
+  z-index: 3;
+  transition: width 0.3s linear;
+}
+
+/* Modo fullscreen opcional */
+.carousel.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  aspect-ratio: auto;
+  background: #000;
+}

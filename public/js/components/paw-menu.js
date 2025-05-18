@@ -5,7 +5,6 @@ class PAWMenu {
 		let contenedor = pContenedor.tagName
 			? pContenedor
 			: document.querySelector(pContenedor);
-			console.log("Contenedor encontrado:", contenedor);
 
 		if (contenedor) {
 			contenedor.classList.add("PAW-Menu");
@@ -22,20 +21,15 @@ class PAWMenu {
 				class: "PAW-MenuAbrir",
 			});
 
-			console.log("Botón insertado:", boton);
 
 			boton.addEventListener("click", (event) => {
-				console.log("CLICK CAPTURADO");
 				const btn = event.currentTarget;
-				console.log("Clases actuales del botón:", btn.classList);
 				if (btn.classList.contains("PAW-MenuAbrir")) {
-						console.log("Abriendo menú");
 					btn.classList.add("PAW-MenuCerrar");
 					btn.classList.remove("PAW-MenuAbrir");
 					contenedor.classList.add("PAW-MenuAbierto");
 					contenedor.classList.remove("PAW-MenuCerrado");
 				} else {
-					console.log("Cerrando menú");
 					btn.classList.add("PAW-MenuAbrir");
 					btn.classList.remove("PAW-MenuCerrar");
 					contenedor.classList.add("PAW-MenuCerrado");
