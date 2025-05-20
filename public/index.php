@@ -19,6 +19,3 @@ try{
     $router->dirigir("error-interno");
     $log->error("Codigo: 500 - Error interno del Servidor",["Error" => $e->getMessage()]);
 }
-
-/*var_dump($path);
-exit;*/

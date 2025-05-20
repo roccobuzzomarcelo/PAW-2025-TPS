@@ -1,27 +1,28 @@
 class PAWMenu {
 	constructor(pContenedor) {
-		//Conseguir Nodo NAV
-
+		// Conseguir un nodo de tipo <nav>
 		let contenedor = pContenedor.tagName
 			? pContenedor
 			: document.querySelector(pContenedor);
 
+		// Si existe el contenedor, entonces le agrega la clase "PAW-Menu" al contenedor.
 		if (contenedor) {
 			contenedor.classList.add("PAW-Menu");
 			contenedor.classList.add("PAW-MenuCerrado");
 
+			// Insertamos el css del menu en la página
 			let css = PAW.nuevoElemento("link", "", {
 				rel: "stylesheet",
 				href: "styles/pawmenu.css",
 			});
 			document.head.appendChild(css);
 
-			// Armar Boton
+			// Armar un BOTON que tenga la funcionalidad de hamburguesa
 			let boton = PAW.nuevoElemento("button", "", {
 				class: "PAW-MenuAbrir",
 			});
-
-
+			
+			// Agregamos la funcionalidad de abrir o de cerrar al boton.
 			boton.addEventListener("click", (event) => {
 				const btn = event.currentTarget;
 				if (btn.classList.contains("PAW-MenuAbrir")) {
@@ -36,8 +37,6 @@ class PAWMenu {
 					contenedor.classList.remove("PAW-MenuAbierto");
 				}
 			});
-
-
 			// Insertar boton en el NAV
 			contenedor.prepend(boton);
 		} else {

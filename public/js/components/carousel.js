@@ -27,32 +27,32 @@ class Carousel {
 		contenedor.appendChild(progreso);
 
 		imagenes.forEach((img) => {
-      if (img.complete) {
-        cargadas++;
-        progreso.style.width = `${(cargadas / total) * 100}%`;
-        if (cargadas === total) {
-            setTimeout(() => {
-            progreso.remove();
-            inicializarCarousel();
-          }, 300);
-        }
-      } else {
-        img.onload = () => {
-          cargadas++;
-          progreso.style.width = `${(cargadas / total) * 100}%`;
+			if (img.complete) {
+				cargadas++;
+				progreso.style.width = `${(cargadas / total) * 100}%`;
+				if (cargadas === total) {
+					setTimeout(() => {
+						progreso.remove();
+						inicializarCarousel();
+					}, 300);
+				}
+			} else {
+				img.onload = () => {
+					cargadas++;
+					progreso.style.width = `${(cargadas / total) * 100}%`;
 
-          if (cargadas === total) {
-            setTimeout(() => {
-              progreso.remove();
-              inicializarCarousel();
-            }, 300);
-          }
-        };
-        img.onerror = () => {
-          cargadas++;
-        };
-      }
-    });
+					if (cargadas === total) {
+						setTimeout(() => {
+							progreso.remove();
+							inicializarCarousel();
+						}, 300);
+					}
+				};
+				img.onerror = () => {
+					cargadas++;
+				};
+			}
+		});
 
 		function inicializarCarousel() {
 			console.log("🔧 Inicializando estructura del carousel");

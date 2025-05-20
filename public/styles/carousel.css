@@ -1,5 +1,6 @@
 /* Asegura que el body y html ocupen toda la altura */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -15,7 +16,6 @@ html, body {
   overflow: hidden;
   background: #000;
 }
-
 
 /* Wrapper que contiene los slides */
 .carousel-wrapper {
