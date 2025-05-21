@@ -132,7 +132,7 @@ class ControladorPagina
 
     public function index()
     {
-        $titulo = "PawPrints - Inicio";
+        $titulo = "PAWPrints - Inicio";
         $novedades = $this->obtenerLibros(null, [5, 7]); // IDs de los libros nuevos
         $masVendidos = $this->obtenerLibros(null, [1, 3, 6]); // IDs de los libros más vendidos
         $recomendados = $this->obtenerLibros(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
@@ -141,7 +141,7 @@ class ControladorPagina
 
     public function catalogo()
     {
-        $titulo = "PawPrints - Catálogo";
+        $titulo = "PAWPrints - Catálogo";
         $htmlClass = "catalogo-pages";
 
         // Capturar los parámetros de la URL
@@ -187,7 +187,7 @@ class ControladorPagina
 
     public function masVendidos()
     {
-        $titulo = "PawPrints - Más vendidos";
+        $titulo = "PAWPrints - Más vendidos";
         $htmlClass = "catalogo-pages";
         $libros = $this->obtenerLibros(null, [1, 3, 6]); // IDs de los libros más vendidos
         require $this->viewsDir . 'mas-vendidos.view.php';
