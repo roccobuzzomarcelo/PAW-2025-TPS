@@ -1,8 +1,9 @@
 .error-message {
     color: red;
     font-size: 0.85em;
-    margin-top: 2px;
+    margin: 0.8em;
     display: block;
+    font-style: italic;
 }
 
 input.invalid,

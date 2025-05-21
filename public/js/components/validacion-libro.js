@@ -5,6 +5,12 @@ class ValidacionLibro {
 
         this.submitBtn = this.form.querySelector('input[type="submit"]');
 
+        let css = PAW.nuevoElemento("link", "", {
+            rel: "stylesheet",
+            href: "styles/error-message.css",
+        });
+        document.head.appendChild(css);
+
         this.campos = {
             titulo: {
                 input: this.form.titulo,

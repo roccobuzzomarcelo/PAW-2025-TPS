@@ -486,7 +486,7 @@ p {
     border: 1px solid #ccc;
     transition: border-color 0.3s;
     margin-bottom: 1em;
-
+    font-size: 12px;
 }
 
 .login-form input:focus {
