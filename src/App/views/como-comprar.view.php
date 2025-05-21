@@ -1,5 +1,6 @@
-<?php include 'parts/head.php'?>
-<body>
+<?php include 'parts/head.php' ?>
+
+<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include 'parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
@@ -24,7 +25,7 @@
             </p>
         </section>
     </main>
-    <?php include 'parts/footer.php'; ?> 
+    <?php include 'parts/footer.php'; ?>
 
 </body>
 

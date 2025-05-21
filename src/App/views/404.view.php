@@ -1,5 +1,5 @@
 <?php include "parts/head.php"; ?>
-<body>
+<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
 <?php include "parts/header.php"; ?>
     <main>
         <!-- BREADCRUMB -->

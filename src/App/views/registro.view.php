@@ -1,5 +1,6 @@
-<?php include "parts/head.php"?>
-<body>
+<?php include "parts/head.php" ?>
+
+<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include "parts/header.php"; ?>
     <main>
         <ul class="breadcrumb">
@@ -29,15 +30,16 @@
                     placeholder="Confirmar Contraseña" required>
 
                 <label for="inputAceptoTerminos">
-                    <input type="checkbox" id="inputAceptoTerminos" name="inputAceptoTerminos" value="AceptoTerminos" required>
+                    <input type="checkbox" id="inputAceptoTerminos" name="inputAceptoTerminos" value="AceptoTerminos"
+                        required>
                     Acepto los términos y condiciones
                 </label>
 
                 <input type="submit" name="submit" value="Registrarse">
                 <p>¿Ya tienes cuenta creada?</p>
-                <a class= "login-link" href="/mi-cuenta">Iniciar Sesión</a>
+                <a class="login-link" href="/mi-cuenta">Iniciar Sesión</a>
             </form>
-           
+
         </section>
     </main>
     <?php include "parts/footer.php"; ?>

@@ -207,36 +207,73 @@ body {
     margin-bottom: 3em;
 }
 
+/* Contenedor del artículo */
 .libro-portada {
-    /* border: 1px solid #ccc; */
-    padding: 10px;
     background: white;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: start;
     box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
 
+.libro-portada a {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.libro-portada:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen del libro */
 .libro-portada figure {
     width: 198px;
     height: 284px;
-    overflow: hidden;
-    margin: 0;
+    margin: 0 0 1rem 0;
     display: flex;
     justify-content: center;
+    /* Centra horizontalmente */
     align-items: center;
+    /* Centra verticalmente */
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: #f9f9f9;
 }
 
 .libro-portada img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     display: block;
+    transition: transform 0.5s ease;
 }
+
 
 .libro-portada img:hover {
     transform: scale(0.95);
-    transition: 0.5s;
+}
+
+/* Título del libro */
+.libro-portada h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: var(--main-color);
+}
+
+/* Precio */
+.libro-portada p {
+    font-size: 0.95rem;
+    color: #444;
+    margin: 0;
 }
 
 a {
@@ -517,13 +554,13 @@ footer small {
 h4 {
     padding: 2px 5%;
     margin: 0.5em;
-    color: var(--main-color-shadow);
+    color: var(--secondary-color);
     font-family: "Archivo Black", sans-serif;
     font-size: 24px;
 }
 
 .nav-redes {
-    display: inline;
+    display: grid;
     justify-items: center;
 }
 
@@ -583,11 +620,11 @@ h4 {
     text-decoration: none;
     margin: 0.5em;
     padding: 0.5em 5%;
-    color: var(--main-color-shadow);
+    color: var(--secondary-color);
 }
 
 .nav-faq {
-    display: inline;
+    display: grid;
     justify-items: center;
     margin-bottom: 1.5em;
 }
@@ -601,7 +638,7 @@ h4 {
 }
 
 .faq a {
-    color: var(--main-color-shadow);
+    color: var(--secondary-color);
     margin: 0.5em;
     text-decoration: none;
     font-size: 18px;
@@ -708,6 +745,7 @@ form.Reserva input[type="submit"]:hover {
     align-items: center;
     gap: 1rem;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .paginacion a.flecha {

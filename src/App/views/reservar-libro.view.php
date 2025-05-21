@@ -1,5 +1,6 @@
-<?php include 'parts/head.php'?>
-<body>
+<?php include 'parts/head.php' ?>
+
+<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include 'parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
@@ -16,34 +17,39 @@
 
             <section class="descripcion-libro">
                 <h2><?= htmlspecialchars($libro['titulo']) ?></h2>
-                <p class="precio">$ <?= number_format((float)$libro['precio'], 0, ',', '.') ?></p>
+                <p class="precio">$ <?= number_format((float) $libro['precio'], 0, ',', '.') ?></p>
                 <form class="Reserva" action="/reservar" method="post">
-                    <input type="hidden" name="libro_id" value="<?= htmlspecialchars($libro['id']) ?>">    
+                    <input type="hidden" name="libro_id" value="<?= htmlspecialchars($libro['id']) ?>">
 
                     <label for="inputNombre">Nombre<span class="requerido"> *</span></label>
-                    <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required title="Este campo es obligatorio">
-    
+                    <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required
+                        title="Este campo es obligatorio">
+
                     <label for="inputApellido">Apellido/s<span class="requerido"> *</span></label>
-                    <input id="inputApellido" type="text" name="inputApellido" placeholder="Apellido/s" required title="Este campo es obligatorio">
-    
+                    <input id="inputApellido" type="text" name="inputApellido" placeholder="Apellido/s" required
+                        title="Este campo es obligatorio">
+
                     <label for="inputEmail">Email<span class="requerido"> *</span></label>
-                    <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required title="Este campo es obligatorio">
-    
+                    <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required
+                        title="Este campo es obligatorio">
+
                     <label for="inputTel">Teléfono<span class="requerido"> *</span></label>
-                    <input id="inputTel" type="tel" name="inputTel" pattern="^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$" placeholder="Teléfono" required title="Este campo es obligatorio">
-    
+                    <input id="inputTel" type="tel" name="inputTel"
+                        pattern="^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$"
+                        placeholder="Teléfono" required title="Este campo es obligatorio">
+
                     <label for="inputCalle">Calle</label>
                     <input id="inputCalle" type="text" name="inputCalle" placeholder="Calle">
-    
+
                     <label for="inputNumero">N°</label>
                     <input id="inputNumero" type="number" name="inputNumero" placeholder="N°">
-    
+
                     <label for="inputCiudad">Ciudad</label>
                     <input id="inputCiudad" type="text" name="inputCiudad" placeholder="Ciudad">
-    
+
                     <label for="inputProvincia">Provincia</label>
                     <input id="inputProvincia" type="text" name="inputProvincia" placeholder="Provincia">
-    
+
                     <label for="inputCodigoPostal">Código Postal</label>
                     <input id="inputCodigoPostal" type="number" name="inputCodigoPostal" placeholder="Código Postal">
 
@@ -53,13 +59,13 @@
                     <label for="inputRetiro">
                         <input type="radio" id="inputRetiro" name="inputEnvio" value="retira" required> Retiro en tienda
                     </label>
-    
+
                     <input type="submit" name="Reservar" value="Reservar">
                 </form>
             </section>
         </section>
     </main>
-    <?php include 'parts/footer.php'?>
+    <?php include 'parts/footer.php' ?>
 </body>
 
 </html>

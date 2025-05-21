@@ -2,7 +2,7 @@
 <html class="<?= htmlspecialchars($htmlClass ?? '') ?>" lang="es">
 <?php include 'parts/head.php' ?>
 
-<body>
+<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
 
     <?php include 'parts/header.php'; ?>
 
@@ -12,7 +12,7 @@
         <ul class="breadcrumb">
             <li class="breadcrumb-item" aria-current="page">Home</li>
         </ul>
-        
+
         <!-- CAROUSEL -->
         <div class="carousel-container">
             <img src="/images/carousel/imagen1.jpg" />

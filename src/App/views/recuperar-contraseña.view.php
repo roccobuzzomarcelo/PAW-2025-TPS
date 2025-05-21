@@ -1,5 +1,6 @@
-<?php include "parts/head.php"?>
-<body>
+<?php include "parts/head.php" ?>
+
+<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include "parts/header.php"; ?>
     <main>
         <ul class="breadcrumb">
@@ -19,4 +20,5 @@
     </main>
     <?php include "parts/footer.php"; ?>
 </body>
+
 </html>
