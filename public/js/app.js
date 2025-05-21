@@ -16,6 +16,10 @@ class appPAW {
 				};
 				esperarContenedor();
 			});
+
+			PAW.cargarScript("ValidacionLibro", "js/components/validacion-libro.js", () => {
+				new ValidacionLibro('#formSubirLibro');
+			});
 		});
 	}
 }

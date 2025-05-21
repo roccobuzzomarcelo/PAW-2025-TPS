@@ -378,7 +378,8 @@ p {
 
 .iniciar-sesion,
 .registrarse,
-.recuperar-contraseña {
+.recuperar-contraseña,
+.subir-libro {
     display: flex;
     justify-content: center;
     margin: 1em;
@@ -389,7 +390,8 @@ p {
 
 .login-form,
 .registro-form,
-.recuperar-contraseña-form {
+.recuperar-contraseña-form,
+.subir-libro-form {
     display: grid;
     justify-items: center;
     margin: 2em 0 3em 0;
@@ -422,7 +424,8 @@ p {
 
 /* Fondo general de la sección */
 .iniciar-sesion,
-.registrarse {
+.registrarse,
+.subir-libro {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -434,7 +437,8 @@ p {
 
 /* Estilos del formulario */
 .login-form,
-.registro-form {
+.registro-form,
+.subir-libro-form {
     background-color: #ffffff;
     padding: 2.5rem 2rem;
     border-radius: 20px;
@@ -460,7 +464,8 @@ p {
 }
 
 .login-form label:not([for="inputRecuerdame"]),
-.registro-form label:not([for="inputAceptoTerminos"]) {
+.registro-form label:not([for="inputAceptoTerminos"]),
+.subir-libro-form label {
     display: none;
 }
 
@@ -470,13 +475,18 @@ p {
 .registro-form input[type="nombre"],
 .registro-form input[type="apellido"],
 .registro-form input[type="email"],
-.registro-form input[type="password"] {
+.registro-form input[type="password"],
+.subir-libro-form input[id="titulo"],
+.subir-libro-form input[id="autor"],
+.subir-libro-form textarea[id="descripcion"],
+.subir-libro-form input[id="precio"] {
     width: 100%;
     padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid #ccc;
     transition: border-color 0.3s;
     margin-bottom: 1em;
+
 }
 
 .login-form input:focus {
@@ -492,7 +502,9 @@ p {
 
 /* Botón de acceso */
 .login-form button,
-.registro-form input[type="submit"] {
+.registro-form input[type="submit"],
+.subir-libro-form input[type="submit"],
+.subir-libro-form input[id="imagen"] {
     margin-top: 1.5rem;
     background-color: #3f51b5;
     color: white;

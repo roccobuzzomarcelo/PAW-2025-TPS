@@ -79,7 +79,7 @@ class ControladorPagina
 
         return $libros;
     }
-    
+
     public function obtenerLibrosPaginado($consulta = null, $ids = null, $pagina = 1, $librosPorPagina = 10)
     {
         $ruta = __DIR__ . '/../../libros.txt';
@@ -145,11 +145,11 @@ class ControladorPagina
         $htmlClass = "catalogo-pages";
 
         // Capturar los parámetros de la URL
-        $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; // Página actual
-        $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int)$_GET['libros_por_pagina'] : 10; // Libros por página
+        $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1; // Página actual
+        $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int) $_GET['libros_por_pagina'] : 10; // Libros por página
 
-        $consulta = isset($_GET['consulta']) ? (string)$_GET['consulta'] : '';
-        
+        $consulta = isset($_GET['consulta']) ? (string) $_GET['consulta'] : '';
+
         // Obtener los libros con paginación
         $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
         $libros = $resultado['libros'];
@@ -193,9 +193,96 @@ class ControladorPagina
         require $this->viewsDir . 'mas-vendidos.view.php';
     }
 
+    public function subirLibro()
+    {
+        $titulo = "PAWPrints - Subir Libro";
+        $htmlClass = "mi-cuenta-pages";
+        require $this->viewsDir . 'subir-libro.view.php';
+    }
+
+    // Procesar formulario POST para subir libro
+    public function procesarSubirLibro()
+    {
+        $archivoLibros = __DIR__ . '/../../libros.txt';
+        $carpetaImagenes = __DIR__ . '/../../../public/images/libros/';
+
+        if (!file_exists($carpetaImagenes)) {
+            mkdir($carpetaImagenes, 0755, true);
+        }
+
+        // Validar que la petición sea POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo "Método no permitido";
+            exit;
+        }
+
+        // Validaciones básicas
+        $titulo = trim($_POST["titulo"] ?? "");
+        $autor = trim($_POST["autor"] ?? "");
+        $descripcion = trim($_POST["descripcion"] ?? "");
+        $precio = trim($_POST["precio"] ?? "");
+        $imagen = $_FILES["imagen"] ?? null;
+
+        if ($titulo === "" || $autor === "" || $descripcion === "" || $precio === "" || !$imagen) {
+            echo "<script>alert('Faltan campos requeridos'); window.history.back();</script>";
+            return;
+        }
+
+        if ($imagen["error"] !== UPLOAD_ERR_OK) {
+            echo "<script>alert('Error al subir la imagen'); window.history.back();</script>";
+            return;
+        }
+
+        // Guardar imagen
+        $nombreImagenSeguro = uniqid() . "_" . basename($imagen["name"]);
+        $rutaImagen = $carpetaImagenes . $nombreImagenSeguro;
+        $rutaRelativa = "/images/libros/" . $nombreImagenSeguro; // Usar ruta relativa web correcta
+
+        if (!move_uploaded_file($imagen["tmp_name"], $rutaImagen)) {
+            echo "<script>alert('Error al guardar la imagen'); window.history.back();</script>";
+            return;
+        }
+
+        $nuevoId = 1;
+        if (file_exists($archivoLibros)) {
+            $lineas = file($archivoLibros, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            if (!empty($lineas)) {
+                $ultimaLinea = end($lineas);
+                $partes = explode("|", $ultimaLinea);
+                if (is_numeric($partes[0])) {
+                    $nuevoId = intval($partes[0]) + 1;
+                }
+            }
+        }
+
+        // Armar línea para guardar
+        $linea = implode("|", [
+            $nuevoId,
+            $titulo,
+            $autor,
+            $descripcion,
+            $precio,
+            $rutaRelativa
+        ]) . PHP_EOL;
+
+        // Guardar línea
+        if (file_put_contents($archivoLibros, $linea, FILE_APPEND) === false) {
+            echo "<script>alert('Error al guardar el libro'); window.history.back();</script>";
+            return;
+        }
+
+        // Éxito: redirigir a página principal u otra
+        echo "<script>
+            alert('✅ Libro guardado exitosamente');
+            window.location.href = '/';
+        </script>";
+    }
+
+
     public function novedades()
     {
-        $titulo = "PawPrints - Novedades";
+        $titulo = "PAWPrints - Novedades";
         $htmlClass = "catalogo-pages";
         $libros = $this->obtenerLibros(null, [5, 7]); // IDs de los libros nuevos
         require $this->viewsDir . 'novedades.view.php';
@@ -203,7 +290,7 @@ class ControladorPagina
 
     public function recomendados()
     {
-        $titulo = "PawPrints - Recomendados";
+        $titulo = "PAWPrints - Recomendados";
         $htmlClass = "catalogo-pages";
         $libros = $this->obtenerLibros(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
         require $this->viewsDir . 'recomendados.view.php';
@@ -211,7 +298,7 @@ class ControladorPagina
 
     public function promociones()
     {
-        $titulo = "PawPrints - Promociones";
+        $titulo = "PAWPrints - Promociones";
         $htmlClass = "catalogo-pages";
         $libros = $this->obtenerLibros(null, [2, 3, 4]); // IDs de los libros en promoción
         require $this->viewsDir . 'promociones.view.php';
@@ -219,49 +306,49 @@ class ControladorPagina
 
     public function comoComprar()
     {
-        $titulo = "PawPrints - Cómo comprar";
+        $titulo = "PAWPrints - Cómo comprar";
         $htmlClass = "preguntas-pages";
         require $this->viewsDir . 'como-comprar.view.php';
     }
 
     public function miCuenta()
     {
-        $titulo = 'PawPrints - Mi cuenta';
+        $titulo = 'PAWPrints - Mi cuenta';
         $htmlClass = "mi-cuenta-pages";
         require $this->viewsDir . 'mi-cuenta.view.php';
     }
 
     public function recuperarContraseña()
     {
-        $titulo = 'PawPrints - Recuperar contraseña';
+        $titulo = 'PAWPrints - Recuperar contraseña';
         $htmlClass = "mi-cuenta-pages";
         require $this->viewsDir . 'recuperar-contraseña.view.php';
     }
 
     public function registro()
     {
-        $titulo = 'PawPrints - Registro';
+        $titulo = 'PAWPrints - Registro';
         $htmlClass = "mi-cuenta-pages";
         require $this->viewsDir . 'registro.view.php';
     }
 
     public function quienesSomos()
     {
-        $titulo = 'PawPrints - Quiénes somos';
+        $titulo = 'PAWPrints - Quiénes somos';
         $htmlClass = "preguntas-pages";
         require $this->viewsDir . 'quienes-somos.view.php';
     }
 
     public function locales()
     {
-        $titulo = 'PawPrints - Locales';
+        $titulo = 'PAWPrints - Locales';
         $htmlClass = "preguntas-pages";
         require $this->viewsDir . 'locales.view.php';
     }
 
     public function carrito()
     {
-        $titulo = 'PawPrints - Carrito de compras';
+        $titulo = 'PAWPrints - Carrito de compras';
         $htmlClass = "carrito-pages";
         $id = $_GET['id'] ?? null;
         $libros = $this->obtenerLibros(null, [$id]);
@@ -290,7 +377,7 @@ class ControladorPagina
 
     public function reservarLibro()
     {
-        $titulo = 'PawPrints - Reservar';
+        $titulo = 'PAWPrints - Reservar';
         $htmlClass = "libro-pages";
         $id = $_GET['id'] ?? null;
         $libros = $this->obtenerLibros(null, [$id]);
@@ -328,7 +415,7 @@ class ControladorPagina
         if (!$id || !$email) {
             echo "⚠️ El ID del libro o el email no son válidos.";
             return;
-        }else if(!preg_match("/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/", $telefono)){
+        } else if (!preg_match("/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/", $telefono)) {
             echo "⚠️ El teléfono no es válido.";
             return;
         }
@@ -477,13 +564,13 @@ class ControladorPagina
 
     public function procesarRegistro()
     {
-        if(
+        if (
             empty($_POST['inputNombre']) ||
             empty($_POST['inputApellido']) ||
             empty($_POST['inputEmail']) ||
             empty($_POST['inputPassword']) ||
             empty($_POST['inputConfirmarPassword'])
-        ){
+        ) {
             echo "⚠️ Todos los campos obligatorios deben estar completos.";
             return;
         }

@@ -1,0 +1,143 @@
+class ValidacionLibro {
+    constructor(formSelector = '#formSubirLibro') {
+        this.form = document.querySelector(formSelector);
+        if (!this.form) return;
+
+        this.submitBtn = this.form.querySelector('input[type="submit"]');
+
+        this.campos = {
+            titulo: {
+                input: this.form.titulo,
+                error: this.form.querySelector('#error-titulo'),
+                validar: function () {
+                    if (this.input.value.trim() === '') {
+                        this.error.textContent = 'El título es obligatorio.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    this.error.textContent = '';
+                    this.input.classList.remove('invalid');
+                    return true;
+                }
+            },
+            autor: {
+                input: this.form.autor,
+                error: this.form.querySelector('#error-autor'),
+                validar: function () {
+                    if (this.input.value.trim() === '') {
+                        this.error.textContent = 'El autor es obligatorio.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    this.error.textContent = '';
+                    this.input.classList.remove('invalid');
+                    return true;
+                }
+            },
+            descripcion: {
+                input: this.form.descripcion,
+                error: this.form.querySelector('#error-descripcion'),
+                validar: function () {
+                    if (this.input.value.trim() === '') {
+                        this.error.textContent = 'La descripción es obligatoria.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    this.error.textContent = '';
+                    this.input.classList.remove('invalid');
+                    return true;
+                }
+            },
+            precio: {
+                input: this.form.precio,
+                error: this.form.querySelector('#error-precio'),
+                validar: function () {
+                    const val = this.input.value.trim();
+                    if (val === '') {
+                        this.error.textContent = 'El precio es obligatorio.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    const num = parseFloat(val);
+                    if (isNaN(num) || num < 0) {
+                        this.error.textContent = 'El precio debe ser un número mayor o igual a 0.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    this.error.textContent = '';
+                    this.input.classList.remove('invalid');
+                    return true;
+                }
+            },
+            imagen: {
+                input: this.form.imagen,
+                error: this.form.querySelector('#error-imagen'),
+                validar: function () {
+                    if (this.input.files.length === 0) {
+                        this.error.textContent = 'Debe seleccionar una imagen.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    const file = this.input.files[0];
+                    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                    if (!tiposPermitidos.includes(file.type)) {
+                        this.error.textContent = 'Formato de imagen no válido. Use JPG, PNG, GIF o WEBP.';
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    const maxSizeMB = 5;
+                    if (file.size > maxSizeMB * 1024 * 1024) {
+                        this.error.textContent = `La imagen no debe superar los ${maxSizeMB} MB.`;
+                        this.input.classList.add('invalid');
+                        return false;
+                    }
+                    this.error.textContent = '';
+                    this.input.classList.remove('invalid');
+                    return true;
+                }
+            }
+        };
+
+        this._agregarListeners();
+        this._validarTodo(); // Validar al inicio para setear submit
+    }
+
+    _agregarListeners() {
+        Object.values(this.campos).forEach(campo => {
+            campo.input.addEventListener('input', () => {
+                campo.validar();
+                this._validarTodo();
+            });
+
+            // Para input file también validar en 'change'
+            if (campo.input.type === 'file') {
+                campo.input.addEventListener('change', () => {
+                    campo.validar();
+                    this._validarTodo();
+                });
+            }
+
+            campo.input.addEventListener('blur', () => {
+                campo.validar();
+                this._validarTodo();
+            });
+        });
+
+        this.form.addEventListener('submit', e => {
+            let todoValido = true;
+            Object.values(this.campos).forEach(campo => {
+                if (!campo.validar()) {
+                    todoValido = false;
+                }
+            });
+            if (!todoValido) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    _validarTodo() {
+        const todosValidos = Object.values(this.campos).every(campo => campo.validar());
+        this.submitBtn.disabled = !todosValidos;
+    }
+}
