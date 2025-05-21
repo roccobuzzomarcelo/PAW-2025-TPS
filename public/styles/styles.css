@@ -11,7 +11,7 @@
 :root {
     --main-color: #D10049;
     --secondary-color: #F0CEDA;
-    --main-color-shadow: #50464a;
+    --main-color-shadow: #4e182e;
     --pading-buscador: 0.5em;
     --font-color: #373435;
 }
@@ -41,7 +41,6 @@
 }
 
 /* HEADER */
-
 header {
     position: relative;
     width: 100%;
@@ -82,6 +81,7 @@ h1 {
     box-sizing: border-box;
     margin: auto;
     margin-bottom: 1em;
+    margin-top: 2em;
 }
 
 .buscador-input {
@@ -102,7 +102,7 @@ h1 {
 }
 
 .carrito {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     width: 50px;
@@ -114,6 +114,8 @@ h1 {
     text-decoration: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     margin: auto;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
     transition: transform 0.2s ease;
 }
 
@@ -124,112 +126,14 @@ h1 {
 
 .carrito i {
     pointer-events: none;
-    /* Para evitar que el ícono intercepte el click */
 }
 
 .logo svg {
     width: 8em;
     height: 2.5em;
-    margin-top: 1rem;
-    margin-left: -4rem;
-}
-
-.nav-bar {
-    grid-column: 1 / -1;
-
-    background-color: var(--main-color);
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin-top: 0;
-}
-
-.nav-bar ul {
+    margin-top: 1.5em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
-    list-style: none;
-    align-items: center;
-}
-
-
-
-.nav-bar a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 25px;
-    display: block;
-    height: 2.5em;
-    margin: auto;
-    text-align: center;
-    align-content: center;
-    font-family: "Archivo Black", sans-serif;
-}
-
-.nav-bar a,
-a:hover {
-    transition: all 0.3s ease 0s;
-}
-
-.nav-bar a:hover {
-    background-color: var(--main-color-shadow);
-}
-
-.nav-bar li {
-    float: left;
-    width: 100%;
-
-    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);
-}
-
-.hamburger-icon {
-    display: none;
-    background-color: var(--main-color);
-    color: var(--secondary-color);
     justify-content: center;
-    width: 100%;
-    font-size: 32px;
-    border: none;
-    margin-top: 0.5em;
-}
-
-/*.nav-bar-mobile {
-    display: none;
-    background-color: var(--main-color);
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-bar-mobile ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
-    list-style: none;
-}
-
-.nav-bar-mobile a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 25px;
-    display: block;
-    text-align: center;
-    font-family: "Archivo Black", sans-serif;
-}*/
-
-/* Menú oculto en móviles, visible solo cuando se activa */
-@media screen and (max-width: 768px) {
-    .nav-bar {
-        display: none;
-        flex-direction: column;
-    }
-
-    .nav-bar.active {
-        display: flex;
-    }
-
-    .hamburger-icon {
-        display: flex;
-    }
 }
 
 .como-comprar,
@@ -241,7 +145,6 @@ a:hover {
 }
 
 /* BODY */
-
 body {
     position: relative;
 }
@@ -263,7 +166,8 @@ body {
 }
 
 .breadcrumb-item:not(:last-of-type)::after {
-    content: '⟩'; /* Más moderno que '>' */
+    content: '⟩';
+    /* Más moderno que '>' */
     margin: 0 8px;
     color: lightgray;
     font-weight: bold;
@@ -276,7 +180,8 @@ body {
 }
 
 .breadcrumb-link:hover {
-    color: #059292; /* color de acento */
+    color: #059292;
+    /* color de acento */
     text-decoration: underline;
 }
 
@@ -366,18 +271,6 @@ p {
     margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-    .detalle-libro {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .img-detalle {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
 .subtotal {
     justify-items: center;
     margin: 1rem;
@@ -418,15 +311,17 @@ p {
     text-decoration: none;
     border: none;
     cursor: pointer;
-    border-radius: 20px; /* bordes redondeados */
+    border-radius: 20px;
+    /* bordes redondeados */
     margin-top: 1rem;
     font-size: 1rem;
 }
 
 .boton-finalizar:hover {
-    background-color:var(--secondary-color);
+    background-color: var(--secondary-color);
 }
-.boton-link{
+
+.boton-link {
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--main-color);
@@ -489,7 +384,7 @@ p {
 }
 
 /* Fondo general de la sección */
-.iniciar-sesion, 
+.iniciar-sesion,
 .registrarse {
     display: flex;
     justify-content: center;
@@ -501,7 +396,7 @@ p {
 }
 
 /* Estilos del formulario */
-.login-form, 
+.login-form,
 .registro-form {
     background-color: #ffffff;
     padding: 2.5rem 2rem;
@@ -528,7 +423,7 @@ p {
 }
 
 .login-form label:not([for="inputRecuerdame"]),
-.registro-form label:not([for="inputAceptoTerminos"]){
+.registro-form label:not([for="inputAceptoTerminos"]) {
     display: none;
 }
 
@@ -538,7 +433,7 @@ p {
 .registro-form input[type="nombre"],
 .registro-form input[type="apellido"],
 .registro-form input[type="email"],
-.registro-form input[type="password"]{
+.registro-form input[type="password"] {
     width: 100%;
     padding: 10px 12px;
     border-radius: 10px;
@@ -553,7 +448,7 @@ p {
 }
 
 /* Checkbox */
-.login-form input[type="checkbox"], 
+.login-form input[type="checkbox"],
 .registro-form input[type="checkbox"] {
     margin-right: 6px;
 }
@@ -595,15 +490,6 @@ p {
     padding: 10px 5%;
     gap: 2rem;
     align-items: flex-start;
-}
-
-@media (max-width: 768px) {
-    .libro-carrito {
-        flex-direction: column;
-        align-items: center;
-    }
-
-
 }
 
 .link-locales {
@@ -843,7 +729,7 @@ form.Reserva input[type="submit"]:hover {
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
-}   
+}
 
 .btn-descargar {
     display: inline-block;
@@ -854,20 +740,27 @@ form.Reserva input[type="submit"]:hover {
     text-decoration: none;
     margin: 10px 0;
 }
+
 .btn-descargar:hover {
     background-color: var(--secondary-color);
 }
 
 /* MEDIA QUERIES */
 
-@media only screen and (max-width: 512px) {
-    .nav-bar {
-        display: none;
+@media (max-width: 768px) {
+    .detalle-libro {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .hamburger-icon {
-        display: flex;
-        justify-content: center;
+    .img-detalle {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .libro-carrito {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -875,22 +768,18 @@ form.Reserva input[type="submit"]:hover {
     header {
         display: grid;
         align-items: center;
-        grid-template-columns: 1fr 2fr auto;
+        grid-template-columns: auto;
         justify-content: space-around;
     }
 
     .carrito {
-        margin-right: 2em;
+        display: grid;
+        justify-content: center;
     }
 
     footer {
         grid-template-columns: auto auto;
     }
-
-    .buscador {
-        margin: auto;
-    }
-
 }
 
 @keyframes animate {

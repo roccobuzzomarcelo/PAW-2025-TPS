@@ -1,66 +1,135 @@
-.PAW-Menu { 
-    background-color: var(--paw-verde-medio-claro); 
-    color: white; 
-    width: 3rem; 
-    overflow: hidden; 
-    border: none !important; }
+/* ===== Menú General (Desktop) ===== */
+.PAW-Menu {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: 1fr auto;
+    background-color: var(--main-color);
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-.PAW-Menu.PAW-MenuCerrado { 
-    width: auto;
-    transition-duration: 1s; 
-    transition-property: width; }
+/* Lista horizontal en desktop */
+.PAW-Menu ul {
+    display: grid;
+    grid-auto-flow: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-.PAW-Menu.PAW-MenuCerrado ul { 
-    opacity: 0; 
-    transition: 1s all; }
+.PAW-Menu ul li {
+    padding: auto;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
 
-.PAW-Menu.PAW-MenuAbierto { 
-    width: 20rem; 
-    transition-duration: 1s; 
-    transition-property: width; }
+.PAW-Menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 25px;
+    display: block;
+    height: 2.5em;
+    margin: auto;
+    text-align: center;
+    font-family: "Archivo Black", sans-serif;
+}
 
-.PAW-Menu.PAW-MenuAbierto ul { 
-    opacity: 1; 
-    transition: 1s all; }
+.PAW-Menu ul li a,
+a:hover {
+    transition: all 0.3s ease 0s;
+}
 
-/* Oculta el botón de abrir cuando el menú está abierto */
-.PAW-MenuAbierto + .PAW-MenuAbrir { 
-    display: none !important; }
+.PAW-Menu a:hover {
+    background-color: var(--main-color-shadow);
+}
 
-.PAW-Menu ul { 
-    background-color: var(--paw-verde-oscuro); 
-    padding-left: 2rem; 
-    cursor: pointer; 
-    clear: both; }
+/* Ambos estados de botón ocultos en desktop */
+.PAW-MenuAbrir,
+.PAW-MenuCerrar {
+    display: none;
+}
 
-.PAW-Menu ul li ul { max-height: 0; overflow: hidden; transition: 1s all; }
+/* ============================= */
+/*         MEDIA QUERY           */
+/* ============================= */
+@media (max-width: 768px) {
+    .PAW-Menu {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        transition: max-height 0.5s ease-in-out;
+    }
 
-.PAW-Menu ul li:hover ul { max-height: 100vh; transition: 1s all; }
+    .PAW-Menu ul {
+        display: none;
+    }
 
-.PAW-Menu ul li { display: block; padding: 0.5rem; }
+    .PAW-MenuAbrir,
+    .PAW-MenuCerrar {
+        display: block;
+    }
 
-.PAW-Menu p { display: block; padding: 0.5rem; border-bottom: 2px solid black; }
+    /* Funcionalidad Botón Hamburguesa */
+    .PAW-Menu button {
+        float: right;
+        border: 0;
+        width: 2rem;
+        height: 2rem;
+        margin: 0.5rem;
+        padding: 0;
+        cursor: pointer;
+        background-color: transparent;
+        position: relative;
+        overflow: hidden;
+        justify-items: center;
+    }
 
-.PAW-Menu > ul > li:hover { border: black solid 3px; border-width: 3px 0; }
+    .PAW-Menu button::before,
+    .PAW-Menu button::after {
+        display: block;
+        position: absolute;
+        content: " ";
+        width: 2rem;
+        height: 0.2rem;
+        background-color: white;
+        transition-property: all;
+        transition-duration: 1s;
+        border-radius: 0.2rem;
+    }
 
-.PAW-Menu > ul > li { background-color: var(--paw-verde-medio-oscuro); }
+    .PAW-Menu button.PAW-MenuAbrir::before {
+        transform: translateY(-1rem) rotate(0);
+        box-shadow: 0 0.6rem 0 white;
+    }
 
-/* Botón hamburguesa general */
-.PAW-Menu button { float: right; border: 0; width: 2rem; height: 2rem; margin: 0.5rem; padding: 0; cursor: pointer; background-color: transparent; position: relative; overflow: hidden; }
+    .PAW-Menu button.PAW-MenuAbrir::after {
+        transform: translateY(0.2rem) rotate(0);
+    }
 
-.PAW-Menu button:hover, .PAW-Menu button:focus { margin-left: 0; }
+    .PAW-Menu button.PAW-MenuCerrar::before {
+        transform: translateY(0) rotate(45deg);
+        box-shadow: 0 0.6rem 0 transparent;
+    }
 
-.PAW-Menu button::before, .PAW-Menu button::after { display: block; position: absolute; content: " "; width: 2rem; height: 0.2rem; background-color: white; transition-property: all; transition-duration: 1s; border-radius: 0.2rem; }
+    .PAW-Menu button.PAW-MenuCerrar::after {
+        transform: translateY(0) rotate(-45deg);
+    }
 
-/* Botón de abrir (líneas horizontales) */
-.PAW-Menu button.PAW-MenuAbrir::before { transform: translateY(-1rem) rotate(0); box-shadow: 0 0.6rem 0 white; }
+    .PAW-Menu.PAW-MenuAbierto ul {
+        display: inline-block;
+    }
 
-.PAW-Menu button.PAW-MenuAbrir::after { transform: translateY(0.2rem) rotate(0); }
+    .PAW-Menu.PAW-MenuAbierto {
+        height: 25rem;
+        transition-duration: 1s;
+        transition-property: width;
+    }
 
-/* Botón de cerrar (X) */
-.PAW-Menu button.PAW-MenuCerrar::before { transform: translateY(0) rotate(45deg); box-shadow: 0 0.6rem 0 transparent; }
-
-.PAW-Menu button.PAW-MenuCerrar::after { transform: translateY(0) rotate(-45deg); }
-
-/* Tamaño del botón abrir más chico */
-.PAW-MenuAbrir { width: 35px; height: 35px; font-size: 16px; padding: 5px; }
+    .PAW-Menu.PAW-MenuAbierto ul {
+        opacity: 1;
+        transition: 1s all;
+    }
+}
