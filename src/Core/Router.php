@@ -9,6 +9,13 @@ class Router{
         "GET" => [],
         "POST" => [],
     ];
+
+    public array $dependencias = [];
+
+    public function __construct(array $dependencias = []){
+        $this->dependencias = $dependencias;
+    }
+
     public function cargarRutas($path, $accion, $metodoHttp = "GET"){
         $this->rutas[$metodoHttp][$path] = $accion;
     }
@@ -35,7 +42,9 @@ class Router{
         }
         list($controlador, $metodo) = $this->getController($path, $metodoHttp);
         $nombreClase = "PAW\\src\\App\\Controlador\\{$controlador}";
-        $controladorObjeto = new $nombreClase();
+
+
+        $controladorObjeto = new $nombreClase(...$this->dependencias);
         $controladorObjeto->$metodo();
     }
 }

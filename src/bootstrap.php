@@ -2,13 +2,17 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use PAW\src\App\Controlador\ControladorPagina;
 use PAW\src\Core\Router;
+use PAW\src\Core\Config;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+$config = new Config;
+
 $log = new Logger('PawPrints-app');
-$log->pushHandler(new StreamHandler(__DIR__ . '/../log/app.log', Logger::DEBUG));
+$handler = new StreamHandler($config->get("LOG_PATH"));
+$handler-> setLevel($config->get("LOG_LEVEL"));
+$log->pushHandler($handler);
 
 
 $whoops = new \Whoops\Run;
@@ -16,7 +20,7 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 
-$router = new Router;
+$router = new Router([$config]);
 $router->get("/", "ControladorPagina@index");
 $router->get("/catalogo", "ControladorPagina@catalogo");
 $router->get("/descargar_catalogo", "ControladorPagina@descargarCatalogo");
