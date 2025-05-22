@@ -6,6 +6,7 @@ use PAW\src\Core\Router;
 use PAW\src\Core\Config;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use PAW\src\Core\Request;
 
 $config = new Config;
 
@@ -19,6 +20,7 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
+$request = new Request;
 
 $router = new Router([$config]);
 $router->get("/", "ControladorPagina@index");
@@ -43,5 +45,3 @@ $router->get("/reservar", "ControladorPagina@reservarLibro");
 $router->post("/reservar", "ControladorPagina@procesarReservarLibro");
 $router->get("/subir-libro", "ControladorPagina@subirLibro");
 $router->post("/procesar-libro", "ControladorPagina@procesarSubirLibro");
-$router->get("not-found", "ControladorError@notFound");
-$router->get("error-interno", "ControladorError@errorInterno");
