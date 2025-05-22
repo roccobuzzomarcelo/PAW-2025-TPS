@@ -20,6 +20,10 @@ class appPAW {
 			PAW.cargarScript("ValidacionLibro", "js/components/validacion-libro.js", () => {
 				new ValidacionLibro('#formSubirLibro');
 			});
+
+			PAW.cargarScript("DragDropImagen", "js/components/drag-drop-imagen.js", () => {
+				new DragAndDropImagen("#dropzone", "#imagen", "#preview");
+			});
 		});
 	}
 }

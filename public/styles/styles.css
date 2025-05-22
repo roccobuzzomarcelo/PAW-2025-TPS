@@ -553,6 +553,19 @@ p {
     border-color: #3f51b5;
 }
 
+.dropzone {
+    border: 2px dashed #888;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+.dropzone.dragover {
+    background-color: #e0f7fa;
+}
+
+
 /* Checkbox */
 .login-form input[type="checkbox"],
 .registro-form input[type="checkbox"] {

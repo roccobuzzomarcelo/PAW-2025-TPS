@@ -32,6 +32,12 @@
                 <span id="error-precio" class="error-message" aria-live="polite"></span>
 
                 <label for="imagen">Portada del libro*</label>
+
+                <div id="dropzone" class="dropzone">
+                    <p>Arrastrá la imagen aquí o hacé clic para seleccionar</p>
+                    <img id="preview" src="" alt="Vista previa de portada" style="display: none; max-width: 100%; margin-top: 10px;">
+                </div>
+
                 <input id="imagen" type="file" name="imagen" accept="image/*" required>
                 <span id="error-imagen" class="error-message" aria-live="polite" ></span>
 
