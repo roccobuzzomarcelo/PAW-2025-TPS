@@ -4,14 +4,18 @@ namespace PAW\src\App\Controlador;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PAW\src\Core\config;
 
 class ControladorPagina
 {
     public string $viewsDir;
+
+    protected Config $config;
     public array $menu;
 
-    public function __construct()
+    public function __construct(Config $config)
     {
+        $this->config = $config;
         $this->viewsDir = __DIR__ . "/../views/";
         $this->menu = [
             [
@@ -465,20 +469,18 @@ class ControladorPagina
 
     public function enviarMailReserva($datos)
     {
-        $config = require __DIR__ . '/../config/config.php';
-
         $mail = new PHPMailer(true);
 
         try {
             $mail->isSMTP();
-            $mail->Host = $config['smtp']['host'];
+            $mail->Host = $this->config->get("SMTP_HOST");
             $mail->SMTPAuth = true;
-            $mail->Username = $config['smtp']['username'];
-            $mail->Password = $config['smtp']['password'];
+            $mail->Username = $this->config->get("SMTP_USERNAME");
+            $mail->Password = $this->config->get("SMTP_PASSWORD");
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = $config['smtp']['port'];
+            $mail->Port = $this->config->get("SMTP_PORT");
 
-            $mail->setFrom($config['smtp']['from_email'], $config['smtp']['from_name']);
+            $mail->setFrom($this->config->get("SMTP_FROM_EMAIL"), $this->config->get("SMTP_FROM_NAME"));
             $mail->addAddress($datos['email'], $datos['nombre'] . ' ' . $datos['apellido']); // destinatario real
 
             $mail->isHTML(true);
@@ -507,20 +509,19 @@ class ControladorPagina
 
     public function enviarMailReservaPersonal($datosReserva)
     {
-        $config = require __DIR__ . '/../config/config.php';
         $mail = new PHPMailer(true);
 
         try {
             $mail->isSMTP();
-            $mail->Host = $config['smtp']['host'];
+            $mail->Host = $this->config->get("SMTP_HOST");
             $mail->SMTPAuth = true;
-            $mail->Username = $config['smtp']['username'];
-            $mail->Password = $config['smtp']['password'];
+            $mail->Username = $this->config->get("SMTP_USERNAME");
+            $mail->Password = $this->config->get("SMTP_PASSWORD");
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = $config['smtp']['port'];
+            $mail->Port = $this->config->get("SMTP_PORT");
 
-            $mail->setFrom($config['smtp']['from_email'], $config['smtp']['from_name']);
-            $mail->addAddress($config['smtp']['personal_email'], 'Personal Biblioteca');
+            $mail->setFrom($this->config->get("SMTP_FROM_EMAIL"), $this->config->get("SMTP_FROM_NAME"));
+            $mail->addAddress($this->config->get("SMTP_FROM_EMAIL"), 'Personal Biblioteca');
 
             $mail->Subject = 'Nueva Reserva de Libro';
             $mail->Body = $datosReserva;
