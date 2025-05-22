@@ -150,6 +150,7 @@ class ControladorPagina
 
         // Capturar los parámetros de la URL
         $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1; // Página actual
+        if($pagina < 1) $pagina = 1; // Asegurarse de que la página sea al menos 1
         $librosPorPagina = isset($_GET['libros_por_pagina']) ? (int) $_GET['libros_por_pagina'] : 10; // Libros por página
 
         $consulta = isset($_GET['consulta']) ? (string) $_GET['consulta'] : '';
@@ -158,6 +159,12 @@ class ControladorPagina
         $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
         $libros = $resultado['libros'];
         $totalPaginas = $resultado['totalPaginas'];
+
+        if($pagina > $totalPaginas) {
+            $pagina = $totalPaginas; // Ajustar la página si es mayor que el total
+            $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
+            $libros = $resultado['libros'];
+        }
 
         // Pasar datos a la vista
         require $this->viewsDir . 'catalog.view.php';
