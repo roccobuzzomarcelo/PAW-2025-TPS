@@ -10,6 +10,10 @@
     overflow: hidden;
 }
 
+.PAW-Links {
+    display: grid;
+}
+
 /* Lista horizontal en desktop */
 .PAW-Menu ul {
     display: grid;
@@ -56,6 +60,14 @@ a:hover {
 /*         MEDIA QUERY           */
 /* ============================= */
 @media (max-width: 768px) {
+    .PAW-Links {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+    }
+
     .PAW-Menu {
         display: grid;
         grid-template-columns: 1fr;
@@ -63,73 +75,80 @@ a:hover {
         transition: max-height 0.5s ease-in-out;
     }
 
-    .PAW-Menu ul {
-        display: none;
+    .PAW-Links ul {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        /* que ocupe todo el ancho */
+        gap: 0.5rem;
+        /* espacio entre ítems opcional */
     }
 
-    .PAW-MenuAbrir,
-    .PAW-MenuCerrar {
+    .PAW-MenuAbierto .PAW-Links {
+        max-height: 500px;
+        /* Altura suficiente para mostrar todo */
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-bar button {
         display: block;
-    }
-
-    /* Funcionalidad Botón Hamburguesa */
-    .PAW-Menu button {
-        float: right;
-        border: 0;
+        border: none;
         width: 2rem;
         height: 2rem;
         margin: 0.5rem;
-        padding: 0;
+        background: transparent;
         cursor: pointer;
-        background-color: transparent;
         position: relative;
-        overflow: hidden;
-        justify-items: center;
     }
 
-    .PAW-Menu button::before,
-    .PAW-Menu button::after {
-        display: block;
+    .nav-bar button::before,
+    .nav-bar button::after {
+        content: "";
         position: absolute;
-        content: " ";
         width: 2rem;
         height: 0.2rem;
-        background-color: white;
-        transition-property: all;
-        transition-duration: 1s;
-        border-radius: 0.2rem;
+        background: white;
+        left: 0;
+        transition: 0.3s;
     }
 
-    .PAW-Menu button.PAW-MenuAbrir::before {
-        transform: translateY(-1rem) rotate(0);
+    .nav-bar button::before {
+        top: 0.2rem;
         box-shadow: 0 0.6rem 0 white;
     }
 
-    .PAW-Menu button.PAW-MenuAbrir::after {
-        transform: translateY(0.2rem) rotate(0);
+    .nav-bar button::after {
+        top: 1.4rem;
     }
 
-    .PAW-Menu button.PAW-MenuCerrar::before {
-        transform: translateY(0) rotate(45deg);
-        box-shadow: 0 0.6rem 0 transparent;
+    /* Botón transformado (opcional si querés mostrar "X") */
+    .PAW-MenuAbierto button::before {
+        transform: rotate(45deg);
+        top: 1rem;
+        box-shadow: none;
     }
 
-    .PAW-Menu button.PAW-MenuCerrar::after {
-        transform: translateY(0) rotate(-45deg);
+    .PAW-MenuAbierto button::after {
+        transform: rotate(-45deg);
+        top: 1rem;
     }
 
-    .PAW-Menu.PAW-MenuAbierto ul {
-        display: inline-block;
+    /* Oculta y prepara animación para los li */
+    .PAW-Links li {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .PAW-Menu.PAW-MenuAbierto {
-        height: 25rem;
-        transition-duration: 1s;
-        transition-property: width;
-    }
-
-    .PAW-Menu.PAW-MenuAbierto ul {
+    /* Cuando el menú se abre, animamos cada li */
+    .PAW-MenuAbierto .PAW-Links li {
         opacity: 1;
-        transition: 1s all;
+        transform: translateY(0);
+    }
+
+    /* Efecto escalonado (staggered) por delay */
+    .PAW-MenuAbierto .PAW-Links li:nth-child(1) {
+        transition-delay: 0.1s;
     }
 }

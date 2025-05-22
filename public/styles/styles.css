@@ -181,7 +181,6 @@ body {
 
 .breadcrumb-link:hover {
     color: #059292;
-    /* color de acento */
     text-decoration: underline;
 }
 
@@ -205,6 +204,9 @@ body {
     gap: 1em;
     padding: 10px 5%;
     margin-bottom: 3em;
+    max-width: calc(5 * 210px + 4 * 1em);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Contenedor del artículo */
@@ -561,6 +563,7 @@ p {
     background-color: #f9f9f9;
     transition: background-color 0.3s ease;
 }
+
 .dropzone.dragover {
     background-color: #e0f7fa;
 }

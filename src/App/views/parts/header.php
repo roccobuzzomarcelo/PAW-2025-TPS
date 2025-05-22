@@ -144,12 +144,14 @@
     <a class="carrito" href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="nav-bar">
-        <ul>
-            <?php foreach ($this->menu as $item): ?>
-                <li>
-                    <a href="<?= $item["href"] ?>"> <?= $item["name"] ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <section class="PAW-Links">
+            <ul>
+                <?php foreach ($this->menu as $item): ?>
+                    <li>
+                        <a href="<?= $item["href"] ?>"> <?= $item["name"] ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
     </nav>
 </header>
