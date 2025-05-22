@@ -5,8 +5,11 @@ namespace PAW\src\Core;
 use PAW\src\Core\Exceptions\RouteNotFoundException;
 use PAW\src\Core\Request;
 use Exception;
+use PAW\src\Core\Traits\Loggable;
 
 class Router{
+    use Loggable;
+
     public array $rutas = [
         "GET" => [],
         "POST" => [],
@@ -56,12 +59,33 @@ class Router{
         try{
             list($path, $metodoHttp) = $request->route();
             list($controlador, $metodo) = $this->getController($path, $metodoHttp);
-            $this->call($controlador, $metodo);
-        }catch(RouteNotFoundException $e){
+            $this->logger->info(
+                "Código: 200 - Página encontrada",
+                [
+                    "Ruta" => $path, 
+                    "Método" => $metodoHttp
+                ]
+            );
+        } catch(RouteNotFoundException $e){
             list($controlador, $metodo) = $this->getController($this->notFound, "GET");
-            $this->call($controlador, $metodo);
-        }catch(Exception $e){
+            $this->logger->debug(
+                "Código: 404 - Página no encontrada", 
+                [
+                    "ERROR" => $e->getMessage(), 
+                    "Método" => $metodoHttp
+                ]
+            );
+        } catch(Exception $e){
             list($controlador, $metodo) = $this->getController($this->errorInterno, "GET");
+            $this->logger->error(
+                "Código: 500 - Error interno del Servidor", 
+                [
+                    "ERROR" => $e->getMessage(), 
+                    "Ruta" => $path, 
+                    "Método" => $metodoHttp
+                ]
+            );
+        } finally{
             $this->call($controlador, $metodo);
         }
     }
