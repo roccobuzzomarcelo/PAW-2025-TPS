@@ -54,12 +54,12 @@ class ControladorLibro extends Controlador{
 
         foreach ($libros as $libro) {
             fputcsv($output, [
-                $libro['id'],
-                $libro['titulo'],
-                $libro['autor'],
-                $libro['descripcion'],
-                $libro['precio'],
-                $libro['ruta_a_imagen']
+                $libro->campos['id'],
+                $libro->campos['titulo'],
+                $libro->campos['autor'],
+                $libro->campos['descripcion'],
+                $libro->campos['precio'],
+                $libro->campos['ruta_a_imagen']
             ]);
         }
         fclose($output);
