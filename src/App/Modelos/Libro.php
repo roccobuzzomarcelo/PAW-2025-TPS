@@ -2,8 +2,8 @@
 
 namespace PAW\src\App\Modelos;
 
+use PAW\src\Core\Exceptions\InvalidValueFormatException;
 use PAW\src\Core\Modelo;
-use Exception;
 
 class Libro extends Modelo{
 
@@ -19,38 +19,50 @@ class Libro extends Modelo{
 
     public function setTitulo(string $titulo){
         if(strlen($titulo) > 100){
-            throw new Exception("El título no puede tener mas de 100 caracteres.");
+            throw new InvalidValueFormatException("El título no puede tener mas de 100 caracteres.");
         }
         $this->campos['titulo'] = $titulo;
     }
 
     public function setAutor(string $autor){
         if(strlen($autor) > 50){
-            throw new Exception("El nombre del autor no puede tener mas de 50 caracteres.");
+            throw new InvalidValueFormatException("El nombre del autor no puede tener mas de 50 caracteres.");
         }
         $this->campos['autor'] = $autor;
     }
 
     public function setDescripcion(string $descripcion){
-        if(strlen($descripcion) > 500){
-            throw new Exception("La descripcion del libro no puede tener mas de 500 caracteres.");
-        }
         $this->campos['descripcion'] = $descripcion;
     }
 
     public function setPrecio(string $precio){
-        if(strlen($precio) > 15){
-            throw new Exception("El precio del libro no puede tener mas de 15 caracteres.");
+        // Validar que sea numérico y con dos decimales como máximo
+        if (!is_numeric($precio)) {
+            throw new InvalidValueFormatException("El precio debe ser un número.");
         }
+        $precio = number_format((float)$precio, 2, '.', '');
+
+        if ($precio >= 1000000000) { // 10^10 (10 dígitos antes del punto decimal)
+            throw new InvalidValueFormatException("El precio excede el límite permitido.");
+        }
+
         $this->campos['precio'] = $precio;
     }
 
     public function setRutaAImagen(string $ruta_a_imagen){
-        if(strlen($ruta_a_imagen) > 100){
-            throw new Exception("La rutano puede tener mas de 100 caracteres.");
+        if(strlen($ruta_a_imagen) > 255){
+            throw new InvalidValueFormatException("La rutano puede tener mas de 255 caracteres.");
         }
         $this->campos['ruta_a_imagen'] = $ruta_a_imagen;
     }
 
-
+    public function set(array $valores){
+        foreach(array_keys($this->campos) as $campo){
+            if(!isset($valores[$campo])){
+                continue;
+            }
+            $metodo = "set".ucfirst($campo);
+            $this->$metodo($valores[$campo]);
+        }
+    }
 }

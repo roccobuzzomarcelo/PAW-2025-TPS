@@ -2,44 +2,9 @@
 
 namespace PAW\src\App\Controlador;
 
-class ControladorError{
-    public string $viewsDir;
-    public array $menu;
+use PAW\src\Core\Controlador;
 
-    public function __construct(){
-        $this->viewsDir = __DIR__ ."/../views/";
-        $this->menu = [
-            [
-                "href" => "/catalogo",
-                "name" => "Catálogo"
-            ],
-            [
-                "href" => "/mas-vendidos",
-                "name" => "Más vendidos"
-            ],
-            [
-                "href" => "/novedades",
-                "name" => "Novedades"
-            ],
-            [
-                "href" => "/recomendados",
-                "name" => "Recomendados"
-            ],
-            [
-                "href" => "/promociones",
-                "name" => "Promociones"
-            ],
-            [
-                "href" => "/como-comprar",
-                "name" => "Como comprar"
-            ],
-            [
-                "href" => "/mi-cuenta",
-                "name" => "Mi cuenta"
-            ]
-        ];
-        
-    }
+class ControladorError extends Controlador{
 
     public function notFound()
     {

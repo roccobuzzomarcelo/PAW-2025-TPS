@@ -5,50 +5,10 @@ namespace PAW\src\App\Controlador;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PAW\src\Core\config;
+use PAW\src\Core\Controlador;
 
-class ControladorPagina
+class ControladorPagina extends Controlador
 {
-    public string $viewsDir;
-
-    protected Config $config;
-    public array $menu;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-        $this->viewsDir = __DIR__ . "/../views/";
-        $this->menu = [
-            [
-                "href" => "/catalogo",
-                "name" => "Catálogo"
-            ],
-            [
-                "href" => "/mas-vendidos",
-                "name" => "Más vendidos"
-            ],
-            [
-                "href" => "/novedades",
-                "name" => "Novedades"
-            ],
-            [
-                "href" => "/recomendados",
-                "name" => "Recomendados"
-            ],
-            [
-                "href" => "/promociones",
-                "name" => "Promociones"
-            ],
-            [
-                "href" => "/como-comprar",
-                "name" => "Como comprar"
-            ],
-            [
-                "href" => "/mi-cuenta",
-                "name" => "Mi cuenta"
-            ]
-        ];
-    }
-
     public function obtenerLibros($consulta = null, $ids = null)
     {
         $ruta = __DIR__ . '/../../libros.txt';
