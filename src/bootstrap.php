@@ -29,7 +29,7 @@ $request = new Request;
 $router = new Router([$config]);
 $router->setLogger($log);
 $router->get("/", "ControladorPagina@index");
-$router->get("/catalogo", "ControladorPagina@catalogo");
+$router->get("/catalogo", "ControladorLibro@index");
 $router->get("/descargar_catalogo", "ControladorPagina@descargarCatalogo");
 $router->get("/mas-vendidos", "ControladorPagina@masVendidos");
 $router->get("/novedades", "ControladorPagina@novedades");

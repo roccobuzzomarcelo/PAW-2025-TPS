@@ -18,7 +18,7 @@ class Controlador{
     {
         global $connection;
         $this->config = $config;
-        $this->viewsDir = __DIR__ . "/../views/";
+        $this->viewsDir = __DIR__ . "/../App/views/";
         $this->menu = [
             [
                 "href" => "/catalogo",
