@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use PAW\src\Core\Database\ConnectionBuilder;
 use PAW\src\Core\Router;
 use PAW\src\Core\Config;
 use Monolog\Logger;
@@ -15,6 +16,9 @@ $handler = new StreamHandler($config->get("LOG_PATH"));
 $handler-> setLevel($config->get("LOG_LEVEL"));
 $log->pushHandler($handler);
 
+$connectionBuilder = new ConnectionBuilder;
+$connectionBuilder->setLogger($log);
+$connection = $connectionBuilder->make($config);
 
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
