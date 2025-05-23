@@ -17,6 +17,14 @@ class Libro extends Modelo{
         "ruta_a_imagen"=> null,
     ];
 
+    public function setId($id)
+    {
+        if (!is_numeric($id) || intval($id) < 0) {
+            throw new InvalidValueFormatException("El ID debe ser un número entero positivo.");
+        }
+        $this->campos['id'] = intval($id);
+    }
+
     public function setTitulo(string $titulo){
         if(strlen($titulo) > 100){
             throw new InvalidValueFormatException("El título no puede tener mas de 100 caracteres.");
@@ -49,9 +57,9 @@ class Libro extends Modelo{
         $this->campos['precio'] = $precio;
     }
 
-    public function setRutaAImagen(string $ruta_a_imagen){
+    public function setRuta_a_imagen(string $ruta_a_imagen){
         if(strlen($ruta_a_imagen) > 255){
-            throw new InvalidValueFormatException("La rutano puede tener mas de 255 caracteres.");
+            throw new InvalidValueFormatException("La ruta no puede tener mas de 255 caracteres.");
         }
         $this->campos['ruta_a_imagen'] = $ruta_a_imagen;
     }
@@ -64,5 +72,15 @@ class Libro extends Modelo{
             $metodo = "set".ucfirst($campo);
             $this->$metodo($valores[$campo]);
         }
+    }
+
+    public function getCampos(){
+        return $this->campos;
+    }
+
+    public function load($id){
+        $parametros = ['id' => $id];
+        $record = current($this->queryBuilder->select($this->table, $parametros));
+        $this->set($record);
     }
 }

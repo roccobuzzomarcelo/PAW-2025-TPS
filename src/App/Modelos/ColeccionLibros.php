@@ -9,6 +9,13 @@ class ColeccionLibros extends Modelo
 {
     public $table = 'libro';
 
+    public function get($id){
+        $libro = new Libro;
+        $libro->setQueryBuilder($this->queryBuilder);
+        $libro->load($id);
+        return $libro;
+    }
+
     public function getAll(){
         $libros = $this->queryBuilder->select($this->table);
         $coleccionLibros = [];
@@ -22,37 +29,38 @@ class ColeccionLibros extends Modelo
 
     public function getLibrosPaginados($consulta = null, $ids = null, $pagina = 1, $librosPorPagina = 10)
     {
-        $offset = ($pagina - 1) * $librosPorPagina;
-        $condiciones = [];
         $parametros = [];
 
         if ($consulta !== null) {
-            $condiciones[] = "(titulo LIKE :consulta OR autor LIKE :consulta)";
-            $parametros[':consulta'] = '%' . $consulta . '%';
+            $parametros['consulta'] = $consulta;
         }
 
-        if ($ids !== null && is_array($ids) && count($ids) > 0) {
-            $placeholders = [];
-            foreach ($ids as $index => $id) {
-                $ph = ":id_$index";
-                $placeholders[] = $ph;
-                $parametros[$ph] = $id;
-            }
-            $condiciones[] = "id IN (" . implode(",", $placeholders) . ")";
+        if ($ids !== null && is_array($ids)) {
+            $parametros['ids'] = $ids;
         }
 
-        $where = implode(" AND ", $condiciones);
+        $parametros['limit'] = $librosPorPagina;
+        $parametros['offset'] = ($pagina - 1) * $librosPorPagina;
 
         // 1) Obtener libros paginados
-        $libros = $this->queryBuilder->select('libros', $where, $parametros, $librosPorPagina, $offset);
+        $libros = $this->queryBuilder->select('libros', $parametros);
 
-        // 2) Obtener total de registros (sin límite ni offset), pero con mismas condiciones
-        $totalRegistros = $this->queryBuilder->count('libros', $where, $parametros);
+        $coleccionLibros = [];
+        foreach ($libros as $libro) {
+            $nuevoLibro = new Libro;
+            $nuevoLibro->set($libro);
+            $coleccionLibros[] = $nuevoLibro;
+        }
+
+        // 2) Contar total sin limit ni offset, pero con mismas condiciones
+        $parametrosSinLimite = $parametros;
+        unset($parametrosSinLimite['limit'], $parametrosSinLimite['offset']);
+        $totalRegistros = $this->queryBuilder->count('libros', $parametrosSinLimite);
 
         $totalPaginas = $librosPorPagina > 0 ? ceil($totalRegistros / $librosPorPagina) : 1;
 
         return [
-            'libros' => $libros,
+            'libros' => $coleccionLibros,
             'totalPaginas' => $totalPaginas
         ];
     }

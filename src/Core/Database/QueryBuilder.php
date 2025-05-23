@@ -12,25 +12,56 @@ class QueryBuilder
         $this->pdo = $pdo;
     }
 
-    public function select($tabla, $condiciones = "", $parametros = [], $limit = null, $offset = null){
-        $query = "SELECT * FROM {$tabla}";
-        if (!empty($condiciones)) {
-            $query .= " WHERE " . $condiciones;
+    public function select($tabla, $parametros = []){
+        $condiciones = [];
+        $binds = [];
+
+        // Búsqueda por texto (consulta)
+        if (isset($parametros['consulta'])) {
+            $condiciones[] = "(titulo LIKE :consulta OR autor LIKE :consulta)";
+            $binds[':consulta'] = '%' . $parametros['consulta'] . '%';
         }
-        if ($limit !== null) {
+
+        // Filtro por IDs
+        if (isset($parametros['ids']) && is_array($parametros['ids']) && count($parametros['ids']) > 0) {
+            $placeholders = [];
+            foreach ($parametros['ids'] as $i => $id) {
+                $ph = ":id_$i";
+                $placeholders[] = $ph;
+                $binds[$ph] = $id;
+            }
+            $condiciones[] = "id IN (" . implode(",", $placeholders) . ")";
+        }
+
+        // Otras condiciones libres si las hay
+        if (isset($parametros['condiciones']) && is_array($parametros['condiciones'])) {
+            foreach ($parametros['condiciones'] as $cond) {
+                $condiciones[] = $cond;
+            }
+        }
+
+        $where = count($condiciones) > 0 ? implode(" AND ", $condiciones) : "1 = 1";
+
+        $query = "SELECT * FROM {$tabla} WHERE {$where}";
+
+        // Paginación
+        if (isset($parametros['limit'])) {
             $query .= " LIMIT :limit";
-            $parametros[':limit'] = (int)$limit;
+            $binds[':limit'] = (int)$parametros['limit'];
         }
-        if ($offset !== null) {
+        if (isset($parametros['offset'])) {
             $query .= " OFFSET :offset";
-            $parametros[':offset'] = (int)$offset;
+            $binds[':offset'] = (int)$parametros['offset'];
         }
+
         $sentencia = $this->pdo->prepare($query);
-        foreach ($parametros as $clave => $valor) {
-            $tipo = is_int($valor) ? PDO::PARAM_INT : PDO::PARAM_STR;
+
+        foreach ($binds as $clave => $valor) {
+            $tipo = is_int($valor) ? \PDO::PARAM_INT : \PDO::PARAM_STR;
             $sentencia->bindValue($clave, $valor, $tipo);
         }
-        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+
+        $sentencia->setFetchMode(\PDO::FETCH_ASSOC);
         $sentencia->execute();
         return $sentencia->fetchAll();
     }
@@ -46,15 +77,41 @@ class QueryBuilder
     public function delete(){
     
     }
-    public function count($tabla, $condiciones = "", $parametros = [])
+    public function count(string $tabla, array $parametros = []): int
     {
-        $query = "SELECT COUNT(*) as total FROM {$tabla}";
-        if (!empty($condiciones)) {
-            $query .= " WHERE " . $condiciones;
+        $condiciones = [];
+        $binds = [];
+
+        // Filtro por búsqueda textual
+        if (isset($parametros['consulta'])) {
+            $condiciones[] = "(titulo LIKE :consulta OR autor LIKE :consulta)";
+            $binds[':consulta'] = '%' . $parametros['consulta'] . '%';
         }
 
+        // Filtro por IDs
+        if (isset($parametros['ids']) && is_array($parametros['ids']) && count($parametros['ids']) > 0) {
+            $placeholders = [];
+            foreach ($parametros['ids'] as $i => $id) {
+                $ph = ":id_$i";
+                $placeholders[] = $ph;
+                $binds[$ph] = $id;
+            }
+            $condiciones[] = "id IN (" . implode(",", $placeholders) . ")";
+        }
+
+        // Otras condiciones personalizadas
+        if (isset($parametros['condiciones']) && is_array($parametros['condiciones'])) {
+            foreach ($parametros['condiciones'] as $cond) {
+                $condiciones[] = $cond;
+            }
+        }
+
+        $where = count($condiciones) > 0 ? " WHERE " . implode(" AND ", $condiciones) : "";
+
+        $query = "SELECT COUNT(*) as total FROM {$tabla}{$where}";
         $stmt = $this->pdo->prepare($query);
-        foreach ($parametros as $clave => $valor) {
+
+        foreach ($binds as $clave => $valor) {
             $tipo = is_int($valor) ? PDO::PARAM_INT : PDO::PARAM_STR;
             $stmt->bindValue($clave, $valor, $tipo);
         }
@@ -62,7 +119,6 @@ class QueryBuilder
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return (int) $resultado['total'];
+        return (int)$resultado['total'];
     }
-
 }

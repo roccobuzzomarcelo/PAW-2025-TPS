@@ -37,7 +37,7 @@ class ControladorPagina extends Controlador
                 'autor' => $autor,
                 'descripcion' => $descripcion,
                 'precio' => $precio,
-                'img' => $imagen
+                'ruta_a_imagen' => $imagen
             ];
         }
 
@@ -72,7 +72,7 @@ class ControladorPagina extends Controlador
                 'autor' => $autor,
                 'descripcion' => $descripcion,
                 'precio' => $precio,
-                'img' => $imagen
+                'ruta_a_imagen' => $imagen
             ];
         }
 
@@ -101,34 +101,6 @@ class ControladorPagina extends Controlador
         $masVendidos = $this->obtenerLibros(null, [1, 3, 6]); // IDs de los libros más vendidos
         $recomendados = $this->obtenerLibros(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
         require $this->viewsDir . 'index.view.php';
-    }
-
-    
-
-    public function descargarCatalogo()
-    {
-        $consulta = $_GET['consulta'] ?? null;
-        $pagina = $_GET['pagina'] ?? 1;
-        $librosPorPagina = $_GET['libros_por_pagina'] ?? 10;
-        $resultado = $this->obtenerLibrosPaginado($consulta, null, $pagina, $librosPorPagina);
-        $libros = $resultado['libros'];
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="catalogo.csv"');
-
-        $output = fopen('php://output', 'w');
-        fputcsv($output, ['ID', 'Título', 'Autor', 'Descripción', 'Precio', 'Imagen']);
-
-        foreach ($libros as $libro) {
-            fputcsv($output, [
-                $libro['id'],
-                $libro['titulo'],
-                $libro['autor'],
-                $libro['descripcion'],
-                $libro['precio'],
-                $libro['img']
-            ]);
-        }
-        fclose($output);
     }
 
     public function masVendidos()
@@ -304,21 +276,6 @@ class ControladorPagina extends Controlador
         }
         $libro = $libros[0];
         require $this->viewsDir . 'carrito.view.php';
-    }
-
-    public function detalleLibro()
-    {
-        $htmlClass = "libro-pages";
-        $id = $_GET['id'] ?? null;
-        $libros = $this->obtenerLibros(null, [$id]);
-        if (empty($libros)) {
-            $this->libroNoEncontrado();
-            return;
-        }
-        $libro = $libros[0];
-        $mismoAutorLibros = $this->obtenerLibros($libro['autor']);
-        $titulo = htmlspecialchars($libro['titulo']);
-        require $this->viewsDir . 'detalle-libro.view.php';
     }
 
     public function reservarLibro()
