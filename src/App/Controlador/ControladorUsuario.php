@@ -32,7 +32,10 @@ class ControladorUsuario extends Controlador
     public function logout(){
         session_unset();           // Limpiamos todas las variables de sesión
         session_destroy();         // Destruimos la sesión
-        header("Location: /"); // Redirigimos al usuario al inicio (o login)
+        echo "<script>
+            alert('✅ Sesión cerrada exitosamente');
+            window.location.href = '/';
+        </script>";
     }
 
     public function editarUsuario(){
@@ -49,7 +52,7 @@ class ControladorUsuario extends Controlador
             empty($request->get('password')) ||
             empty($request->get('confirmar_password'))
         ) {
-            echo "⚠️ Todos los campos obligatorios deben estar completos.";
+            echo "<script>alert('⚠️ Todos los campos obligatorios deben completarse'); window.history.back();</script>";
             return;
         }
 
@@ -70,33 +73,37 @@ class ControladorUsuario extends Controlador
         ];
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "⚠️ Email inválido.";
+            echo "<script>alert('⚠️ Email no valido'); window.history.back();</script>";
             return;
         }
 
         if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/", $nombre)) {
-            echo "⚠️ Nombre inválido.";
+            echo "<script>alert('⚠️ Nombre no valido'); window.history.back();</script>";
             return;
         }
 
         if(strlen($password) < 8){
-            echo "⚠️ La contraseña debe tener al menos 8 caracteres.";
+            echo "<script>alert('⚠️ La contraseña debe tener al menos 8 caracteres'); window.history.back();</script>";
             return;
         }
 
         if ($password !== $confirmarPassword) {
-            echo "⚠️ Las contraseñas no coinciden.";
+            echo "<script>alert('⚠️ Las contraseña no coinciden'); window.history.back();</script>";
             return;
         }
 
         // Actualizar el usuario
         if(!$this->modeloInstancia->actualizar($_SESSION['usuario']['id'], $datos)){
-            echo "⚠️ Error al actualizar el usuario.";
+            echo "<script>alert('⚠️ Error al actualizar el usuario'); window.history.back();</script>";
             return;
         }
 
         $_SESSION['usuario'] = array_merge($_SESSION['usuario'], $datos);
-        header("Location: /mi-cuenta");
+        // Éxito: redirigir a página principal u otra
+        echo "<script>
+            alert('✅ Usuario actualizado exitosamente');
+            window.location.href = '/mi-cuenta';
+        </script>";
     }
 
     public function procesarLogin()
@@ -107,23 +114,30 @@ class ControladorUsuario extends Controlador
         $password = $request->get('inputPassword');
         // Validación mínima de formato
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo("Email no válido.");
+            echo "<script>alert('⚠️ Email no valido'); window.history.back();</script>";
+            return;
         }
         if (empty($password)) {
-            echo("La contraseña no puede estar vacía.");
+            echo "<script>alert('⚠️ La contraseña no puede estar vacia'); window.history.back();</script>";
+            return;
         }
         if(strlen($password) < 8){
-            echo("La contraseña debe tener al menos 8 caracteres.");
+            echo "<script>alert('⚠️ La contraseña debe tener al menos 8 caracteres'); window.history.back();</script>";
+            return;
         }
         // Lógica de autenticación delegada
         $usuario = $this->modeloInstancia->autenticar($email, $password);
         if (empty($usuario)) {
-            echo("Email o contraseña incorrectos.");
+            echo "<script>alert('⚠️ Email o contraseña incorrectos'); window.history.back();</script>";
             return;
         }
         // Guardar datos de sesión
         $_SESSION['usuario'] = $usuario->campos;
-        header('Location: /');
+        // Éxito: redirigir a página principal u otra
+        echo "<script>
+            alert('✅ Sesion iniciada exitosamente');
+            window.location.href = '/';
+        </script>";
         exit();
     }
 
@@ -144,7 +158,7 @@ class ControladorUsuario extends Controlador
             empty($request->get('inputPassword')) ||
             empty($request->get('inputConfirmarPassword'))
         ) {
-            echo "⚠️ Todos los campos obligatorios deben estar completos.";
+            echo "<script>alert('⚠️ Todos los campos obligatorios deben completarse'); window.history.back();</script>";
             return;
         }
         // Recoger los datos del formulario
@@ -159,37 +173,40 @@ class ControladorUsuario extends Controlador
         ];
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "⚠️ Email inválido.";
+            echo "<script>alert('⚠️ Email no valido'); window.history.back();</script>";
             return;
         }
 
         if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/", $nombre)) {
-            echo "⚠️ Nombre inválido.";
+            echo "<script>alert('⚠️ Nombre no valido'); window.history.back();</script>";
             return;
         }
 
         if(strlen($password) < 8){
-            echo "⚠️ La contraseña debe tener al menos 8 caracteres.";
+            echo "<script>alert('⚠️ La contraseña debe tener al menos 8 caracteres'); window.history.back();</script>";
             return;
         }
 
         if ($password !== $confirmarPassword) {
-            echo "⚠️ Las contraseñas no coinciden.";
+            echo "<script>alert('⚠️ Las contraseña no coinciden'); window.history.back();</script>";
             return;
         }
 
         if($this->modeloInstancia->existeEmail($email)){
-            echo "⚠️ El email ya está registrado.";
+            echo "<script>alert('⚠️ El Email ya esta registrado'); window.history.back();</script>";
             return;
         }
 
         // Crear un nuevo usuario
         if(!$this->modeloInstancia->crear($datos)){
-            echo "⚠️ Error al crear el usuario.";
+            echo "<script>alert('⚠️ Error al crear el usuario'); window.history.back();</script>";
             return;
         }
-
-        $this->login();
+        // Éxito: redirigir a página principal u otra
+        echo "<script>
+            alert('✅ Registro exitoso');
+            window.location.href = '/mi-cuenta';
+        </script>";
     }
 
     public function recuperarContraseña()
@@ -204,11 +221,6 @@ class ControladorUsuario extends Controlador
         // Recoger los datos del formulario
         $email = $_POST['inputEmail'];
         $archivo = __DIR__ . "/../../login.txt";
-
-        if (!file_exists($archivo)) {
-            echo "⚠️ Archivo de usuarios no encontrado.";
-            return;
-        }
 
         $lineas = file($archivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         $emailEncontrado = false;

@@ -7,7 +7,7 @@ use PAW\src\App\Modelos\Libro;
 
 class ColeccionLibros extends Modelo
 {
-    public $table = 'libro';
+    public $table = 'libros';
 
     public function get($id){
         $libro = new Libro;
@@ -63,6 +63,10 @@ class ColeccionLibros extends Modelo
             'libros' => $coleccionLibros,
             'totalPaginas' => $totalPaginas
         ];
+    }
+
+    public function crear($datos){
+        return $this->queryBuilder->insert($this->table, $datos);
     }
 
 }

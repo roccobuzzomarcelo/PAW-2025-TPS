@@ -9,19 +9,29 @@ class Reserva extends Modelo{
     public $table = 'reservas';
     public $campos = [
         "id" => null,
-        "id_usuario" => null,
-        "id_libro" => null,
-        "telefono" => null,
+        "usuario_id" => null,
+        "libro_id" => null,
+        "nombre" => null,
+        "email" => null,
         "calle" => null,
         "numero" => null,
         "ciudad" => null,
         "provincia" => null,
         "codigo_postal" => null,
-        "envio_o_retiro" => null,
-        "fecha_reserva" => null,
+        "metodo_entrega" => null,
+        "created_at" => null,
+        "updated_at"=> null
     ];
 
-    public function setIdUsuario(int $id_usuario)
+    public function setId(int $id)
+    {
+        if ($id <= 0) {
+            throw new InvalidValueFormatException("El ID debe ser un número positivo.");
+        }
+        $this->campos['id'] = $id;
+    }
+
+    public function setUsuario_id(int $id_usuario)
     {
         if ($id_usuario <= 0) {
             throw new InvalidValueFormatException("El ID de usuario debe ser un número positivo.");
@@ -29,7 +39,7 @@ class Reserva extends Modelo{
         $this->campos['id_usuario'] = $id_usuario;
     }
 
-    public function setIdLibro(int $id_libro)
+    public function setLibro_id(int $id_libro)
     {
         if ($id_libro <= 0) {
             throw new InvalidValueFormatException("El ID del libro debe ser un número positivo.");
@@ -37,15 +47,23 @@ class Reserva extends Modelo{
         $this->campos['id_libro'] = $id_libro;
     }
 
-    public function setTelefono(string $telefono)
+    public function setNombre(string $nombre)
     {
-        if (strlen($telefono) > 15) {
-            throw new InvalidValueFormatException("El teléfono no puede tener más de 15 caracteres.");
+        if (strlen($nombre) > 50) {
+            throw new InvalidValueFormatException("El nombre no puede tener más de 50 caracteres.");
         }
-        if (!preg_match('/^\+?[0-9\s\-()]+$/', $telefono)) {
-            throw new InvalidValueFormatException("El formato del teléfono no es válido.");
+        $this->campos['nombre'] = $nombre;
+    }
+
+    public function setEmail(string $email)
+    {
+        if (strlen($email) > 100) {
+            throw new InvalidValueFormatException("El email no puede tener más de 100 caracteres.");
         }
-        $this->campos['telefono'] = $telefono;
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidValueFormatException("El formato del email no es válido.");
+        }
+        $this->campos['email'] = $email;
     }
 
     public function setCalle(string $calle)
@@ -80,7 +98,7 @@ class Reserva extends Modelo{
         $this->campos['provincia'] = $provincia;
     }
 
-    public function setCodigoPostal(string $codigo_postal)
+    public function setCodigo_postal(string $codigo_postal)
     {
         if (strlen($codigo_postal) > 10) {
             throw new InvalidValueFormatException("El código postal no puede tener más de 10 caracteres.");
@@ -91,7 +109,7 @@ class Reserva extends Modelo{
         $this->campos['codigo_postal'] = $codigo_postal;
     }
 
-    public function setEnvioORetiro(string $envio_o_retiro)
+    public function setMetodo_entrega(string $envio_o_retiro)
     {
         if (!in_array($envio_o_retiro, ['envio', 'retiro'])) {
             throw new InvalidValueFormatException("El valor de 'envio_o_retiro' debe ser 'envio' o 'retiro'.");
@@ -99,12 +117,20 @@ class Reserva extends Modelo{
         $this->campos['envio_o_retiro'] = $envio_o_retiro;
     }
 
-    public function setFechaReserva(string $fecha_reserva)
+    public function setCreated_at(string $created_at)
     {
-        if (!strtotime($fecha_reserva)) {
-            throw new InvalidValueFormatException("La fecha de reserva no es válida.");
+        if (!strtotime($created_at)) {
+            throw new InvalidValueFormatException("La fecha de creación no es válida.");
         }
-        $this->campos['fecha_reserva'] = $fecha_reserva;
+        $this->campos['created_at'] = $created_at;
+    }
+
+    public function setUpdated_at(string $updated_at)
+    {
+        if (!strtotime($updated_at)) {
+            throw new InvalidValueFormatException("La fecha de actualización no es válida.");
+        }
+        $this->campos['updated_at'] = $updated_at;
     }
 
     public function set(array $valores){

@@ -59,7 +59,6 @@ class QueryBuilder
             $query .= " OFFSET :offset";
             $binds[':offset'] = (int)$parametros['offset'];
         }
-
         $sentencia = $this->pdo->prepare($query);
 
         foreach ($binds as $clave => $valor) {

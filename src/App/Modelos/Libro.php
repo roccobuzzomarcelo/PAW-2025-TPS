@@ -79,8 +79,9 @@ class Libro extends Modelo{
     }
 
     public function load($id){
-        $parametros = ['id' => $id];
-        $record = current($this->queryBuilder->select($this->table, $parametros));
+        $parametros['ids'] = $id; // convertimos a array
+        $resultado = $this->queryBuilder->select($this->table, $parametros);
+        $record = current($resultado);
         $this->set($record);
     }
 }
