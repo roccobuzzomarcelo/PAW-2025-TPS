@@ -11,7 +11,7 @@
         </ul>
 
         <section class="subir-libro">
-            <form id="formSubirLibro" class="subir-libro-form" action="/procesar-libro" method="post"
+            <form id="formSubirLibro" class="subir-libro-form" action="/subir-libro" method="post"
                 enctype="multipart/form-data">
                 <h3 class="subtitulo">Cargar nuevo libro</h3>
 
@@ -28,7 +28,7 @@
                 <span id="error-descripcion" class="error-message" aria-live="polite"></span>
 
                 <label for="precio">Precio (ARS)*</label>
-                <input id="precio" type="number" name="precio" placeholder="Ej: 25000" required>
+                <input id="precio" type="number" name="precio" placeholder="Precio ej: 25000" required>
                 <span id="error-precio" class="error-message" aria-live="polite"></span>
 
                 <label for="imagen">Portada del libro*</label>

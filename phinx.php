@@ -28,7 +28,7 @@ return
         'development' => [
             'adapter' => getenv("DB_ADAPTER") ?? 'mysql',
             'host' => getenv("DB_HOSTNAME") ?? 'localhost',
-            'name' => getenv("DB_NAME") ?? 'development_db',
+            'name' => getenv("DB_NAME") ?? 'pawprints',
             'user' => getenv("DB_USERNAME") ?? 'root',
             'pass' => getenv("DB_PASSWORD") ?? 'paw-tps',
             'port' => getenv("DB_PORT") ?? '3306',

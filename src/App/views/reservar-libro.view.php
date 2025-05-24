@@ -12,31 +12,22 @@
         <h1 class="subtitulo">Reserva de libro</h1>
         <section class="detalle-libro">
             <figure>
-                <img class="img-detalle" src="<?= htmlspecialchars($libro['img']) ?>" alt="portada del libro">
+                <img class="img-detalle" src="<?= htmlspecialchars($libro->campos['ruta_a_imagen']) ?>" alt="portada del libro">
             </figure>
 
             <section class="descripcion-libro">
-                <h2><?= htmlspecialchars($libro['titulo']) ?></h2>
-                <p class="precio">$ <?= number_format((float) $libro['precio'], 0, ',', '.') ?></p>
+                <h2><?= htmlspecialchars($libro->campos['titulo']) ?></h2>
+                <p class="precio">$ <?= number_format((float) $libro->campos['precio'], 0, ',', '.') ?></p>
                 <form class="Reserva" action="/reservar" method="post">
-                    <input type="hidden" name="libro_id" value="<?= htmlspecialchars($libro['id']) ?>">
+                    <input type="hidden" name="libro_id" value="<?= htmlspecialchars($libro->campos['id']) ?>">
 
                     <label for="inputNombre">Nombre<span class="requerido"> *</span></label>
-                    <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required
-                        title="Este campo es obligatorio">
-
-                    <label for="inputApellido">Apellido/s<span class="requerido"> *</span></label>
-                    <input id="inputApellido" type="text" name="inputApellido" placeholder="Apellido/s" required
+                    <input id="inputNombre" type="text" name="inputNombre" value="<?= htmlspecialchars($datos['nombre']) ?>" required
                         title="Este campo es obligatorio">
 
                     <label for="inputEmail">Email<span class="requerido"> *</span></label>
-                    <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required
+                    <input id="inputEmail" type="email" name="inputEmail" value="<?= htmlspecialchars($datos['email']) ?>" required
                         title="Este campo es obligatorio">
-
-                    <label for="inputTel">Teléfono<span class="requerido"> *</span></label>
-                    <input id="inputTel" type="tel" name="inputTel"
-                        pattern="^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$"
-                        placeholder="Teléfono" required title="Este campo es obligatorio">
 
                     <label for="inputCalle">Calle</label>
                     <input id="inputCalle" type="text" name="inputCalle" placeholder="Calle">

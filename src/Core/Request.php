@@ -18,4 +18,8 @@ class Request
             $this->method(),
         ];
     }
+
+    public function get($clave){
+        return $_POST[$clave] ?? $_GET[$clave] ?? null;
+    }
 }

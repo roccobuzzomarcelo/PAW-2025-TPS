@@ -11,15 +11,22 @@ class config{
     {
         $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
         $dotenv->load();
-        $this->configs["LOG_LEVEL"] = getenv("LOG_LEVEL") !== false ? getenv("LOG_LEVEL") : "INFO";
-        $path = getenv("LOG_PATH") !== false ? getenv("LOG_PATH") : "/log/app.log";
+        $this->configs["LOG_LEVEL"] = getenv("LOG_LEVEL") ?? "INFO";
+        $path = getenv("LOG_PATH") ?? "/log/app.log";
         $this->configs["LOG_PATH"] = $this->joinPaths('..'.$path);
-        $this->configs["SMTP_HOST"] = getenv("SMTP_HOST") !== false ? getenv("SMTP_HOST") : "smtp.gmail.com";
-        $this->configs["SMTP_PORT"] = getenv("SMTP_PORT") !== false ? getenv("SMTP_PORT") : "587";
+        $this->configs["SMTP_HOST"] = getenv("SMTP_HOST") ?? "smtp.gmail.com";
+        $this->configs["SMTP_PORT"] = getenv("SMTP_PORT") ?? "587";
         $this->configs["SMTP_USERNAME"] = getenv("SMTP_USERNAME");
         $this->configs["SMTP_PASSWORD"] = getenv("SMTP_PASSWORD");
         $this->configs["SMTP_FROM_EMAIL"] = getenv("SMTP_FROM_EMAIL");
-        $this->configs["SMTP_FROM_NAME"] = getenv("SMTP_FROM_NAME") !== false ? getenv("SMTP_FROM_NAME") : "Sistema de Reservas";
+        $this->configs["SMTP_FROM_NAME"] = getenv("SMTP_FROM_NAME") ?? "Sistema de Reservas";
+        $this->configs["DB_ADAPTER"] = getenv("DB_ADAPTER") ?? "mysql";
+        $this->configs["DB_HOSTNAME"] = getenv("DB_HOSTNAME") ?? "localhost";
+        $this->configs["DB_NAME"] = getenv("DB_NAME") ?? "pawprints";
+        $this->configs["DB_USERNAME"] = getenv("DB_USERNAME") ?? "root";
+        $this->configs["DB_PASSWORD"] = getenv("DB_PASSWORD") ?? "";
+        $this->configs["DB_PORT"] = getenv("DB_PORT") ?? "3306";
+        $this->configs["DB_CHARSET"] = getenv("DB_CHARSET") ?? "utf8";
     }
 
     public function joinPaths(){
