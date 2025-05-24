@@ -27,6 +27,10 @@ class ColeccionUsuarios extends Modelo
         return null;
     }
 
+    public function actualizar($id, $datos){
+        return $this->queryBuilder->update($this->table, $datos, ["id" => $id]);
+    }
+
     public function existeEmail($email){
         $resultado = $this->queryBuilder->select($this->table, ["email" => $email]);
         return !empty($resultado);

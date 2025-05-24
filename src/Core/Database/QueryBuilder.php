@@ -89,7 +89,24 @@ class QueryBuilder
             return $stmt->execute();
         }
 
-    public function update(){
+    public function update($tabla, $valores, $id){
+        $campos = array_keys($valores);
+        $set = [];
+        foreach ($campos as $campo) {
+            $set[] = "$campo = :$campo";
+        }
+
+        $query = "UPDATE {$tabla} SET " . implode(", ", $set) . " WHERE id = :id";
+        $stmt = $this->pdo->prepare($query);
+
+        foreach ($valores as $campo => $valor) {
+            $tipo = is_int($valor) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue(":$campo", $valor, $tipo);
+        }
+        $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+        
 
     }
 

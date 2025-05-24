@@ -53,7 +53,7 @@ class Usuario extends Modelo
         if (strlen($password) < 8) {
             throw new InvalidValueFormatException("La contraseña debe tener al menos 8 caracteres.");
         }
-        $this->campos['password'] = password_hash($password, PASSWORD_DEFAULT);
+        $this->campos['password'] = $password;
     }
 
     public function setRol(string $rol)

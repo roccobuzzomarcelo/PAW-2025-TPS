@@ -44,140 +44,10 @@ class ControladorPagina extends Controlador
         return $libros;
     }
 
-    public function obtenerLibrosPaginado($consulta = null, $ids = null, $pagina = 1, $librosPorPagina = 10)
-    {
-        $ruta = __DIR__ . '/../../libros.txt';
-        $libros = [];
-
-        if (!file_exists($ruta))
-            return [];
-
-        $lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-        foreach ($lineas as $linea) {
-            [$id, $titulo, $autor, $descripcion, $precio, $imagen] = explode('|', $linea);
-
-            // Filtro por IDs (si se pasaron)
-            if ($ids !== null && !in_array($id, $ids))
-                continue;
-
-            // Filtro por búsqueda textual (si se pasó)
-            if ($consulta !== null && stripos($titulo, $consulta) === false && stripos($autor, $consulta) === false) {
-                continue;
-            }
-
-            $libros[] = [
-                'id' => $id,
-                'titulo' => $titulo,
-                'autor' => $autor,
-                'descripcion' => $descripcion,
-                'precio' => $precio,
-                'ruta_a_imagen' => $imagen
-            ];
-        }
-
-        // Paginación
-        $totalLibros = count($libros);
-        $offset = ($pagina - 1) * $librosPorPagina; // Calcular el punto de inicio de la página
-        $librosPagina = array_slice($libros, $offset, $librosPorPagina); // Obtener solo los libros de la página actual
-
-        return [
-            'libros' => $librosPagina,
-            'total' => $totalLibros,
-            'totalPaginas' => ceil($totalLibros / $librosPorPagina), // Calcular el total de páginas
-        ];
-    }
-
     public function libroNoEncontrado()
     {
         http_response_code(404);
         require $this->viewsDir . '404.view.php';
-    }
-
-    public function subirLibro()
-    {
-        $titulo = "PAWPrints - Subir Libro";
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'subir-libro.view.php';
-    }
-
-    // Procesar formulario POST para subir libro
-    public function procesarSubirLibro()
-    {
-        $archivoLibros = __DIR__ . '/../../libros.txt';
-        $carpetaImagenes = __DIR__ . '/../../../public/images/libros/';
-
-        if (!file_exists($carpetaImagenes)) {
-            mkdir($carpetaImagenes, 0755, true);
-        }
-
-        // Validar que la petición sea POST
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);
-            echo "Método no permitido";
-            exit;
-        }
-
-        // Validaciones básicas
-        $titulo = trim($_POST["titulo"] ?? "");
-        $autor = trim($_POST["autor"] ?? "");
-        $descripcion = trim($_POST["descripcion"] ?? "");
-        $precio = trim($_POST["precio"] ?? "");
-        $imagen = $_FILES["imagen"] ?? null;
-
-        if ($titulo === "" || $autor === "" || $descripcion === "" || $precio === "" || !$imagen) {
-            echo "<script>alert('Faltan campos requeridos'); window.history.back();</script>";
-            return;
-        }
-
-        if ($imagen["error"] !== UPLOAD_ERR_OK) {
-            echo "<script>alert('Error al subir la imagen'); window.history.back();</script>";
-            return;
-        }
-
-        // Guardar imagen
-        $nombreImagenSeguro = uniqid() . "_" . basename($imagen["name"]);
-        $rutaImagen = $carpetaImagenes . $nombreImagenSeguro;
-        $rutaRelativa = "/images/libros/" . $nombreImagenSeguro; // Usar ruta relativa web correcta
-
-        if (!move_uploaded_file($imagen["tmp_name"], $rutaImagen)) {
-            echo "<script>alert('Error al guardar la imagen'); window.history.back();</script>";
-            return;
-        }
-
-        $nuevoId = 1;
-        if (file_exists($archivoLibros)) {
-            $lineas = file($archivoLibros, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            if (!empty($lineas)) {
-                $ultimaLinea = end($lineas);
-                $partes = explode("|", $ultimaLinea);
-                if (is_numeric($partes[0])) {
-                    $nuevoId = intval($partes[0]) + 1;
-                }
-            }
-        }
-
-        // Armar línea para guardar
-        $linea = implode("|", [
-            $nuevoId,
-            $titulo,
-            $autor,
-            $descripcion,
-            $precio,
-            $rutaRelativa
-        ]) . PHP_EOL;
-
-        // Guardar línea
-        if (file_put_contents($archivoLibros, $linea, FILE_APPEND) === false) {
-            echo "<script>alert('Error al guardar el libro'); window.history.back();</script>";
-            return;
-        }
-
-        // Éxito: redirigir a página principal u otra
-        echo "<script>
-            alert('✅ Libro guardado exitosamente');
-            window.location.href = '/';
-        </script>";
     }
 
     public function comoComprar()
@@ -185,13 +55,6 @@ class ControladorPagina extends Controlador
         $titulo = "PAWPrints - Cómo comprar";
         $htmlClass = "preguntas-pages";
         require $this->viewsDir . 'como-comprar.view.php';
-    }
-
-    public function recuperarContraseña()
-    {
-        $titulo = 'PAWPrints - Recuperar contraseña';
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'recuperar-contraseña.view.php';
     }
 
     public function quienesSomos()
@@ -372,35 +235,6 @@ class ControladorPagina extends Controlador
             $mail->send();
         } catch (Exception $e) {
             error_log("No se pudo enviar el correo: {$mail->ErrorInfo}");
-        }
-    }
-
-    public function procesarRecuperarContraseña()
-    {
-        // Recoger los datos del formulario
-        $email = $_POST['inputEmail'];
-        $archivo = __DIR__ . "/../../login.txt";
-
-        if (!file_exists($archivo)) {
-            echo "⚠️ Archivo de usuarios no encontrado.";
-            return;
-        }
-
-        $lineas = file($archivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $emailEncontrado = false;
-
-        foreach ($lineas as $linea) {
-            list($id, $emailArchivo, $passArchivo, $nombre, $apellido) = explode('|', trim($linea));
-            if ($email === $emailArchivo) {
-                $emailEncontrado = true;
-                break;
-            }
-        }
-
-        if ($emailEncontrado) {
-            echo "✅ Se ha enviado un enlace para restablecer tu contraseña a tu correo electrónico.";
-        } else {
-            echo "❌ El email no está registrado.";
         }
     }
 }

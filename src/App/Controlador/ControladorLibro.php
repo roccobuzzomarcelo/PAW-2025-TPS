@@ -22,6 +22,11 @@ class ControladorLibro extends Controlador{
     }
 
     public function catalogo(){
+        $rol = $_SESSION['usuario']['rol'] ?? null;
+        $permiso = false;
+        if($rol == 'admin'){
+            $permiso = true;
+        }
         global $request;
         $titulo = "PAWPrints - Catálogo";
         $htmlClass = "catalogo-pages";
@@ -135,11 +140,94 @@ class ControladorLibro extends Controlador{
         require $this->viewsDir . 'libro.view.php';
     }
 
-    public function edit(){
-
+    public function subirLibro()
+    {
+        $rol = $_SESSION['usuario']['rol'] ?? null;
+        if($rol !== 'admin'){
+            echo "<script>alert('⚠️ No tienes permiso para acceder a esta página.'); window.location.href = '/';</script>";
+            return;
+        }
+        $titulo = "PAWPrints - Subir Libro";
+        $htmlClass = "mi-cuenta-pages";
+        require $this->viewsDir . 'subir-libro.view.php';
     }
 
-    public function set(){
+    // Procesar formulario POST para subir libro
+    public function procesarSubirLibro()
+    {
+        $archivoLibros = __DIR__ . '/../../libros.txt';
+        $carpetaImagenes = __DIR__ . '/../../../public/images/libros/';
 
+        if (!file_exists($carpetaImagenes)) {
+            mkdir($carpetaImagenes, 0755, true);
+        }
+
+        // Validar que la petición sea POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo "Método no permitido";
+            exit;
+        }
+
+        // Validaciones básicas
+        $titulo = trim($_POST["titulo"] ?? "");
+        $autor = trim($_POST["autor"] ?? "");
+        $descripcion = trim($_POST["descripcion"] ?? "");
+        $precio = trim($_POST["precio"] ?? "");
+        $imagen = $_FILES["imagen"] ?? null;
+
+        if ($titulo === "" || $autor === "" || $descripcion === "" || $precio === "" || !$imagen) {
+            echo "<script>alert('Faltan campos requeridos'); window.history.back();</script>";
+            return;
+        }
+
+        if ($imagen["error"] !== UPLOAD_ERR_OK) {
+            echo "<script>alert('Error al subir la imagen'); window.history.back();</script>";
+            return;
+        }
+
+        // Guardar imagen
+        $nombreImagenSeguro = uniqid() . "_" . basename($imagen["name"]);
+        $rutaImagen = $carpetaImagenes . $nombreImagenSeguro;
+        $rutaRelativa = "/images/libros/" . $nombreImagenSeguro; // Usar ruta relativa web correcta
+
+        if (!move_uploaded_file($imagen["tmp_name"], $rutaImagen)) {
+            echo "<script>alert('Error al guardar la imagen'); window.history.back();</script>";
+            return;
+        }
+
+        $nuevoId = 1;
+        if (file_exists($archivoLibros)) {
+            $lineas = file($archivoLibros, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            if (!empty($lineas)) {
+                $ultimaLinea = end($lineas);
+                $partes = explode("|", $ultimaLinea);
+                if (is_numeric($partes[0])) {
+                    $nuevoId = intval($partes[0]) + 1;
+                }
+            }
+        }
+
+        // Armar línea para guardar
+        $linea = implode("|", [
+            $nuevoId,
+            $titulo,
+            $autor,
+            $descripcion,
+            $precio,
+            $rutaRelativa
+        ]) . PHP_EOL;
+
+        // Guardar línea
+        if (file_put_contents($archivoLibros, $linea, FILE_APPEND) === false) {
+            echo "<script>alert('Error al guardar el libro'); window.history.back();</script>";
+            return;
+        }
+
+        // Éxito: redirigir a página principal u otra
+        echo "<script>
+            alert('✅ Libro guardado exitosamente');
+            window.location.href = '/';
+        </script>";
     }
 }

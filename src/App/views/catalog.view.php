@@ -8,6 +8,9 @@
             <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
             <li class="breadcrumb-item" aria-current="page">Catálogo</li>
         </ul>
+        <?php if ($permiso): ?>
+            <a href="/subir-libro" class="btn-descargar">Subir nuevo libro</a>
+        <?php endif; ?>
         <nav class="nav-categoria">
             <label for="categorias">
                 Categorías:

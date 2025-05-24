@@ -1,32 +1,27 @@
-<?php include 'parts/head.php'?>
+<?php include "parts/head.php"; ?>
 <body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-<?php include 'parts/header.php'; ?>
-<main>
+<?php include "parts/header.php"; ?>
+    <main>
+        <!-- BREADCRUMB -->
+
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
-            <li class="breadcrumb-item" aria-current="page">Mi Cuenta</li>
+            <li class="breadcrumb-item" aria-current="page">Mi cuenta</li>
         </ul>
-        <section class="iniciar-sesion">
-            <form class="login-form" action="/mi-cuenta" method="post">
-                <h2 class="subtitulo">Iniciar Sesión</h2>
-                <a class="register-link" href="/registro">Registrarse</a>
-                <label for="inputEmail">Email</label>
-                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
+        <h2>Mi Cuenta</h2>
 
-                <label for="inputPassword">Contraseña</label>
-                <input id="inputPassword" type="password" name="inputPassword" placeholder="Contraseña" required>
-                <label for="inputRecuerdame">
-                    <input type="checkbox" name="recuerdame">
-                    Recuérdame
-                </label>
-                <button type="submit">Acceder</button>
-                <a href="/recuperar-contraseña">¿Has olvidado tu contraseña?</a>
-            </form>
+        <section class="datos-usuario">
+            <p><strong>Nombre:</strong> <?= htmlspecialchars($datos['nombre']) ?></p>
+            <p><strong>Email:</strong> <?= htmlspecialchars($datos['email']) ?></p>
+            <p><strong>Rol:</strong> <?= htmlspecialchars($datos['rol']) ?></p>
+            <p><strong>Estado:</strong> <?= $datos['activo'] ? 'Activo' : 'Inactivo' ?></p>
         </section>
+
+        <nav class="acciones-cuenta">
+            <a href="/editar-usuario" class="btn">Editar mis datos</a>
+            <a href="/logout" class="btn btn-logout">Cerrar sesión</a>
+        </nav>
     </main>
-
-    <?php include 'parts/footer.php'; ?> 
-
+    <?php include 'parts/footer.php'; ?>
 </body>
-
 </html>
