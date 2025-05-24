@@ -21,7 +21,7 @@ class ColeccionUsuarios extends Modelo
         $usuario = new Usuario;
         $usuario->setQueryBuilder($this->queryBuilder);
         $usuario->set($resultado[0]);
-        if (password_verify($password, $usuario->campos['password'])) {
+        if ($password == $usuario->campos['password']) {
             return $usuario;
         }
         return null;

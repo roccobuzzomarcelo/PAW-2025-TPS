@@ -56,11 +56,12 @@ class QueryBuilder
         $query = "SELECT * FROM {$tabla} WHERE {$where}";
 
         // Paginación
-        if (isset($parametros['limit'])) {
+        if (isset($parametros['limit']) && is_numeric($parametros['limit']) && $parametros['limit'] > 0) {
             $query .= " LIMIT :limit";
             $binds[':limit'] = (int)$parametros['limit'];
         }
-        if (isset($parametros['offset'])) {
+
+        if (isset($parametros['offset']) && is_numeric($parametros['offset']) && $parametros['offset'] >= 0) {
             $query .= " OFFSET :offset";
             $binds[':offset'] = (int)$parametros['offset'];
         }
