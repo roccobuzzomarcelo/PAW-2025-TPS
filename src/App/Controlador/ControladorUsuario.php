@@ -16,6 +16,37 @@ class ControladorUsuario extends Controlador
         require $this->viewsDir . 'mi-cuenta.view.php';
     }
 
+    public function procesarLogin()
+    {
+        global $request;
+        // Recoger los datos del formulario
+        $email = $request->get('inputEmail');
+        $password = $request->get('inputPassword');
+        // Validación mínima de formato
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo("Email no válido.");
+        }
+        if (empty($password)) {
+            echo("La contraseña no puede estar vacía.");
+        }
+        if(strlen($password) < 8){
+            echo("La contraseña debe tener al menos 8 caracteres.");
+        }
+        // Lógica de autenticación delegada
+        $usuario = $this->modeloInstancia->autenticar($email, $password);
+        if (empty($usuario)) {
+            echo("Email o contraseña incorrectos.");
+            return;
+        }
+        // Guardar datos de sesión
+        $_SESSION['usuario'] = $usuario->campos;
+        $_SESSION['usuario']['rol'] = $usuario->campos['rol'];
+        $_SESSION['usuario']['activo'] = $usuario->campos['activo'];
+        header('Location: /');
+        exit();
+    }
+
+
     public function registro()
     {
         $titulo = 'PAWPrints - Registro';

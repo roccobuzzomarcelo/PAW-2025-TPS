@@ -67,10 +67,6 @@ class Usuario extends Modelo
 
     public function setFecha_creacion(string $fecha)
     {
-        // Validar formato YYYY-MM-DD (ajustar si usás otro formato)
-        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
-            throw new InvalidValueFormatException("La fecha de creación no tiene un formato válido (YYYY-MM-DD).");
-        }
         $this->campos['fecha_creacion'] = $fecha;
     }
 

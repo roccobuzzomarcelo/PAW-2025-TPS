@@ -94,15 +94,6 @@ class ControladorPagina extends Controlador
         require $this->viewsDir . '404.view.php';
     }
 
-    public function index()
-    {
-        $titulo = "PAWPrints - Inicio";
-        $novedades = $this->obtenerLibros(null, [5, 7]); // IDs de los libros nuevos
-        $masVendidos = $this->obtenerLibros(null, [1, 3, 6]); // IDs de los libros más vendidos
-        $recomendados = $this->obtenerLibros(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
-        require $this->viewsDir . 'index.view.php';
-    }
-
     public function masVendidos()
     {
         $titulo = "PAWPrints - Más vendidos";
@@ -414,37 +405,6 @@ class ControladorPagina extends Controlador
             $mail->send();
         } catch (Exception $e) {
             error_log("No se pudo enviar el correo: {$mail->ErrorInfo}");
-        }
-    }
-
-    public function procesarLogin()
-    {
-        // Recoger los datos del formulario
-        $email = $_POST['inputEmail'];
-        $password = $_POST['inputPassword'];
-        $archivo = __DIR__ . "/../../login.txt";
-
-        if (!file_exists($archivo)) {
-            echo "⚠️ Archivo de usuarios no encontrado.";
-            return;
-        }
-
-        $lineas = file($archivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $credencialesValidas = false;
-
-        foreach ($lineas as $linea) {
-            list($id, $emailArchivo, $passArchivo, $nombre, $apellido) = explode('|', trim($linea));
-            if ($email === $emailArchivo && $password === $passArchivo) {
-                $credencialesValidas = true;
-                break;
-            }
-        }
-
-        if ($credencialesValidas) {
-            $this->index();
-            exit;
-        } else {
-            echo "❌ Email o contraseña incorrectos.";
         }
     }
 

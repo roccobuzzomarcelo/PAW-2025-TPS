@@ -9,7 +9,19 @@ class ControladorLibro extends Controlador{
 
     public ?string $modelo = ColeccionLibros::class;
 
-    public function index(){
+    public function index()
+    {
+        $titulo = "PAWPrints - Inicio";
+        $novedadesResultado = $this->modeloInstancia->getLibrosPaginados(null, [5, 7]); // IDs de los libros nuevos
+        $masVendidosResultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 3, 6]); // IDs de los libros más vendidos
+        $recomendadosResultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
+        $novedades = $novedadesResultado['libros'];
+        $masVendidos = $masVendidosResultado['libros'];
+        $recomendados = $recomendadosResultado['libros'];
+        require $this->viewsDir . 'index.view.php';
+    }
+
+    public function catalogo(){
         global $request;
         $titulo = "PAWPrints - Catálogo";
         $htmlClass = "catalogo-pages";
