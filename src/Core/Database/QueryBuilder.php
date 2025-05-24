@@ -17,9 +17,15 @@ class QueryBuilder
         $binds = [];
 
         // Búsqueda por texto (consulta)
-        if (isset($parametros['consulta'])) {
+        if (isset($parametros['consulta']) && $tabla == 'libros') {
             $condiciones[] = "(titulo LIKE :consulta OR autor LIKE :consulta)";
             $binds[':consulta'] = '%' . $parametros['consulta'] . '%';
+        }
+
+        if (isset($parametros['consulta']) && $tabla == 'usuarios') {
+            $condiciones[] = "(nombre LIKE :nombre OR email = :email)";
+            $binds[':nombre'] = '%' . $parametros['consulta'] . '%';
+            $binds[':email'] = $parametros['consulta'];
         }
 
         // Filtro por IDs
@@ -66,9 +72,22 @@ class QueryBuilder
         return $sentencia->fetchAll();
     }
 
-    public function insert(){
-    
-    }
+        public function insert($tabla, $valores){
+            $campos = array_keys($valores);
+            $placeholders = array_map(function($campo) {
+                return ":$campo";
+            }, $campos);
+
+            $query = "INSERT INTO {$tabla} (" . implode(", ", $campos) . ") VALUES (" . implode(", ", $placeholders) . ")";
+            $stmt = $this->pdo->prepare($query);
+
+            foreach ($valores as $campo => $valor) {
+                $tipo = is_int($valor) ? PDO::PARAM_INT : PDO::PARAM_STR;
+                $stmt->bindValue(":$campo", $valor, $tipo);
+            }
+
+            return $stmt->execute();
+        }
 
     public function update(){
 

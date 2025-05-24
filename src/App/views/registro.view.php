@@ -16,9 +16,6 @@
                 <label for="inputNombre">Nombre</label>
                 <input id="inputNombre" type="nombre" name="inputNombre" placeholder="Nombre" required>
 
-                <label for="inputApellido">Apellido/s</label>
-                <input id="inputApellido" type="apellido" name="inputApellido" placeholder="Apellido/s" required>
-
                 <label for="inputEmail">Email</label>
                 <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
 

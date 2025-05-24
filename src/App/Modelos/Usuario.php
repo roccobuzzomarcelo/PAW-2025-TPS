@@ -5,15 +5,34 @@ namespace PAW\src\App\Modelos;
 use PAW\src\Core\Exceptions\InvalidValueFormatException;
 use PAW\src\Core\Modelo;
 
-class Usuario extends Modelo{
+class Usuario extends Modelo
+{
     public $table = 'usuarios';
     public $campos = [
         "id" => null,
+        "nombre" => null,
         "email" => null,
         "password" => null,
-        "nombre" => null,
-        "apellido" => null,
+        "rol" => null,
+        "fecha_creacion" => null,
+        "activo" => null,
     ];
+
+    public function setId($id)
+    {
+        if (!is_numeric($id) || intval($id) < 0) {
+            throw new InvalidValueFormatException("El ID debe ser un número entero positivo.");
+        }
+        $this->campos['id'] = intval($id);
+    }
+
+    public function setNombre(string $nombre)
+    {
+        if (strlen($nombre) > 50) {
+            throw new InvalidValueFormatException("El nombre no puede tener más de 50 caracteres.");
+        }
+        $this->campos['nombre'] = $nombre;
+    }
 
     public function setEmail(string $email)
     {
@@ -31,36 +50,47 @@ class Usuario extends Modelo{
         if (strlen($password) > 255) {
             throw new InvalidValueFormatException("La contraseña no puede tener más de 255 caracteres.");
         }
-        // Validación mínima sugerida
         if (strlen($password) < 8) {
             throw new InvalidValueFormatException("La contraseña debe tener al menos 8 caracteres.");
         }
-        // Se puede hashear acá o en otro paso, depende del flujo de la app
         $this->campos['password'] = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function setNombre(string $nombre)
+    public function setRol(string $rol)
     {
-        if (strlen($nombre) > 50) {
-            throw new InvalidValueFormatException("El nombre no puede tener más de 50 caracteres.");
+        $rol = strtolower($rol);
+        if (!in_array($rol, ['usuario', 'admin'])) {
+            throw new InvalidValueFormatException("El rol debe ser 'usuario' o 'admin'.");
         }
-        $this->campos['nombre'] = $nombre;
+        $this->campos['rol'] = $rol;
     }
 
-    public function setApellido(string $apellido)
+    public function setFecha_creacion(string $fecha)
     {
-        if (strlen($apellido) > 50) {
-            throw new InvalidValueFormatException("El apellido no puede tener más de 50 caracteres.");
+        // Validar formato YYYY-MM-DD (ajustar si usás otro formato)
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
+            throw new InvalidValueFormatException("La fecha de creación no tiene un formato válido (YYYY-MM-DD).");
         }
-        $this->campos['apellido'] = $apellido;
+        $this->campos['fecha_creacion'] = $fecha;
     }
 
-    public function set(array $valores){
-        foreach(array_keys($this->campos) as $campo){
-            if(!isset($valores[$campo])){
+    public function setActivo($activo)
+    {
+        // Se permite booleano o valores tipo string/número que representen true/false
+        $valor = filter_var($activo, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+        if (is_null($valor)) {
+            throw new InvalidValueFormatException("El campo 'activo' debe ser un valor booleano.");
+        }
+        $this->campos['activo'] = $valor;
+    }
+
+    public function set(array $valores)
+    {
+        foreach (array_keys($this->campos) as $campo) {
+            if (!isset($valores[$campo])) {
                 continue;
             }
-            $metodo = "set".ucfirst($campo);
+            $metodo = "set" . ucfirst($campo);
             $this->$metodo($valores[$campo]);
         }
     }
