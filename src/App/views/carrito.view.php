@@ -18,7 +18,13 @@
         </section>
         <section class="subtotal">
             <h2>Subtotal</h2>
-            <p class = "precio"><?= htmlspecialchars($libro['precio']) ?></p>
+            <p class="precio">
+                <?php
+                    $subtotal = array_sum(array_map(fn($libro) => $libro->campos['precio'], $libros));
+                    $subtotalFormateado = number_format((float)$subtotal, 0, ',', '.');
+                    echo "$ ".htmlspecialchars($subtotalFormateado);
+                ?>
+            </p>
             <a href="https://pawprints/finalizar-compra/" class="boton-link">
                 Finalizar compra
             </a>

@@ -45,6 +45,11 @@ class QueryBuilder
                 $condiciones[] = $cond;
             }
         }
+        if (isset($parametros['binds']) && is_array($parametros['binds'])) {
+            foreach ($parametros['binds'] as $clave => $valor) {
+                $binds[$clave] = $valor;
+            }
+        }
 
         $where = count($condiciones) > 0 ? implode(" AND ", $condiciones) : "1 = 1";
 
@@ -71,22 +76,21 @@ class QueryBuilder
         return $sentencia->fetchAll();
     }
 
-        public function insert($tabla, $valores){
-            $campos = array_keys($valores);
-            $placeholders = array_map(function($campo) {
-                return ":$campo";
-            }, $campos);
+    public function insert($tabla, $valores){
+        $campos = array_keys($valores);
+        $placeholders = array_map(function($campo) {
+            return ":$campo";
+        }, $campos);
 
-            $query = "INSERT INTO {$tabla} (" . implode(", ", $campos) . ") VALUES (" . implode(", ", $placeholders) . ")";
-            $stmt = $this->pdo->prepare($query);
+        $query = "INSERT INTO {$tabla} (" . implode(", ", $campos) . ") VALUES (" . implode(", ", $placeholders) . ")";
+        $stmt = $this->pdo->prepare($query);
 
-            foreach ($valores as $campo => $valor) {
-                $tipo = is_int($valor) ? PDO::PARAM_INT : PDO::PARAM_STR;
-                $stmt->bindValue(":$campo", $valor, $tipo);
-            }
-
-            return $stmt->execute();
+        foreach ($valores as $campo => $valor) {
+            $tipo = is_int($valor) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue(":$campo", $valor, $tipo);
         }
+        return $stmt->execute();
+    }
 
     public function update($tabla, $valores, $id){
         $campos = array_keys($valores);
