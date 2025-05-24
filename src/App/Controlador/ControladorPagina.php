@@ -94,14 +94,6 @@ class ControladorPagina extends Controlador
         require $this->viewsDir . '404.view.php';
     }
 
-    public function masVendidos()
-    {
-        $titulo = "PAWPrints - Más vendidos";
-        $htmlClass = "catalogo-pages";
-        $libros = $this->obtenerLibros(null, [1, 3, 6]); // IDs de los libros más vendidos
-        require $this->viewsDir . 'mas-vendidos.view.php';
-    }
-
     public function subirLibro()
     {
         $titulo = "PAWPrints - Subir Libro";
@@ -186,31 +178,6 @@ class ControladorPagina extends Controlador
             alert('✅ Libro guardado exitosamente');
             window.location.href = '/';
         </script>";
-    }
-
-
-    public function novedades()
-    {
-        $titulo = "PAWPrints - Novedades";
-        $htmlClass = "catalogo-pages";
-        $libros = $this->obtenerLibros(null, [5, 7]); // IDs de los libros nuevos
-        require $this->viewsDir . 'novedades.view.php';
-    }
-
-    public function recomendados()
-    {
-        $titulo = "PAWPrints - Recomendados";
-        $htmlClass = "catalogo-pages";
-        $libros = $this->obtenerLibros(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
-        require $this->viewsDir . 'recomendados.view.php';
-    }
-
-    public function promociones()
-    {
-        $titulo = "PAWPrints - Promociones";
-        $htmlClass = "catalogo-pages";
-        $libros = $this->obtenerLibros(null, [2, 3, 4]); // IDs de los libros en promoción
-        require $this->viewsDir . 'promociones.view.php';
     }
 
     public function comoComprar()

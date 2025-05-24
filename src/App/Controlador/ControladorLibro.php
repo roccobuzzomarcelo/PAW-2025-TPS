@@ -83,6 +83,42 @@ class ControladorLibro extends Controlador{
         require $this->viewsDir . '404.view.php';
     }
 
+    public function masVendidos()
+    {
+        $titulo = "PAWPrints - Más vendidos";
+        $htmlClass = "catalogo-pages";
+        $resultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 3, 6]); // IDs de los libros más vendidos
+        $libros = $resultado['libros'];
+        require $this->viewsDir . 'mas-vendidos.view.php';
+    }
+
+    public function novedades()
+    {
+        $titulo = "PAWPrints - Novedades";
+        $htmlClass = "catalogo-pages";
+        $resultado = $this->modeloInstancia->getLibrosPaginados(null, [5, 7]); // IDs de los libros nuevos
+        $libros = $resultado['libros'];
+        require $this->viewsDir . 'novedades.view.php';
+    }
+
+    public function recomendados()
+    {
+        $titulo = "PAWPrints - Recomendados";
+        $htmlClass = "catalogo-pages";
+        $resultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
+        $libros = $resultado['libros'];
+        require $this->viewsDir . 'recomendados.view.php';
+    }
+
+    public function promociones()
+    {
+        $titulo = "PAWPrints - Promociones";
+        $htmlClass = "catalogo-pages";
+        $resultado = $this->modeloInstancia->getLibrosPaginados(null, [2, 3, 4]); // IDs de los libros en promoción
+        $libros = $resultado['libros'];
+        require $this->viewsDir . 'promociones.view.php';
+    }
+
     public function get(){
         global $request;
         $htmlClass = "libro-pages";
