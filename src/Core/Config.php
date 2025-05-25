@@ -9,11 +9,16 @@ class config{
 
     public function __construct()
     {
-        $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
-        $dotenv->load();
+        $envPath = __DIR__ . '/../../.env';
+        
+        if (file_exists($envPath)) {
+            $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
+            $dotenv->load();
+        }
+
         $this->configs["LOG_LEVEL"] = getenv("LOG_LEVEL") ?? "INFO";
         $path = getenv("LOG_PATH") ?? "/log/app.log";
-        $this->configs["LOG_PATH"] = $this->joinPaths('..'.$path);
+        $this->configs["LOG_PATH"] = $this->joinPaths('..' . $path);
         $this->configs["SMTP_HOST"] = getenv("SMTP_HOST") ?? "smtp.gmail.com";
         $this->configs["SMTP_PORT"] = getenv("SMTP_PORT") ?? "587";
         $this->configs["SMTP_USERNAME"] = getenv("SMTP_USERNAME");
@@ -28,6 +33,7 @@ class config{
         $this->configs["DB_PORT"] = getenv("DB_PORT") ?? "3306";
         $this->configs["DB_CHARSET"] = getenv("DB_CHARSET") ?? "utf8";
     }
+
 
     public function joinPaths(){
         $paths = array();
