@@ -42,6 +42,26 @@
                 Descargar Catalogo
             </a>
         </nav>
+        <section class="filtros-libros <?= !empty($consulta) ? 'visible' : '' ?>" id="filtrosLibros">
+            <div class="ordenar">
+                <label for="ordenarPor">Ordenar por:</label>
+                <select id="ordenarPor">
+                    <option value="titulo-asc">Título (A-Z)</option>
+                    <option value="titulo-desc">Título (Z-A)</option>
+                    <option value="autor-asc">Autor (A-Z)</option>
+                    <option value="autor-desc">Autor (Z-A)</option>
+                    <option value="precio-asc">Precio (Menor a mayor)</option>
+                    <option value="precio-desc">Precio (Mayor a menor)</option>
+                </select>
+            </div>
+            <div class="filtro-precio">
+                <label for="precioMin">Precio mínimo:</label>
+                <input type="number" id="precioMin" min="0" step="0.01" placeholder="Ej: 100">
+                <label for="precioMax">Precio máximo:</label>
+                <input type="number" id="precioMax" min="0" step="0.01" placeholder="Ej: 1000">
+                <button id="btnAplicarFiltro">Aplicar</button>
+            </div>
+        </section>
         <h2 class="subtitulo">Libros Disponibles</h2>
         <section class="cont-libros">
             <?php

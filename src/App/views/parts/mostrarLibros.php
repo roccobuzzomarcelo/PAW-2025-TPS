@@ -1,5 +1,8 @@
 <?php foreach ($libros as $libro): ?>
-    <article class="libro-portada">
+    <article class="libro-portada"
+             data-titulo="<?= htmlspecialchars($libro->campos['titulo']) ?>"
+             data-autor="<?= htmlspecialchars($libro->campos['autor']) ?>"
+             data-precio="<?= (float)$libro->campos['precio'] ?>">
         <a href="/libro?id=<?= $libro->campos["id"] ?>">
             <figure>
                 <img src="<?= $libro->campos["ruta_a_imagen"] ?>" alt="portada-libro">

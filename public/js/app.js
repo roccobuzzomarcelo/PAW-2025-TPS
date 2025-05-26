@@ -24,6 +24,10 @@ class appPAW {
 			PAW.cargarScript("DragDropImagen", "js/components/drag-drop-imagen.js", () => {
 				new DragAndDropImagen("#dropzone", "#imagen", "#preview");
 			});
+
+			PAW.cargarScript("FiltrosLibros", "js/components/filtro-libros.js", () => {
+				new FiltrosLibros(); 
+			});
 		});
 	}
 }
