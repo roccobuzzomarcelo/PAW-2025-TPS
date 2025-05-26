@@ -138,8 +138,12 @@
             <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
             <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search"
                 placeholder="Buscar por Titulo o Autor...">
+
+            <!-- Historial de búsquedas -->
+            <ul id="historialBusquedas" class="historial-busquedas"></ul>
         </form>
     </search>
+
     <!-- CARRITO -->
     <a class="carrito" href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
     <!-- BARRA DE NAVEGACIÓN -->

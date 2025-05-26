@@ -1,21 +1,23 @@
 /* Contenedor principal de filtros */
 #filtrosLibros {
-    display: none;
-    background-color: #f5f1f9; /* Igual que nav-categoria */
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    width: fit-content;
-    font-family: 'Roboto', sans-serif;
+  display: none;
+  background-color: #f5f1f9;
+  /* Igual que nav-categoria */
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  width: fit-content;
+  font-family: 'Roboto', sans-serif;
 }
 
 #filtrosLibros.visible {
-  display: block; /* Visible cuando tenga esta clase */
+  display: block;
+  /* Visible cuando tenga esta clase */
 }
 
 /* Contenedor para los controles de filtro (inputs, selects) */
-#filtrosLibros > div {
+#filtrosLibros>div {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -38,19 +40,19 @@
 #filtrosLibros input[type="number"]:focus,
 #filtrosLibros select:focus {
   outline: none;
-    border-color: #7c42b7;
+  border-color: #7c42b7;
 }
 
 /* Botón de aplicar filtros */
 #filtrosLibros button#btnAplicarFiltro {
-    background-color: #642fa1 ;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.6rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #642fa1;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 /* Hover botón */
@@ -67,7 +69,7 @@
 
 /* Responsive */
 @media (max-width: 480px) {
-  #filtrosLibros > div {
+  #filtrosLibros>div {
     flex-direction: column;
     align-items: stretch;
   }

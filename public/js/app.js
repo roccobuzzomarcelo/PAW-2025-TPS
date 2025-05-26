@@ -26,7 +26,11 @@ class appPAW {
 			});
 
 			PAW.cargarScript("FiltrosLibros", "js/components/filtro-libros.js", () => {
-				new FiltrosLibros(); 
+				new FiltrosLibros();
+			});
+
+			PAW.cargarScript("HistorialBusquedas", "js/components/historial-busquedas.js", () => {
+				new HistorialBusquedas('ultimasBusquedas', 5);
 			});
 		});
 	}
