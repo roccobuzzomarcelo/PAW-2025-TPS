@@ -33,10 +33,27 @@ class ColeccionReservas extends Modelo
         return $coleccionReservas;
     }
 
-    public function getReservas($consulta = null){
-        if(is_null($consulta) || empty($consulta)){
+    public function getReservas($consulta = null)
+    {
+        if (empty($consulta)) {
             return $this->getAll();
         }
-        
+
+        $q = "%{$consulta}%";
+
+        $rows = $this->queryBuilder->select($this->table, [
+            'condiciones' => ['nombre LIKE :q OR email LIKE :q'],
+            'binds'      => [':q' => $q],
+        ]);
+
+        $coleccion = [];
+        foreach ($rows as $datos) {
+            $r = new Reserva();
+            $r->setQueryBuilder($this->queryBuilder);
+            $r->set($datos);
+            $coleccion[] = $r;
+        }
+        return $coleccion;
     }
+
 }

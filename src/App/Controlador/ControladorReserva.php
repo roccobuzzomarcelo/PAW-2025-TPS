@@ -19,7 +19,12 @@ class ControladorReserva extends Controlador
         }
         global $request;
         $valorConsulta = $request->get('consulta');
-        $consulta = isset($valorConsulta) ? trim($valorConsulta) : '';        
+        if (isset($valorConsulta)) {
+            $consulta = trim($valorConsulta);
+            $consulta = preg_replace('/[^\p{L}\p{N}\s]/u', '', $consulta);
+        } else {
+            $consulta = '';
+        }
         $reservas = $this->modeloInstancia->getReservas($consulta);
         $titulo = "Reservas - PawPrints";
         require $this->viewsDir . "ver-reservas.view.php";

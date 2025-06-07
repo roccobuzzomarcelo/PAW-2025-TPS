@@ -10,7 +10,10 @@ class ColeccionUsuarios extends Modelo
     public $table = 'usuarios';
 
     public function crear($datos)
-    {
+    {   
+        if (isset($datos['password'])) {
+            $datos['password'] = password_hash($datos['password'], PASSWORD_DEFAULT);
+        }
         return $this->queryBuilder->insert($this->table, $datos);
     }
 
@@ -18,7 +21,7 @@ class ColeccionUsuarios extends Modelo
     {
         $resultado = $this->queryBuilder->select($this->table, [
             "condiciones" => ["email = :email"],
-            "binds" => [":email" => $email]
+            "binds"      => [":email" => $email]
         ]);
 
         if (empty($resultado)) {
@@ -29,12 +32,13 @@ class ColeccionUsuarios extends Modelo
         $usuario->setQueryBuilder($this->queryBuilder);
         $usuario->set($resultado[0]);
 
-        if ($password === $usuario->campos['password']) {
+        if (password_verify($password, $usuario->campos['password'])) {
             return $usuario;
         }
 
         return null;
     }
+
 
     public function actualizar($id, $datos)
     {
