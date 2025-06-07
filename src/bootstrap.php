@@ -54,3 +54,4 @@ $router->get("/registro", "ControladorUsuario@registro");
 $router->post("/registro", "ControladorUsuario@procesarRegistro");
 $router->get("/reservar", "ControladorReserva@reservarLibro");
 $router->post("/reservar", "ControladorReserva@procesarReservarLibro");
+$router->get("/reservas", "ControladorReserva@reservas");

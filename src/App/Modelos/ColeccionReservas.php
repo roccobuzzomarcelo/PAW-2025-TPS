@@ -21,4 +21,22 @@ class ColeccionReservas extends Modelo
     public function crear($datos){
         return $this->queryBuilder->insert($this->table, $datos);
     }
+
+    public function getAll(){
+        $reservas = $this->queryBuilder->select($this->table);
+        $coleccionReservas = [];
+        foreach ($reservas as $reserva){
+            $nuevaReserva = new reserva;
+            $nuevaReserva->set($reserva);
+            $coleccionReservas[] = $nuevaReserva;
+        }
+        return $coleccionReservas;
+    }
+
+    public function getReservas($consulta = null){
+        if(is_null($consulta) || empty($consulta)){
+            return $this->getAll();
+        }
+        
+    }
 }

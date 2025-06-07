@@ -11,6 +11,20 @@ class ControladorReserva extends Controlador
 {
     public ?string $modelo = ColeccionReservas::class;
 
+    public function reservas(){
+        $rol = $_SESSION['usuario']['rol'] ?? null;
+        if($rol !== 'admin'){
+            echo "<script>alert('⚠️ No tienes permiso para acceder a esta página.'); window.location.href = '/';</script>";
+            return;
+        }
+        global $request;
+        $valorConsulta = $request->get('consulta');
+        $consulta = isset($valorConsulta) ? trim($valorConsulta) : '';        
+        $reservas = $this->modeloInstancia->getReservas($consulta);
+        $titulo = "Reservas - PawPrints";
+        require $this->viewsDir . "ver-reservas.view.php";
+    }
+
     public function reservarLibro()
     {
         if(!isset($_SESSION['usuario'])){
