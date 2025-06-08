@@ -5,7 +5,6 @@ namespace PAW\src\App\Modelos;
 use PAW\src\Core\Modelo;
 use PAW\src\App\Modelos\Reserva;
 use PAW\src\App\Modelos\Libro;
-use PAW\src\App\Modelos\Usuario;
 
 class ColeccionReservas extends Modelo
 {
@@ -35,16 +34,22 @@ class ColeccionReservas extends Modelo
 
     public function getReservas($consulta = null)
     {
-        if (empty($consulta)) {
-            return $this->getAll();
+        $parametros = [];
+        $condiciones = [];
+        $binds = [];
+
+        if (!empty($consulta)) {
+            $q = "%{$consulta}%";
+            $condiciones[] = 'nombre LIKE :q OR email LIKE :q OR libro_id LIKE :q OR usuario_id LIKE :q';
+            $binds[':q'] = $q;
         }
 
-        $q = "%{$consulta}%";
+        if (!empty($condiciones)) {
+            $parametros['condiciones'] = $condiciones;
+            $parametros['binds'] = $binds;
+        }
 
-        $rows = $this->queryBuilder->select($this->table, [
-            'condiciones' => ['nombre LIKE :q OR email LIKE :q'],
-            'binds'      => [':q' => $q],
-        ]);
+        $rows = $this->queryBuilder->select($this->table, $parametros);
 
         $coleccion = [];
         foreach ($rows as $datos) {
@@ -53,7 +58,9 @@ class ColeccionReservas extends Modelo
             $r->set($datos);
             $coleccion[] = $r;
         }
+
         return $coleccion;
     }
+
 
 }

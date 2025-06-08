@@ -76,7 +76,7 @@ class Reserva extends Modelo{
 
     public function setNumero(int $numero)
     {
-        if ($numero <= 0) {
+        if ($numero < 0) {
             throw new InvalidValueFormatException("El número de la dirección debe ser positivo.");
         }
         $this->campos['numero'] = $numero;
@@ -103,7 +103,7 @@ class Reserva extends Modelo{
         if (strlen($codigo_postal) > 10) {
             throw new InvalidValueFormatException("El código postal no puede tener más de 10 caracteres.");
         }
-        if (!preg_match('/^[A-Za-z0-9\s\-]+$/', $codigo_postal)) {
+        if (!preg_match('/^[A-Za-z0-9\s\-]+$/', $codigo_postal) && $codigo_postal != "") {
             throw new InvalidValueFormatException("El formato del código postal no es válido.");
         }
         $this->campos['codigo_postal'] = $codigo_postal;
@@ -111,10 +111,10 @@ class Reserva extends Modelo{
 
     public function setMetodo_entrega(string $envio_o_retiro)
     {
-        if (!in_array($envio_o_retiro, ['envio', 'retiro'])) {
-            throw new InvalidValueFormatException("El valor de 'envio_o_retiro' debe ser 'envio' o 'retiro'.");
+        if (!in_array($envio_o_retiro, ['envío', 'retira'])) {
+            throw new InvalidValueFormatException("El valor de 'envio_o_retiro' debe ser 'envío' o 'retira'.");
         }
-        $this->campos['envio_o_retiro'] = $envio_o_retiro;
+        $this->campos['metodo_entrega'] = $envio_o_retiro;
     }
 
     public function setCreated_at(string $created_at)
