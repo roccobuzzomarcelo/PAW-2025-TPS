@@ -32,6 +32,19 @@ class appPAW {
 			PAW.cargarScript("HistorialBusquedas", "js/components/historial-busquedas.js", () => {
 				new HistorialBusquedas('ultimasBusquedas', 5);
 			});
+
+			PAW.cargarScript("BuscarPorTitulo", "js/components/buscarPorTitulo.js", () => {
+				new BuscarPorTitulo({
+					form: "#formSubirLibro",
+					inputQuery: "#query",
+					titulo: "#titulo",
+					autor: "#autor",
+					descripcion: "#descripcion",
+					imagenInput: "#imagen",
+					preview: "#preview"
+				});
+				});
+
 		});
 	}
 }

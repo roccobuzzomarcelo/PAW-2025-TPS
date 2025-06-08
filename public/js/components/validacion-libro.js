@@ -11,6 +11,9 @@ class ValidacionLibro {
         });
         document.head.appendChild(css);
 
+        const hiddenUrl = this.form.querySelector('#ruta_a_imagen_api');
+
+
         this.campos = {
             titulo: {
                 input: this.form.titulo,
@@ -75,32 +78,36 @@ class ValidacionLibro {
                     return true;
                 }
             },
-            imagen: {
-                input: this.form.imagen,
-                error: this.form.querySelector('#error-imagen'),
-                validar: function () {
-                    if (this.input.files.length === 0) {
-                        this.error.textContent = 'Debe seleccionar una imagen.';
+                  imagen: {
+                    input: this.form.querySelector('#imagen'),
+                    hiddenUrl: hiddenUrl,
+                    error: this.form.querySelector('#error-imagen'),
+                    validar: function() {
+                    const hasFile = this.input.files.length > 0;
+                    const hasUrl  = this.hiddenUrl && this.hiddenUrl.value.trim() !== '';
+                    if (!hasFile && !hasUrl) {
+                        this.error.textContent = 'Debe subir un archivo o usar la portada de la API.';
                         this.input.classList.add('invalid');
                         return false;
                     }
-                    const file = this.input.files[0];
-                    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-                    if (!tiposPermitidos.includes(file.type)) {
-                        this.error.textContent = 'Formato de imagen no válido. Use JPG, PNG, GIF o WEBP.';
+                    if (hasFile) {
+                        const f = this.input.files[0];
+                        const tipos = ['image/jpeg','image/png','image/gif','image/webp'];
+                        if (!tipos.includes(f.type)) {
+                        this.error.textContent = 'Formato no válido. Use JPG/PNG/GIF/WEBP.';
                         this.input.classList.add('invalid');
                         return false;
-                    }
-                    const maxSizeMB = 5;
-                    if (file.size > maxSizeMB * 1024 * 1024) {
-                        this.error.textContent = `La imagen no debe superar los ${maxSizeMB} MB.`;
+                        }
+                        if (f.size > 5*1024*1024) {
+                        this.error.textContent = 'La imagen no debe superar los 5 MB.';
                         this.input.classList.add('invalid');
                         return false;
+                        }
                     }
                     this.error.textContent = '';
                     this.input.classList.remove('invalid');
                     return true;
-                }
+                    }
             }
         };
 
@@ -128,6 +135,9 @@ class ValidacionLibro {
                 this._validarTodo();
             });
         });
+
+        const hiddenUrl = this.form.querySelector('#ruta_a_imagen_api');
+        if (hiddenUrl) hiddenUrl.addEventListener('change', () => { this.campos.imagen.validar(); this._validarTodo(); });
 
         this.form.addEventListener('submit', e => {
             let todoValido = true;

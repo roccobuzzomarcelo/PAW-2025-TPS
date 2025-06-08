@@ -15,6 +15,12 @@
                 enctype="multipart/form-data">
                 <h3 class="subtitulo">Cargar nuevo libro</h3>
 
+                <!-- Campo de búsqueda por título para autocompletar -->
+                <label for="query">Buscar por título</label>
+                <input id="query" type="text" name="query" placeholder="Título del libro">
+                <button type="button" id="btnAutocompletar">Autocompletar</button>
+
+
                 <label for="titulo">Título*</label>
                 <input id="titulo" type="text" name="titulo" placeholder="Título del libro" required>
                 <span id="error-titulo" class="error-message" aria-live="polite"></span>
@@ -37,7 +43,7 @@
                     <p>Arrastrá la imagen aquí o hacé clic para seleccionar</p>
                     <img id="preview" src="" alt="Vista previa de portada" style="display: none; max-width: 100%; margin-top: 10px;">
                 </div>
-
+                <input type="hidden" name="ruta_a_imagen_api" id="ruta_a_imagen_api" value="">
                 <input id="imagen" type="file" name="imagen" accept="image/*" required>
                 <span id="error-imagen" class="error-message" aria-live="polite" ></span>
 

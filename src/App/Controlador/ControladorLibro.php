@@ -159,6 +159,7 @@ class ControladorLibro extends Controlador{
     public function procesarSubirLibro()
     {
         global $request;
+        $query = trim($request->get('query'));
         $carpetaImagenes = __DIR__ . '/../../../public/images/libros/';
 
         if (!file_exists($carpetaImagenes)) {
@@ -170,27 +171,52 @@ class ControladorLibro extends Controlador{
         $autor = trim($request->get("autor") ?? "");
         $descripcion = trim($request->get("descripcion") ?? "");
         $precio = trim($request->get("precio") ?? "");
-        $imagen = $_FILES["imagen"] ?? null;
+        $rutaApi = trim($request->get('ruta_a_imagen_api') ?? '');
+        $imagenFile = $_FILES['imagen'] ?? null;
 
-        if ($titulo === "" || $autor === "" || $descripcion === "" || $precio === "" || !$imagen) {
+        if ($titulo === "" || $autor === "" || $descripcion === "" || $precio === "" 
+            || (empty($rutaApi) && (!$imagenFile || $imagenFile['error'] === UPLOAD_ERR_NO_FILE))) {
             echo "<script>alert('⚠️ Faltan campos requeridos'); window.history.back();</script>";
             return;
         }
+
 
         if ($imagen["error"] !== UPLOAD_ERR_OK) {
             echo "<script>alert('⚠️ Error al subir la imagen'); window.history.back();</script>";
             return;
         }
 
-        // Guardar imagen
-        $nombreImagenSeguro = uniqid() . "_" . basename($imagen["name"]);
-        $rutaImagen = $carpetaImagenes . $nombreImagenSeguro;
-        $rutaRelativa = "/images/libros/" . $nombreImagenSeguro; // Usar ruta relativa web correcta
+        // Manejo de imagen
+        $imagenFile = $_FILES['imagen'] ?? null;
+        $rutaRelativa = '';
+        if ($imagenFile && $imagenFile['error'] === UPLOAD_ERR_OK) {
+            $safeName = uniqid() . '_' . basename($imagenFile['name']);
+            $dest = $carpetaImagenes . $safeName;
+            if (move_uploaded_file($imagenFile['tmp_name'], $dest)) {
+                $rutaRelativa = '/images/libros/' . $safeName;
+            }
+        }
+        elseif (!empty($rutaApi)) {
+            $rutaRelativa = $rutaApi;
+        }
 
-        if (!move_uploaded_file($imagen["tmp_name"], $rutaImagen)) {
-            echo "<script>alert('⚠️ Error al guardar la imagen'); window.history.back();</script>";
+        // Si no hay imagen, buscar cover en API OpenLibrary
+        if (!$rutaRelativa && $query) {
+            $url = 'https://openlibrary.org/search.json?title=' . urlencode($query) . '&limit=1';
+            $resp = @file_get_contents($url);
+            if ($resp) {
+                $data = json_decode($resp, true);
+                if (!empty($data['docs'][0]['cover_i'])) {
+                    $rutaRelativa = 'https://covers.openlibrary.org/b/id/' . $data['docs'][0]['cover_i'] . '-L.jpg';
+                }
+            }
+        }
+
+        if (empty($rutaRelativa)) {
+            echo "<script>alert('⚠️ No se pudo obtener la portada del libro'); window.history.back();</script>";
             return;
         }
+
         $datos = [
             'titulo' => $titulo,
             'autor' => $autor,
