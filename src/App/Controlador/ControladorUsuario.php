@@ -110,8 +110,8 @@ class ControladorUsuario extends Controlador
     {
         global $request;
         // Recoger los datos del formulario
-        $email = $request->get('inputEmail');
-        $password = $request->get('inputPassword');
+        $email = trim($request->get('inputEmail'));
+        $password = trim($request->get('inputPassword'));
         // Validación mínima de formato
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>alert('⚠️ Email no valido'); window.history.back();</script>";
@@ -130,6 +130,9 @@ class ControladorUsuario extends Controlador
         if (empty($usuario)) {
             echo "<script>alert('⚠️ Email o contraseña incorrectos'); window.history.back();</script>";
             return;
+        }
+        if (!empty($request->get('recuerdame'))) {
+            setcookie("email", $email, time() + (86400 * 30), "/"); // guarda por 30 días
         }
         // Guardar datos de sesión
         $_SESSION['usuario'] = $usuario->campos;
@@ -196,6 +199,12 @@ class ControladorUsuario extends Controlador
             echo "<script>alert('⚠️ El Email ya esta registrado'); window.history.back();</script>";
             return;
         }
+
+        if (empty($request->get('inputAceptoTerminos'))) {
+            echo "<script>alert('⚠️ Debes aceptar los términos y condiciones'); window.history.back();</script>";
+            return;
+        }
+
 
         // Crear un nuevo usuario
         if(!$this->modeloInstancia->crear($datos)){

@@ -14,7 +14,7 @@
                 <h3 class="subtitulo">Registrarse</h3>
 
                 <label for="inputNombre">Nombre</label>
-                <input id="inputNombre" type="nombre" name="inputNombre" placeholder="Nombre" required>
+                <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
 
                 <label for="inputEmail">Email</label>
                 <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>

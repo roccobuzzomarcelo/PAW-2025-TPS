@@ -11,8 +11,8 @@
                 <h2 class="subtitulo">Iniciar Sesión</h2>
                 <a class="register-link" href="/registro">Registrarse</a>
                 <label for="inputEmail">Email</label>
-                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
-
+                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required
+                value="<?= htmlspecialchars($_COOKIE['email'] ?? '') ?>">
                 <label for="inputPassword">Contraseña</label>
                 <input id="inputPassword" type="password" name="inputPassword" placeholder="Contraseña" required>
                 <label for="inputRecuerdame">

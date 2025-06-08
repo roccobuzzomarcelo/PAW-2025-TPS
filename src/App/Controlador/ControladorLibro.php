@@ -37,8 +37,12 @@ class ControladorLibro extends Controlador{
         $libPorPag = $request->get('libros_por_pagina');
         $librosPorPagina = isset($libPorPag) ? (int)$libPorPag : 10;
         $valorConsulta = $request->get('consulta');
-        $consulta = isset($valorConsulta) ? trim($valorConsulta) : '';
-
+        if (isset($valorConsulta)) {
+            $consulta = trim($valorConsulta);
+            $consulta = preg_replace('/[^\p{L}\p{N}\s]/u', '', $consulta);
+        } else {
+            $consulta = '';
+        }
         // Obtener resultados paginados
         $resultado = $this->modeloInstancia->getLibrosPaginados($consulta, null, $pagina, $librosPorPagina);
 
@@ -127,12 +131,11 @@ class ControladorLibro extends Controlador{
     public function get(){
         global $request;
         $htmlClass = "libro-pages";
-        $id = $request->get('id');
-        $libro = $this->modeloInstancia->get([$id]);
-        if (empty($libro)) {
-            $this->libroNoEncontrado();
-            return;
+        $id = filter_var($request->get('id'), FILTER_VALIDATE_INT, ['options'=>['min_range'=>1]]);
+        if (!$id) {
+            return $this->libroNoEncontrado();
         }
+        $libro = $this->modeloInstancia->get([$id]);
         $mismoAutor = $this->modeloInstancia->getLibrosPaginados($libro->campos['autor']);
         $mismoAutorLibros = $mismoAutor['libros'];
         $titulo = htmlspecialchars($libro->campos['titulo']);
