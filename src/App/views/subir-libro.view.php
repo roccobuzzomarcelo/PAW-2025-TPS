@@ -44,7 +44,7 @@
                     <img id="preview" src="" alt="Vista previa de portada" style="display: none; max-width: 100%; margin-top: 10px;">
                 </div>
                 <input type="hidden" name="ruta_a_imagen_api" id="ruta_a_imagen_api" value="">
-                <input id="imagen" type="file" name="imagen" accept="image/*" required>
+                <input id="imagen" type="file" name="imagen" accept="image/*">
                 <span id="error-imagen" class="error-message" aria-live="polite" ></span>
 
                 <input type="submit" name="submit" value="Subir libro" disabled>

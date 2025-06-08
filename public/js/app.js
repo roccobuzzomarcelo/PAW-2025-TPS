@@ -41,7 +41,9 @@ class appPAW {
 					autor: "#autor",
 					descripcion: "#descripcion",
 					imagenInput: "#imagen",
-					preview: "#preview"
+					preview: "#preview",
+					hiddenUrl: '#ruta_a_imagen_api',
+					btnAutocompletar:  '#btnAutocompletar'
 				});
 				});
 

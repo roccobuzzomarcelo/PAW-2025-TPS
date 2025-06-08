@@ -181,7 +181,11 @@ class ControladorLibro extends Controlador{
         }
 
 
-        if ($imagen["error"] !== UPLOAD_ERR_OK) {
+        if (
+            $imagenFile &&
+            $imagenFile['error'] !== UPLOAD_ERR_OK &&
+            $imagenFile['error'] !== UPLOAD_ERR_NO_FILE
+        ) {
             echo "<script>alert('⚠️ Error al subir la imagen'); window.history.back();</script>";
             return;
         }
