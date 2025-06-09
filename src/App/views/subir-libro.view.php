@@ -17,7 +17,7 @@
 
                 <!-- Campo de búsqueda por título para autocompletar -->
                 <label for="query">Buscar por título</label>
-                <input id="query" type="text" name="query" placeholder="Título del libro">
+                <input id="query" type="text" name="query" placeholder="Buscar por título">
                 <button type="button" id="btnAutocompletar">Autocompletar</button>
 
                 <label for="titulo">Título*</label>
