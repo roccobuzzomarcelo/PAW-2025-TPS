@@ -1,11 +1,13 @@
 <?php include 'parts/head.php'; ?>
+
 <body class="admin-reservas">
     <?php include 'parts/header.php'; ?>
     <main class="contenedor">
         <h1 class="subtitulo">Listado de reservas</h1>
 
         <form method="get" action="/reservas" class="form-busqueda">
-            <input type="text" name="consulta" value="<?= htmlspecialchars($_GET['consulta'] ?? '') ?>" placeholder="Buscar por nombre, email o ID de libro">
+            <input type="text" name="consulta" value="<?= htmlspecialchars($_GET['consulta'] ?? '') ?>"
+                placeholder="Buscar por nombre, email o ID de libro">
             <button type="submit">Buscar</button>
         </form>
 
@@ -32,8 +34,10 @@
                             <td><?= htmlspecialchars($reserva->campos['nombre']) ?></td>
                             <td><?= htmlspecialchars($reserva->campos['email']) ?></td>
                             <td>
-                                <?= htmlspecialchars($reserva->campos['calle']) ?> <?= htmlspecialchars($reserva->campos['numero']) ?>,
-                                <?= htmlspecialchars($reserva->campos['ciudad']) ?>, <?= htmlspecialchars($reserva->campos['provincia']) ?>
+                                <?= htmlspecialchars($reserva->campos['calle']) ?>
+                                <?= htmlspecialchars($reserva->campos['numero']) ?>,
+                                <?= htmlspecialchars($reserva->campos['ciudad']) ?>,
+                                <?= htmlspecialchars($reserva->campos['provincia']) ?>
                                 (<?= htmlspecialchars($reserva->campos['codigo_postal']) ?>)
                             </td>
                             <td><?= htmlspecialchars($reserva->campos['metodo_entrega']) ?></td>
@@ -46,4 +50,5 @@
     </main>
     <?php include 'parts/footer.php'; ?>
 </body>
+
 </html>

@@ -1,14 +1,29 @@
 <?php include 'parts/head.php' ?>
+
 <body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include 'parts/header.php'; ?>
-    <main>
+    <main itemscope itemtype="https://schema.org/WebPage">
+        <meta itemprop="name" content="¿Quíenes somos?" />
         <!-- BREADCRUMB -->
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">F.A.Q</a></li>
-            <li class="breadcrumb-item" aria-current="page">¿Quienes somos?</li>
+        <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">F.A.Q</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <span itemprop="name">¿Quienes somos?</span>
+                <meta itemprop="position" content="3" />
+            </li>
         </ul>
-
         <section class="quienes-somos">
             <h2 class="subtitulo">
                 ¿Quíenes somos?
@@ -27,6 +42,6 @@
         </section>
     </main>
     <?php include 'parts/footer.php'; ?>
-    </body>
+</body>
 
-    </html>
+</html>

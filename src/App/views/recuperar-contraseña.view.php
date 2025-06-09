@@ -3,18 +3,36 @@
 <body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include "parts/header.php"; ?>
     <main>
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
-            <li class="breadcrumb-item" aria-current="page">Recuperar contraseña</li>
+        <!-- BREADCRUMB -->
+        <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="./mi-cuenta" itemprop="item">
+                    <span itemprop="name">Mi Cuenta</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Recuperar contraseña</span>
+                <meta itemprop="position" content="3" />
+            </li>
         </ul>
         <section class="iniciar-sesion">
-            <form class="login-form" action="/recuperar-contraseña" method="post">
+            <form class="login-form" action="/recuperar-contraseña" method="post" itemscope
+                itemtype="https://schema.org/SendAction">
+                <meta itemprop="target" content="https://tusitio.com/recuperar-contraseña" />
                 <h2 class="subtitulo">¿Perdiste tu contraseña? </h2>
                 <p>Por favor, introduce tu correo electrónico. Recibirás un enlace para crear una
                     contraseña nueva por correo electrónico.</p>
                 <label for="inputEmail">Email</label>
-                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
-                <button type="submit" value="Enviar">Enviar</button>
+                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required itemprop="recipient">
+                <button type="submit" value="Enviar" itemprop="actionStatus">Enviar</button>
             </form>
         </section>
     </main>

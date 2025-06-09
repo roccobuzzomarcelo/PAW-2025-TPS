@@ -3,21 +3,40 @@
 <body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
     <?php include "parts/header.php"; ?>
     <main>
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
-            <li class="breadcrumb-item">Mi Cuenta</li>
-            <li class="breadcrumb-item" aria-current="page">Registro</li>
+        <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="./mi-cuenta" itemprop="item">
+                    <span itemprop="name">Mi Cuenta</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Registro</span>
+                <meta itemprop="position" content="3" />
+            </li>
         </ul>
 
         <section class="registrarse">
-            <form class="registro-form" action="/registro" method="post">
+            <form class="registro-form" action="/registro" method="post" itemscope
+                itemtype="https://schema.org/RegisterAction">
+                <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus" />
                 <h3 class="subtitulo">Registrarse</h3>
 
-                <label for="inputNombre">Nombre</label>
-                <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required>
+                <section itemprop="agent" itemscope itemtype="https://schema.org/Person">
+                    <label for="inputNombre">Nombre</label>
+                    <input id="inputNombre" type="text" name="inputNombre" placeholder="Nombre" required
+                        itemprop="name">
 
-                <label for="inputEmail">Email</label>
-                <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required>
+                    <label for="inputEmail">Email</label>
+                    <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required itemprop="email">
+                </section>
 
                 <label for="inputPassword">Contraseña</label>
                 <input id="inputPassword" type="password" name="inputPassword" placeholder="Contraseña" required>
@@ -36,7 +55,6 @@
                 <p>¿Ya tienes cuenta creada?</p>
                 <a class="login-link" href="/mi-cuenta">Iniciar Sesión</a>
             </form>
-
         </section>
     </main>
     <?php include "parts/footer.php"; ?>

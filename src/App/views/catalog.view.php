@@ -4,9 +4,18 @@
     <?php include 'parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
-            <li class="breadcrumb-item" aria-current="page">Catálogo</li>
+        <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Catálogo</span>
+                <meta itemprop="position" content="2" />
+            </li>
         </ul>
         <?php if ($permiso): ?>
             <a href="/subir-libro" class="btn-descargar">Subir nuevo libro</a>
@@ -37,6 +46,13 @@
                 <?php endif; ?>
                 <input type="hidden" name="pagina" value="<?= $pagina ?>">
             </form>
+
+            <span itemprop="potentialAction" itemscope itemtype="https://schema.org/DownloadAction">
+                <meta itemprop="target"
+                    content="https://tusitio.com/descargar_catalogo?pagina=<?= $pagina ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= urlencode($consulta) ?>" />
+                <meta itemprop="name" content="Descargar catálogo de libros" />
+            </span>
+
             <a href="/descargar_catalogo?pagina=<?= $pagina ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= urlencode($consulta) ?>"
                 class="btn-descargar">
                 Descargar Catalogo
@@ -63,10 +79,9 @@
             </div>
         </section>
         <h2 class="subtitulo">Libros Disponibles</h2>
-        <section class="cont-libros">
-            <?php
-            include "parts/mostrarLibros.php";
-            ?>
+        <section class="cont-libros" itemscope itemtype="https://schema.org/ItemList">
+            <meta itemprop="name" content="Catálogo de libros disponibles" />
+            <?php include "parts/mostrarLibros.php"; ?>
         </section>
         <!-- Paginación -->
         <nav class="paginacion">
