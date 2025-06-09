@@ -20,7 +20,6 @@
                 <input id="query" type="text" name="query" placeholder="Título del libro">
                 <button type="button" id="btnAutocompletar">Autocompletar</button>
 
-
                 <label for="titulo">Título*</label>
                 <input id="titulo" type="text" name="titulo" placeholder="Título del libro" required>
                 <span id="error-titulo" class="error-message" aria-live="polite"></span>

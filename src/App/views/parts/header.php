@@ -132,27 +132,30 @@
         </a>
     </h1>
     <!-- BUSCADOR -->
-    <search>
-        <form class="buscador" action="/catalogo" method="GET">
+    <search itemscope itemtype="https://schema.org/WebSite">
+        <form class="buscador" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"
+            action="/catalogo" method="GET">
+            <meta itemprop="target" content="/catalogo?consulta={consulta}" />
             <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
             <label class="buscador-lbl" for="buscador-de-libros">Buscar libros</label>
             <input class="buscador-input" id="buscador-de-libros" name="consulta" type="search"
-                placeholder="Buscar por Titulo o Autor...">
+                placeholder="Buscar por Titulo o Autor..." itemprop="query-input" required>
 
             <!-- Historial de búsquedas -->
             <ul id="historialBusquedas" class="historial-busquedas"></ul>
         </form>
     </search>
 
+
     <!-- CARRITO -->
     <a class="carrito" href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a>
     <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="nav-bar">
+    <nav class="nav-bar" itemscope itemtype="https://schema.org/SiteNavigationElement">
         <section class="PAW-Links">
             <ul>
                 <?php foreach ($this->menu as $item): ?>
-                    <li>
-                        <a href="<?= $item["href"] ?>"> <?= $item["name"] ?></a>
+                    <li itemprop="name">
+                        <a itemprop="url" href="<?= $item["href"] ?>"> <?= $item["name"] ?></a>
                     </li>
                 <?php endforeach; ?>
             </ul>

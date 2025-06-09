@@ -4,29 +4,52 @@
     <?php include 'parts/header.php'; ?>
     <main>
         <!-- BREADCRUMB -->
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">Home</a></li>
-            <li class="breadcrumb-item"><a class="breadcrumb-link" href="../">F.A.Q</a></li>
-            <li class="breadcrumb-item" aria-current="page">Locales</li>
+        <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">F.A.Q</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Locales</span>
+                <meta itemprop="position" content="3" />
+            </li>
         </ul>
 
-        <section>
-            <h2 class=" subtitulo">NUESTROS LOCALES</h2>
+        <section itemscope itemtype="https://schema.org/BookStore">
+            <h2 class="subtitulo">NUESTROS LOCALES</h2>
             <ul class="lista-locales">
-                <li class="locales">
-                    <h3>Luján</h3>
-                    <p>Gral. las Heras 572</p>
-                    <a class="link-locales" href="https://www.google.com/maps/">¿Cómo llegar?</a>
+                <li class="locales" itemscope itemtype="https://schema.org/BookStore">
+                    <h3 itemprop="name">Luján</h3>
+                    <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="streetAddress">Gral. las Heras 572</span>
+                    </p>
+                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank"
+                        rel="noopener noreferrer">¿Cómo llegar?</a>
                 </li>
-                <li class="locales">
-                    <h3>Chivilcoy</h3>
-                    <p>Lavalle 170</p>
-                    <a class="link-locales" href="https://www.google.com/maps/">¿Cómo llegar?</a>
+                <li class="locales" itemscope itemtype="https://schema.org/BookStore">
+                    <h3 itemprop="name">Chivilcoy</h3>
+                    <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="streetAddress">Lavalle 170</span>
+                    </p>
+                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank"
+                        rel="noopener noreferrer">¿Cómo llegar?</a>
                 </li>
-                <li class="locales">
-                    <h3>Recoleta</h3>
-                    <p>Vicente López 1919</p>
-                    <a class="link-locales" href="https://www.google.com/maps/">¿Cómo llegar?</a>
+                <li class="locales" itemscope itemtype="https://schema.org/BookStore">
+                    <h3 itemprop="name">Recoleta</h3>
+                    <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <span itemprop="streetAddress">Vicente López 1919</span>
+                    </p>
+                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank"
+                        rel="noopener noreferrer">¿Cómo llegar?</a>
                 </li>
             </ul>
         </section>
