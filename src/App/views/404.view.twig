@@ -1,10 +1,10 @@
-<?php
-http_response_code(400);
-include "parts/head.php";
-?>
+{% set htmlClass = htmlClass ?? 'index' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include "parts/header.php"; ?>
+{% include 'parts/head.twig' %}
+
+<body class="{{ htmlClass|e }}">
+    {% include 'parts/header.twig' %}
+
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -12,13 +12,14 @@ include "parts/head.php";
                 itemtype="https://schema.org/ListItem">
                 <span itemprop="name">No encontrada</span>
                 <meta itemprop="position" content="1" />
+            </li>
         </ul>
 
         <h1 class="error-titulo">¡Página no encontrada!</h1>
         <p class="error-descripcion">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
         <a href="/" class="boton-volver">Volver al inicio</a>
     </main>
-    <?php include 'parts/footer.php'; ?>
-</body>
 
+    {% include 'parts/footer.twig' %}
+</body>
 </html>

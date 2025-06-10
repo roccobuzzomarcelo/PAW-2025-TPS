@@ -1,7 +1,7 @@
-<?php include "parts/head.php"; ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include "parts/header.php"; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
     <main role="main" aria-label="Editar perfil de usuario">
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -26,15 +26,13 @@
         <h1>Editar Mis Datos</h1>
         <section class="registrarse">
             <form method="POST" action="/editar-usuario" class="registro-form">
-
                 <label for="inputNombre">Nombre</label>
-                <input id="inputNombre" type="nombre" name="inputNombre"
-                    value="<?= htmlspecialchars($datos['nombre']) ?>" required>
+                <input id="inputNombre" type="text" name="inputNombre"
+                    value="{{ datos.nombre|e }}" required>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="<?= htmlspecialchars($datos['email']) ?>" required>
+                <input type="email" id="email" name="email" value="{{ datos.email|e }}" required>
 
-                <!-- Podés permitir cambiar contraseña -->
                 <label for="password">Nueva Contraseña (opcional):</label>
                 <input type="password" id="password" name="password" placeholder="Nueva Contraseña">
 
@@ -47,7 +45,7 @@
         </section>
         <a href="/mi-cuenta" class="btn-volver">Volver a Mi Cuenta</a>
     </main>
-    <?php include 'parts/footer.php'; ?>
+    {% include 'parts/footer.twig' %}
 </body>
 
 </html>

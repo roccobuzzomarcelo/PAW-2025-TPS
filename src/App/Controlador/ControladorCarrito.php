@@ -16,11 +16,20 @@ class ControladorCarrito extends Controlador{
             echo "<script>alert('⚠️ Debes iniciar sesion para acceder al carrito'); window.location.href = '/mi-cuenta'</script>";
         }
         $usuario_id = $_SESSION['usuario']["id"];
+        $subtotal = 0;
         $libros = $this->modeloInstancia->getItems($usuario_id);
-
-        $titulo = 'PAWPrints - Carrito de compras';
-        $htmlClass = "carrito-pages";
-        require $this->viewsDir . 'carrito.view.php';
+        foreach ($libros as $libro) {
+            $subtotal += $libro->campos['precio'];
+        }
+        $subtotalFormateado = number_format($subtotal, 0, ',', '.');
+        global $twig;
+        echo $twig->render('carrito.view.twig', [
+            "titulo" => "PAWPrints - Carrito de compras",
+            "menu" => $this->menu,
+            "libros" => $libros,
+            "htmlClass" => "carrito-pages",
+            "subtotalFormateado" => $subtotalFormateado
+        ]);
     }
 
     public function agregarCarrito()

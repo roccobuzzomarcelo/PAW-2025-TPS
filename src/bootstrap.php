@@ -26,6 +26,14 @@ $whoops->register();
 
 $request = new Request;
 
+$loader = new Twig\Loader\FilesystemLoader([
+    __DIR__ . "/App/views",
+    __DIR__ . "/../../../public/images" => "images",
+]);
+$twig = new Twig\Environment($loader, [
+    "cache" => false,
+]);
+
 $router = new Router([$config]);
 $router->setLogger($log);
 $router->get("/", "ControladorLibro@index");

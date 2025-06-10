@@ -1,7 +1,7 @@
-<?php include "parts/head.php" ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'subir-libro') ?>">
-    <?php include "parts/header.php"; ?>
+<body class="{{ htmlClass|default('subir-libro')|e }}">
+    {% include 'parts/header.twig' %}
 
     <main>
         <ul class="breadcrumb">
@@ -11,11 +11,9 @@
         </ul>
 
         <section class="subir-libro">
-            <form id="formSubirLibro" class="subir-libro-form" action="/subir-libro" method="post"
-                enctype="multipart/form-data">
+            <form id="formSubirLibro" class="subir-libro-form" action="/subir-libro" method="post" enctype="multipart/form-data">
                 <h3 class="subtitulo">Cargar nuevo libro</h3>
 
-                <!-- Campo de búsqueda por título para autocompletar -->
                 <label for="query">Buscar por título</label>
                 <input id="query" type="text" name="query" placeholder="Buscar por título">
                 <button type="button" id="btnAutocompletar">Autocompletar</button>
@@ -44,14 +42,13 @@
                 </div>
                 <input type="hidden" name="ruta_a_imagen_api" id="ruta_a_imagen_api" value="">
                 <input id="imagen" type="file" name="imagen" accept="image/*">
-                <span id="error-imagen" class="error-message" aria-live="polite" ></span>
+                <span id="error-imagen" class="error-message" aria-live="polite"></span>
 
                 <input type="submit" name="submit" value="Subir libro" disabled>
             </form>
         </section>
     </main>
 
-    <?php include "parts/footer.php"; ?>
+    {% include 'parts/footer.twig' %}
 </body>
-
 </html>

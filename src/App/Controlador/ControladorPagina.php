@@ -8,22 +8,31 @@ class ControladorPagina extends Controlador
 {
     public function comoComprar()
     {
-        $titulo = "PAWPrints - Cómo comprar";
-        $htmlClass = "preguntas-pages";
-        require $this->viewsDir . 'como-comprar.view.php';
+        global $twig;
+        echo $twig->render('como-comprar.view.twig', [
+            "titulo" => "PAWPrints - Cómo comprar",
+            "menu" => $this->menu,
+            "htmlClass" => "preguntas-pages",
+        ]);
     }
 
     public function quienesSomos()
     {
-        $titulo = 'PAWPrints - Quiénes somos';
-        $htmlClass = "preguntas-pages";
-        require $this->viewsDir . 'quienes-somos.view.php';
+        global $twig;
+        echo $twig->render('quienes-somos.view.twig', [
+            "titulo" => "PAWPrints - Quiénes somos",
+            "menu" => $this->menu,
+            "htmlClass" => "preguntas-pages",
+        ]);
     }
 
     public function locales()
     {
-        $titulo = 'PAWPrints - Locales';
-        $htmlClass = "preguntas-pages";
-        require $this->viewsDir . 'locales.view.php';
+        global $twig;
+        echo $twig->render('locales.view.twig', [
+            "titulo" => "PAWPrints - Locales",
+            "menu" => $this->menu,
+            "htmlClass" => "preguntas-pages",
+        ]);
     }
 }

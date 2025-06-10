@@ -1,7 +1,7 @@
-<?php include "parts/head.php"; ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include "parts/header.php"; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
     <main>
         <!-- BREADCRUMB -->
 
@@ -21,11 +21,12 @@
         <h2>Mi Cuenta</h2>
 
         <section class="datos-usuario" itemscope itemtype="https://schema.org/Person">
-            <p><strong>Nombre:</strong> <span itemprop="name"><?= htmlspecialchars($datos['nombre']) ?></span></p>
-            <p><strong>Email:</strong> <a href="mailto:<?= htmlspecialchars($datos['email']) ?>"
-                    itemprop="email"><?= htmlspecialchars($datos['email']) ?></a></p>
-            <p><strong>Rol:</strong> <span><?= htmlspecialchars($datos['rol']) ?></span></p>
-            <p><strong>Estado:</strong> <span><?= $datos['activo'] ? 'Activo' : 'Inactivo' ?></span></p>
+            <p><strong>Nombre:</strong> <span itemprop="name">{{ datos.nombre|e }}</span></p>
+            <p><strong>Email:</strong> 
+                <a href="mailto:{{ datos.email|e }}" itemprop="email">{{ datos.email|e }}</a>
+            </p>
+            <p><strong>Rol:</strong> <span>{{ datos.rol|e }}</span></p>
+            <p><strong>Estado:</strong> <span>{{ datos.activo ? 'Activo' : 'Inactivo' }}</span></p>
         </section>
 
         <nav class="acciones-cuenta">
@@ -33,7 +34,7 @@
             <a href="/logout" class="btn btn-logout">Cerrar sesión</a>
         </nav>
     </main>
-    <?php include 'parts/footer.php'; ?>
+    {% include 'parts/footer.twig' %}
 </body>
 
 </html>

@@ -153,12 +153,13 @@
     <nav class="nav-bar" itemscope itemtype="https://schema.org/SiteNavigationElement">
         <section class="PAW-Links">
             <ul>
-                <?php foreach ($this->menu as $item): ?>
+                {% for item in menu %}
                     <li itemprop="name">
-                        <a itemprop="url" href="<?= $item["href"] ?>"> <?= $item["name"] ?></a>
+                        <a itemprop="url" href="{{ item.href }}"> {{ item.name }}</a>
                     </li>
-                <?php endforeach; ?>
+                {% endfor %}
             </ul>
         </section>
     </nav>
+
 </header>

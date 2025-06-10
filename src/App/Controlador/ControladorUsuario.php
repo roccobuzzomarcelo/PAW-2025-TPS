@@ -17,16 +17,23 @@ class ControladorUsuario extends Controlador
             $this->cuenta();
             return;
         }
-        $titulo = 'PAWPrints - Login';
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'login.view.php';
+        global $twig;
+        echo $twig->render('login.view.twig', [
+            "titulo" => "PAWPrints - Login",
+            "menu" => $this->menu,
+            "htmlClass" => "mi-cuenta-pages",
+        ]);
     }
 
     public function cuenta(){
-        $datos = $_SESSION['usuario'];
-        $titulo = 'PAWPrints - Mi cuenta';
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'mi-cuenta.view.php';
+        global $twig;
+        echo $twig->render('mi-cuenta.view.twig', [
+            "titulo" => "PAWPrints - Mi cuenta",
+            "menu" => $this->menu,
+            "htmlClass" => "mi-cuenta-pages",
+            "datos" => $_SESSION['usuario'],
+            "cookies" => $_COOKIE,
+        ]);
     }
 
     public function logout(){
@@ -39,10 +46,13 @@ class ControladorUsuario extends Controlador
     }
 
     public function editarUsuario(){
-        $datos = $_SESSION['usuario'];
-        $titulo = 'PAWPrints - Editar usuario';
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'editar-usuario.view.php';
+        global $twig;
+        echo $twig->render('editar-usuario.view.twig', [
+            "titulo" => "PAWPrints - Editar usuario",
+            "menu" => $this->menu,
+            "htmlClass" => "mi-cuenta-pages",
+            "datos" => $_SESSION['usuario'],
+        ]);
     }
 
     public function procesarEditarUsuario()
@@ -147,9 +157,12 @@ class ControladorUsuario extends Controlador
 
     public function registro()
     {
-        $titulo = 'PAWPrints - Registro';
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'registro.view.php';
+        global $twig;
+        echo $twig->render('registro.view.twig', [
+            "titulo" => "PAWPrints - Registro",
+            "menu" => $this->menu,
+            "htmlClass" => "mi-cuenta-pages",
+        ]);
     }
 
     public function procesarRegistro()
@@ -220,9 +233,12 @@ class ControladorUsuario extends Controlador
 
     public function recuperarContraseña()
     {
-        $titulo = 'PAWPrints - Recuperar contraseña';
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'recuperar-contraseña.view.php';
+        global $twig;
+        echo $twig->render('recuperar-contraseña.view.twig', [
+            "titulo" => "PAWPrints - Recuperar contraseña",
+            "menu" => $this->menu,
+            "htmlClass" => "mi-cuenta-pages",
+        ]);
     }
 
     public function procesarRecuperarContraseña()

@@ -1,7 +1,8 @@
-<?php include 'parts/head.php' ?>
+{# parts/head.php #}
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include 'parts/header.php'; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -19,19 +20,15 @@
             </li>
             <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
                 itemtype="https://schema.org/ListItem">
-                <span itemprop="name">Recomendados</span>
+                <span itemprop="name">Más Vendidos</span>
                 <meta itemprop="position" content="3" />
             </li>
         </ul>
-        <h2 class="subtitulo">Recomendados</h2>
+        <h2 class="subtitulo">Más Vendidos</h2>
         <section class="cont-libros" itemscope itemtype="https://schema.org/ItemList">
-            <?php
-            include 'parts/mostrarLibros.php';
-            ?>
+            {% include 'parts/mostrarLibros.twig' %}
         </section>
     </main>
-    <?php include 'parts/footer.php'; ?>
-
+    {% include 'parts/footer.twig' %}
 </body>
-
 </html>

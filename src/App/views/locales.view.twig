@@ -1,7 +1,8 @@
-<?php include 'parts/head.php' ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include 'parts/header.php'; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
+
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -17,8 +18,7 @@
                 </a>
                 <meta itemprop="position" content="2" />
             </li>
-            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
-                itemtype="https://schema.org/ListItem">
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <span itemprop="name">Locales</span>
                 <meta itemprop="position" content="3" />
             </li>
@@ -32,32 +32,26 @@
                     <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                         <span itemprop="streetAddress">Gral. las Heras 572</span>
                     </p>
-                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank"
-                        rel="noopener noreferrer">¿Cómo llegar?</a>
+                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank" rel="noopener noreferrer">¿Cómo llegar?</a>
                 </li>
                 <li class="locales" itemscope itemtype="https://schema.org/BookStore">
                     <h3 itemprop="name">Chivilcoy</h3>
                     <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                         <span itemprop="streetAddress">Lavalle 170</span>
                     </p>
-                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank"
-                        rel="noopener noreferrer">¿Cómo llegar?</a>
+                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank" rel="noopener noreferrer">¿Cómo llegar?</a>
                 </li>
                 <li class="locales" itemscope itemtype="https://schema.org/BookStore">
                     <h3 itemprop="name">Recoleta</h3>
                     <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                         <span itemprop="streetAddress">Vicente López 1919</span>
                     </p>
-                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank"
-                        rel="noopener noreferrer">¿Cómo llegar?</a>
+                    <a class="link-locales" href="https://www.google.com/maps/" itemprop="hasMap" target="_blank" rel="noopener noreferrer">¿Cómo llegar?</a>
                 </li>
             </ul>
         </section>
     </main>
 
-
-    <?php include 'parts/footer.php'; ?>
-
+    {% include 'parts/footer.twig' %}
 </body>
-
 </html>

@@ -1,12 +1,13 @@
-<?php include 'parts/head.php' ?>
+{% include 'parts/head.twig' %}
 
-<?php if (!isset($libro) || !is_object($libro) || !isset($libro->campos)): ?>
+{% if libro is not defined or libro is not object or libro.campos is not defined %}
     <p>Error: libro no encontrado.</p>
-    <?php return; ?>
-<?php endif; ?>
+    {% return %}
+{% endif %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include 'parts/header.php'; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
+
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -22,8 +23,7 @@
                 </a>
                 <meta itemprop="position" content="2" />
             </li>
-            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
-                itemtype="https://schema.org/ListItem">
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <span itemprop="name">Reserva</span>
                 <meta itemprop="position" content="3" />
             </li>
@@ -32,37 +32,34 @@
         <h1 class="subtitulo">Reserva de libro</h1>
 
         <section class="detalle-libro" itemscope itemtype="https://schema.org/Book">
-            <meta itemprop="isbn" content="<?= htmlspecialchars($libro->campos['isbn'] ?? '') ?>" />
+            <meta itemprop="isbn" content="{{ libro.campos.isbn|default('')|e }}" />
             <figure>
-                <img class="img-detalle" src="<?= htmlspecialchars($libro->campos['ruta_a_imagen']) ?>"
-                    alt="portada del libro" itemprop="image">
+                <img class="img-detalle" src="{{ libro.campos.ruta_a_imagen|e }}" alt="portada del libro" itemprop="image">
             </figure>
 
             <section class="descripcion-libro">
-                <h2 itemprop="name"><?= htmlspecialchars($libro->campos['titulo']) ?></h2>
+                <h2 itemprop="name">{{ libro.campos.titulo|e }}</h2>
 
                 <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <p class="precio">
-                        $ <span
-                            itemprop="price"><?= number_format((float) $libro->campos['precio'], 0, ',', '.') ?></span>
+                        $ <span itemprop="price">{{ libro.campos.precio|number_format(0, ',', '.') }}</span>
                         <meta itemprop="priceCurrency" content="ARS" />
                     </p>
                 </div>
 
-                <form class="Reserva" action="/reservar" method="post" itemscope
-                    itemtype="https://schema.org/ReserveAction">
-                    <meta itemprop="object" content="<?= htmlspecialchars($libro->campos['titulo']) ?>" />
+                <form class="Reserva" action="/reservar" method="post" itemscope itemtype="https://schema.org/ReserveAction">
+                    <meta itemprop="object" content="{{ libro.campos.titulo|e }}" />
 
-                    <input type="hidden" name="libro_id" value="<?= htmlspecialchars($libro->campos['id']) ?>">
+                    <input type="hidden" name="libro_id" value="{{ libro.campos.id|e }}">
 
                     <label for="inputNombre">Nombre<span class="requerido"> *</span></label>
                     <input id="inputNombre" type="text" name="inputNombre"
-                        value="<?= htmlspecialchars($datos['nombre']) ?>" required title="Este campo es obligatorio"
-                        itemprop="agent">
+                           value="{{ datos.nombre|default('')|e }}" required title="Este campo es obligatorio"
+                           itemprop="agent">
 
                     <label for="inputEmail">Email<span class="requerido"> *</span></label>
                     <input id="inputEmail" type="email" name="inputEmail"
-                        value="<?= htmlspecialchars($datos['email']) ?>" required title="Este campo es obligatorio">
+                           value="{{ datos.email|default('')|e }}" required title="Este campo es obligatorio">
 
                     <!-- Dirección -->
                     <label for="inputCalle">Calle</label>
@@ -93,7 +90,7 @@
             </section>
         </section>
     </main>
-    <?php include 'parts/footer.php' ?>
-</body>
 
+    {% include 'parts/footer.twig' %}
+</body>
 </html>

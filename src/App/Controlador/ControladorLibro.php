@@ -11,14 +11,17 @@ class ControladorLibro extends Controlador{
 
     public function index()
     {
-        $titulo = "PAWPrints - Inicio";
+        global $twig;
         $novedadesResultado = $this->modeloInstancia->getLibrosPaginados(null, [5, 7]); // IDs de los libros nuevos
         $masVendidosResultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 3, 6]); // IDs de los libros más vendidos
         $recomendadosResultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
-        $novedades = $novedadesResultado['libros'];
-        $masVendidos = $masVendidosResultado['libros'];
-        $recomendados = $recomendadosResultado['libros'];
-        require $this->viewsDir . 'index.view.php';
+        echo $twig->render("index.view.twig", [
+            "titulo" => "PAWPrints - Inicio",
+            "menu" => $this->menu,
+            "novedades" => $novedadesResultado['libros'],
+            "masVendidos" => $masVendidosResultado['libros'],
+            "recomendados" => $recomendadosResultado['libros'],
+        ]);
     }
 
     public function catalogo(){
@@ -28,8 +31,6 @@ class ControladorLibro extends Controlador{
             $permiso = true;
         }
         global $request;
-        $titulo = "PAWPrints - Catálogo";
-        $htmlClass = "catalogo-pages";
 
         // Capturar parámetros GET
         $valorPag = $request->get('pagina');
@@ -57,7 +58,18 @@ class ControladorLibro extends Controlador{
         }
 
         // Renderizar vista
-        require $this->viewsDir . 'catalog.view.php';
+        global $twig;
+        echo $twig->render('catalog.view.twig', [
+            "titulo" => "PAWPrints - Catálogo",
+            "menu" => $this->menu,
+            "htmlClass" => "catalogo-pages",
+            "permiso" => $permiso,
+            "libros" => $libros,
+            "totalPaginas" => $totalPaginas,
+            "consulta" => $consulta,
+            "librosPorPagina" => $librosPorPagina,
+            "pagina" => $pagina,
+        ]);
     }
 
     public function descargarCatalogo(){
@@ -89,48 +101,63 @@ class ControladorLibro extends Controlador{
     public function libroNoEncontrado()
     {
         http_response_code(404);
-        require $this->viewsDir . '404.view.php';
+        global $twig;
+        echo $twig->render('404.view.twig', [
+            "titulo" => "Pagina no Encontrada",
+            "menu" => $this->menu,
+        ]);
     }
 
     public function masVendidos()
     {
-        $titulo = "PAWPrints - Más vendidos";
-        $htmlClass = "catalogo-pages";
         $resultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 3, 6]); // IDs de los libros más vendidos
-        $libros = $resultado['libros'];
-        require $this->viewsDir . 'mas-vendidos.view.php';
+        global $twig;
+        echo $twig->render('mas-vendidos.view.twig', [
+            "titulo" => "PAWPrints - Más vendidos",
+            "menu" => $this->menu,
+            "htmlClass" => "catalogo-pages",
+            "libros" => $resultado['libros'],
+        ]);
     }
 
     public function novedades()
     {
-        $titulo = "PAWPrints - Novedades";
-        $htmlClass = "catalogo-pages";
         $resultado = $this->modeloInstancia->getLibrosPaginados(null, [5, 7]); // IDs de los libros nuevos
-        $libros = $resultado['libros'];
-        require $this->viewsDir . 'novedades.view.php';
+        global $twig;
+        echo $twig->render('novedades.view.twig', [
+            "titulo" => "PAWPrints - Novedades",
+            "menu" => $this->menu,
+            "htmlClass" => "catalogo-pages",
+            "libros" => $resultado['libros'],
+        ]);
     }
 
     public function recomendados()
     {
-        $titulo = "PAWPrints - Recomendados";
-        $htmlClass = "catalogo-pages";
         $resultado = $this->modeloInstancia->getLibrosPaginados(null, [1, 2, 3, 4, 5]); // IDs de los libros recomendados
-        $libros = $resultado['libros'];
-        require $this->viewsDir . 'recomendados.view.php';
+        global $twig;
+        echo $twig->render('recomendados.view.twig', [
+            "titulo" => "PAWPrints - Recomendados",
+            "menu" => $this->menu,
+            "htmlClass" => "catalogo-pages",
+            "libros" => $resultado['libros'],
+        ]);
     }
 
     public function promociones()
     {
-        $titulo = "PAWPrints - Promociones";
-        $htmlClass = "catalogo-pages";
         $resultado = $this->modeloInstancia->getLibrosPaginados(null, [2, 3, 4]); // IDs de los libros en promoción
-        $libros = $resultado['libros'];
-        require $this->viewsDir . 'promociones.view.php';
+        global $twig;
+        echo $twig->render('promociones.view.twig', [
+            "titulo" => "PAWPrints - Promociones",
+            "menu" => $this->menu,
+            "htmlClass" => "catalogo-pages",
+            "libros" => $resultado['libros'],
+        ]);
     }
 
     public function get(){
         global $request;
-        $htmlClass = "libro-pages";
         $id = filter_var($request->get('id'), FILTER_VALIDATE_INT, ['options'=>['min_range'=>1]]);
         if (!$id) {
             return $this->libroNoEncontrado();
@@ -138,9 +165,18 @@ class ControladorLibro extends Controlador{
         $libro = $this->modeloInstancia->get([$id]);
         $mismoAutor = $this->modeloInstancia->getLibrosPaginados($libro->campos['autor']);
         $mismoAutorLibros = $mismoAutor['libros'];
-        $titulo = htmlspecialchars($libro->campos['titulo']);
-
-        require $this->viewsDir . 'libro.view.php';
+        if (!isset($libro) || !is_object($libro) || !isset($libro->campos)){
+            $this->libroNoEncontrado();
+            return;
+        }
+        global $twig;
+        echo $twig->render('libro.view.twig', [
+            "titulo" => htmlspecialchars($libro->campos['titulo']),
+            "menu" => $this->menu,
+            "htmlClass" => "libro-pages",
+            "libro" => $libro,
+            "mismoAutorLibros" => $mismoAutorLibros,
+        ]);
     }
 
     public function subirLibro()
@@ -150,9 +186,12 @@ class ControladorLibro extends Controlador{
             echo "<script>alert('⚠️ No tienes permiso para acceder a esta página.'); window.location.href = '/';</script>";
             return;
         }
-        $titulo = "PAWPrints - Subir Libro";
-        $htmlClass = "mi-cuenta-pages";
-        require $this->viewsDir . 'subir-libro.view.php';
+        global $twig;
+        echo $twig->render('subir-libro.view.twig', [
+            "titulo" => "PAWPrints - Subir Libro",
+            "menu" => $this->menu,
+            "htmlClass" => "mi-cuenta-pages",
+        ]);
     }
 
     // Procesar formulario POST para subir libro

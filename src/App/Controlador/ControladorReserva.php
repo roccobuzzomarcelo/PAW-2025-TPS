@@ -20,8 +20,13 @@ class ControladorReserva extends Controlador
         global $request;
         $consulta = $request->get('consulta') ?? null;
         $reservas = $this->modeloInstancia->getReservas($consulta);
-        $titulo = "Reservas - PawPrints";
-        require $this->viewsDir . "ver-reservas.view.php";
+        global $twig;
+        echo $twig->render('ver-reservas.view.twig', [
+            "titulo" => "PAWPrints - Reservas",
+            "menu" => $this->menu,
+            "htmlClass" => "preguntas-pages",
+            "reservas" => $reservas,
+        ]);
     }
 
     public function reservarLibro()
@@ -30,27 +35,25 @@ class ControladorReserva extends Controlador
             echo "<script>alert('⚠️ Debes iniciar sesion para reservar un libro'); window.location.href = '/mi-cuenta'</script>";
         }
         global $request;
-        $titulo = 'PAWPrints - Reservar';
-        $htmlClass = "libro-pages";
         $id = $request->get('id') ?? null;
         $libro = $this->modeloInstancia->getLibro([$id]);
         $datos = $_SESSION['usuario'];
         if (empty($libro)) {
             echo "<script>alert('⚠️ No se encontró el libro'); window.location.href = '/catalogo'</script>";
         }
-        require $this->viewsDir . 'reservar-libro.view.php';
+        global $twig;
+        echo $twig->render('reservar.view.twig', [
+            "titulo" => "PAWPrints - Reservar",
+            "menu" => $this->menu,
+            "htmlClass" => "libro-pages",
+            "libro" => $libro,
+            "datos" => $datos,
+        ]);
     }
 
     public function procesarReservarLibro()
     {
         global $request;
-        // $requeridos = ['libro_id', 'inputNombre', 'inputEmail', 'inputEnvio'];
-        // foreach ($requeridos as $campo) {
-        //     if (!isset($_POST[$campo]) || trim($_POST[$campo]) === '') {
-        //         echo "<script>alert('⚠️ Faltan datos obligatorios'); window.history.back();</script>";
-        //     return;
-        //     }
-        // }
 
         // Recoger los datos del formulario y sanitizarlos
         $usuario_id = $_SESSION['usuario']['id'];

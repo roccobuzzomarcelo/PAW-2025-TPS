@@ -1,0 +1,42 @@
+{% extends 'base.twig' %}
+
+{% block contenido %}
+    <!-- BREADCRUMB -->
+    <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a class="breadcrumb-link" href="../" itemprop="item">
+                <span itemprop="name">Home</span>
+            </a>
+            <meta itemprop="position" content="1" />
+        </li>
+    </ul>
+
+    <!-- CAROUSEL -->
+    <div class="carousel-container">
+        <img src="/images/carousel/imagen1.jpg" />
+        <img src="/images/carousel/imagen2.jpg" />
+        <img src="/images/carousel/imagen3.jpg" />
+        <img src="/images/carousel/imagen4.jpg" />
+    </div>
+
+    <!-- NOVEDADES -->
+    <h2 class="subtitulo">Novedades</h2>
+    <section class="cont-libros" itemscope itemtype="https://schema.org/ItemList">
+        {% set libros = novedades %}
+        {% include 'parts/mostrarLibros.twig' %}
+    </section>
+
+    <!-- MÁS VENDIDOS -->
+    <h2 class="subtitulo">Más Vendidos</h2>
+    <section class="cont-libros" itemscope itemtype="https://schema.org/ItemList">
+        {% set libros = masVendidos %}
+        {% include 'parts/mostrarLibros.twig' %}
+    </section>
+
+    <!-- RECOMENDADOS -->
+    <h2 class="subtitulo">Recomendados</h2>
+    <section class="cont-libros" itemscope itemtype="https://schema.org/ItemList">
+        {% set libros = recomendados %}
+        {% include 'parts/mostrarLibros.twig' %}
+    </section>
+{% endblock %}

@@ -1,7 +1,7 @@
-<?php include "parts/head.php" ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include "parts/header.php"; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -27,7 +27,7 @@
             <form class="login-form" action="/recuperar-contraseña" method="post" itemscope
                 itemtype="https://schema.org/SendAction">
                 <meta itemprop="target" content="https://tusitio.com/recuperar-contraseña" />
-                <h2 class="subtitulo">¿Perdiste tu contraseña? </h2>
+                <h2 class="subtitulo">¿Perdiste tu contraseña?</h2>
                 <p>Por favor, introduce tu correo electrónico. Recibirás un enlace para crear una
                     contraseña nueva por correo electrónico.</p>
                 <label for="inputEmail">Email</label>
@@ -36,7 +36,7 @@
             </form>
         </section>
     </main>
-    <?php include "parts/footer.php"; ?>
+    {% include 'parts/footer.twig' %}
 </body>
 
 </html>

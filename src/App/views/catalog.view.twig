@@ -1,7 +1,10 @@
-<?php include 'parts/head.php' ?>
+{% set htmlClass = htmlClass ?? 'index' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include 'parts/header.php'; ?>
+{% include 'parts/head.twig' %}
+
+<body class="{{ htmlClass|e }}">
+    {% include 'parts/header.twig' %}
+
     <main>
         <!-- BREADCRUMB -->
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -11,15 +14,16 @@
                 </a>
                 <meta itemprop="position" content="1" />
             </li>
-            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
-                itemtype="https://schema.org/ListItem">
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <span itemprop="name">Catálogo</span>
                 <meta itemprop="position" content="2" />
             </li>
         </ul>
-        <?php if ($permiso): ?>
+
+        {% if permiso %}
             <a href="/subir-libro" class="btn-descargar">Subir nuevo libro</a>
-        <?php endif; ?>
+        {% endif %}
+
         <nav class="nav-categoria">
             <label for="categorias">
                 Categorías:
@@ -29,36 +33,33 @@
                     <option value="Infantil">Infantil</option>
                 </select>
             </label>
+
             <form method="GET" class="form-cantidad">
                 <label for="librosPorPagina">Libros por página:</label>
                 <select name="libros_por_pagina" id="librosPorPagina" onchange="this.form.submit()">
-                    <?php
-                    $opciones = [5, 10, 20, 50];
-                    foreach ($opciones as $opcion) {
-                        $selected = ($librosPorPagina == $opcion) ? 'selected' : '';
-                        echo "<option value=\"$opcion\" $selected>$opcion</option>";
-                    }
-                    ?>
+                    {% for opcion in [5, 10, 20, 50] %}
+                        <option value="{{ opcion }}" {{ opcion == librosPorPagina ? 'selected' : '' }}>{{ opcion }}</option>
+                    {% endfor %}
                 </select>
-                <!-- Conservamos la consulta si la hubiera -->
-                <?php if ($consulta): ?>
-                    <input type="hidden" name="consulta" value="<?= htmlspecialchars($consulta) ?>">
-                <?php endif; ?>
-                <input type="hidden" name="pagina" value="<?= $pagina ?>">
+
+                {% if consulta %}
+                    <input type="hidden" name="consulta" value="{{ consulta|e }}">
+                {% endif %}
+                <input type="hidden" name="pagina" value="{{ pagina }}">
             </form>
 
             <span itemprop="potentialAction" itemscope itemtype="https://schema.org/DownloadAction">
-                <meta itemprop="target"
-                    content="https://tusitio.com/descargar_catalogo?pagina=<?= $pagina ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= urlencode($consulta) ?>" />
+                <meta itemprop="target" content="https://pawprints.com/descargar_catalogo?pagina={{ pagina }}&libros_por_pagina={{ librosPorPagina }}&consulta={{ consulta|url_encode }}" />
                 <meta itemprop="name" content="Descargar catálogo de libros" />
             </span>
 
-            <a href="/descargar_catalogo?pagina=<?= $pagina ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= urlencode($consulta) ?>"
-                class="btn-descargar">
-                Descargar Catalogo
+            <a href="/descargar_catalogo?pagina={{ pagina }}&libros_por_pagina={{ librosPorPagina }}&consulta={{ consulta|url_encode }}"
+               class="btn-descargar">
+                Descargar Catálogo
             </a>
         </nav>
-        <section class="filtros-libros <?= !empty($consulta) ? 'visible' : '' ?>" id="filtrosLibros">
+
+        <section class="filtros-libros {{ consulta ? 'visible' : '' }}" id="filtrosLibros">
             <div class="ordenar">
                 <label for="ordenarPor">Ordenar por:</label>
                 <select id="ordenarPor">
@@ -70,35 +71,39 @@
                     <option value="precio-desc">Precio (Mayor a menor)</option>
                 </select>
             </div>
+
             <div class="filtro-precio">
                 <label for="precioMin">Precio mínimo:</label>
                 <input type="number" id="precioMin" min="0" step="0.01" placeholder="Ej: 100">
+
                 <label for="precioMax">Precio máximo:</label>
                 <input type="number" id="precioMax" min="0" step="0.01" placeholder="Ej: 1000">
+
                 <button id="btnAplicarFiltro">Aplicar</button>
             </div>
         </section>
+
         <h2 class="subtitulo">Libros Disponibles</h2>
+
         <section class="cont-libros" itemscope itemtype="https://schema.org/ItemList">
             <meta itemprop="name" content="Catálogo de libros disponibles" />
-            <?php include "parts/mostrarLibros.php"; ?>
+            {% include 'parts/mostrarLibros.twig' %}
         </section>
+
         <!-- Paginación -->
         <nav class="paginacion">
-            <?php if ($pagina > 1): ?>
-                <a href="?pagina=<?= $pagina - 1 ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= htmlspecialchars($consulta) ?>"
-                    class="flecha">&#8592;</a>
-            <?php endif; ?>
+            {% if pagina > 1 %}
+                <a href="?pagina={{ pagina - 1 }}&libros_por_pagina={{ librosPorPagina }}&consulta={{ consulta|e }}" class="flecha">&#8592;</a>
+            {% endif %}
 
-            <span>Página <?= $pagina ?> de <?= $totalPaginas ?></span>
+            <span>Página {{ pagina }} de {{ totalPaginas }}</span>
 
-            <?php if ($pagina < $totalPaginas): ?>
-                <a href="?pagina=<?= $pagina + 1 ?>&libros_por_pagina=<?= $librosPorPagina ?>&consulta=<?= htmlspecialchars($consulta) ?>"
-                    class="flecha">&#8594;</a>
-            <?php endif; ?>
+            {% if pagina < totalPaginas %}
+                <a href="?pagina={{ pagina + 1 }}&libros_por_pagina={{ librosPorPagina }}&consulta={{ consulta|e }}" class="flecha">&#8594;</a>
+            {% endif %}
         </nav>
     </main>
-    <?php include 'parts/footer.php'; ?>
-</body>
 
+    {% include 'parts/footer.twig' %}
+</body>
 </html>

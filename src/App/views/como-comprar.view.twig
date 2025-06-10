@@ -1,10 +1,11 @@
-<?php include 'parts/head.php' ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include 'parts/header.php'; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
+
     <main itemscope itemtype="https://schema.org/WebPage">
-        <meta itemprop="name" content="¿Quíenes somos?" />
-        <!-- BREADCRUMB -->
+        <meta itemprop="name" content="¿Cómo comprar?" />
+        
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                 <a class="breadcrumb-link" href="../" itemprop="item">
@@ -18,16 +19,14 @@
                 </a>
                 <meta itemprop="position" content="2" />
             </li>
-            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
-                itemtype="https://schema.org/ListItem">
-                <span itemprop="name">¿Quienes somos?</span>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">¿Cómo comprar?</span>
                 <meta itemprop="position" content="3" />
             </li>
         </ul>
-        <section class="quienes-somos">
-            <h2 class="subtitulo">
-                ¿Quíenes somos?
-            </h2>
+
+        <section class="como-comprar">
+            <h2 class="subtitulo">Cómo hacer una compra</h2>
             <p>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
                 rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
@@ -41,7 +40,7 @@
             </p>
         </section>
     </main>
-    <?php include 'parts/footer.php'; ?>
-</body>
 
+    {% include 'parts/footer.twig' %}
+</body>
 </html>

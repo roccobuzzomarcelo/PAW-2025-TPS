@@ -61,11 +61,11 @@ class QueryBuilder
         if (isset($parametros['limit']) && is_numeric($parametros['limit']) && $parametros['limit'] > 0) {
             $query .= " LIMIT :limit";
             $binds[':limit'] = (int)$parametros['limit'];
-        }
 
-        if (isset($parametros['offset']) && is_numeric($parametros['offset']) && $parametros['offset'] >= 0) {
-            $query .= " OFFSET :offset";
-            $binds[':offset'] = (int)$parametros['offset'];
+            if (isset($parametros['offset']) && is_numeric($parametros['offset']) && $parametros['offset'] >= 0) {
+                $query .= " OFFSET :offset";
+                $binds[':offset'] = (int)$parametros['offset'];
+            }
         }
         $sentencia = $this->pdo->prepare($query);
 

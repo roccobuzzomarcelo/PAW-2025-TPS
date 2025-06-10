@@ -1,0 +1,55 @@
+{% include 'parts/head.twig' %}
+
+<body class="admin-reservas">
+    {% include 'parts/header.twig' %}
+
+    <main class="contenedor">
+        <h1 class="subtitulo">Listado de reservas</h1>
+
+        <form method="get" action="/reservas" class="form-busqueda">
+            <input type="text" name="consulta" value="{{ consulta|default('')|e }}"
+                   placeholder="Buscar por nombre, email o ID de libro">
+            <button type="submit">Buscar</button>
+        </form>
+
+        {% if reservas is empty %}
+            <p>No se encontraron reservas.</p>
+        {% else %}
+            <table class="tabla-reservas">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Libro ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Método Entrega</th>
+                        <th>Fecha Reserva</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reserva in reservas %}
+                        <tr>
+                            <td>{{ reserva.campos.id|e }}</td>
+                            <td>{{ reserva.campos.id_libro|e }}</td>
+                            <td>{{ reserva.campos.nombre|e }}</td>
+                            <td>{{ reserva.campos.email|e }}</td>
+                            <td>
+                                {{ reserva.campos.calle|e }}
+                                {{ reserva.campos.numero|e }},
+                                {{ reserva.campos.ciudad|e }},
+                                {{ reserva.campos.provincia|e }}
+                                ({{ reserva.campos.codigo_postal|e }})
+                            </td>
+                            <td>{{ reserva.campos.metodo_entrega|e }}</td>
+                            <td>{{ reserva.campos.created_at|e }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </main>
+
+    {% include 'parts/footer.twig' %}
+</body>
+</html>

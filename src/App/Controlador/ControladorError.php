@@ -11,15 +11,21 @@ class ControladorError extends Controlador{
         if (!headers_sent()) {
             http_response_code(404);
         }
-        require $this->viewsDir . '404.view.php';
-        exit;
+        global $twig;
+        echo $twig->render('404.view.twig', [
+            "titulo" => "Pagina no Encontrada",
+            "menu" => $this->menu,
+        ]);
     }
 
     public function errorInterno(){
         if (!headers_sent()) {
             http_response_code(500);
         }
-        require $this->viewsDir . '500.view.php';
-        exit;
+        global $twig;
+        echo $twig->render('500.view.twig', [
+            "titulo" => "Error Interno",
+            "menu" => $this->menu,
+        ]);
     }
 }

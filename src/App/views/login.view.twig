@@ -1,7 +1,7 @@
-<?php include 'parts/head.php' ?>
+{% include 'parts/head.twig' %}
 
-<body class="<?= htmlspecialchars($htmlClass ?? 'index') ?>">
-    <?php include 'parts/header.php'; ?>
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
     <main>
         <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -23,7 +23,7 @@
 
                 <label for="inputEmail">Email</label>
                 <input id="inputEmail" type="email" name="inputEmail" placeholder="Email" required
-                    value="<?= htmlspecialchars($_COOKIE['email'] ?? '') ?>" itemprop="identifier">
+                    value="{{ cookies.email|default('')|e }}" itemprop="identifier">
 
                 <label for="inputPassword">Contraseña</label>
                 <input id="inputPassword" type="password" name="inputPassword" placeholder="Contraseña" required
@@ -39,7 +39,7 @@
             </form>
         </section>
     </main>
-    <?php include 'parts/footer.php'; ?>
+    {% include 'parts/footer.twig' %}
 </body>
 
 </html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html class="{{ htmlClass|e }}" lang="es">
+{% include 'parts/head.twig' %}
+
+<body class="{{ htmlClass|default('index')|e }}" itemscope itemtype="https://schema.org/WebSite">
+    <meta itemprop="name" content="PAW Prints" url="https://paw-2025-tps.onrender.com/">
+
+    {% include 'parts/header.twig' %}
+
+    <main>
+        {% block contenido %}{% endblock %}
+    </main>
+
+    {% include 'parts/footer.twig' %}
+</body>
+</html>

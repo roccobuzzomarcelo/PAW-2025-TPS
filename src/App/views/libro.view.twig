@@ -1,0 +1,73 @@
+{% include 'parts/head.twig' %}
+
+<body class="{{ htmlClass|default('index')|e }}">
+    {% include 'parts/header.twig' %}
+    <main>
+        <!-- BREADCRUMB -->
+        <ul class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="../" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a class="breadcrumb-link" href="/catalogo" itemprop="item">
+                    <span itemprop="name">Catálogo</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li class="breadcrumb-item" aria-current="page" itemprop="itemListElement" itemscope
+                itemtype="https://schema.org/ListItem">
+                <span itemprop="name">{{ libro.campos.titulo|e }}</span>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ul>
+
+        <!-- Información del Libro -->
+        <section class="detalle-libro" itemscope itemtype="https://schema.org/Book">
+            <figure>
+                <img class="img-detalle" src="{{ libro.campos.ruta_a_imagen|e }}"
+                     alt="portada del libro" itemprop="image">
+            </figure>
+
+            <section class="descripcion-libro">
+                <h2 itemprop="name">{{ libro.campos.titulo|e }}</h2>
+
+                <p><span><strong>Descripción: </strong></span>
+                    <span itemprop="description">{{ libro.campos.descripcion|e }}</span>
+                </p>
+
+                <p class="autor">
+                    <strong>Autor: </strong>
+                    <span itemprop="author">{{ libro.campos.autor|e }}</span>
+                </p>
+
+                <section itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <p class="precio">
+                        <strong>Precio:</strong>
+                        <span itemprop="price" content="{{ libro.campos.precio }}">
+                            $ {{ libro.campos.precio|number_format(0, ',', '.') }}
+                        </span>
+                        <meta itemprop="priceCurrency" content="ARS" />
+                    </p>
+                </section>
+
+                <link itemprop="url" href="https://tusitio.com/libro?id={{ libro.campos.id|url_encode }}" />
+
+                <a class="boton-link" href="/agregar-carrito?id={{ libro.campos.id|url_encode }}">Agregar al carrito</a>
+                <a class="boton-link" href="/reservar?id={{ libro.campos.id|url_encode }}">Reservar libro</a>
+            </section>
+        </section>
+
+        <!-- Similares -->
+        <h2 class="subtitulo">Similares a este:</h2>
+
+        <section class="cont-libros">
+            {% set libros = mismoAutorLibros %}
+            {% include 'parts/mostrarLibros.twig' %}
+        </section>
+    </main>
+    {% include 'parts/footer.twig' %}
+</body>
+</html>
